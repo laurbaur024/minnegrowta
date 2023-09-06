@@ -2,26 +2,59 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require("bcrypt")
 
 const userSchema = new Schema({
-  fname: { 
+  username: { 
     type: String, 
+    unique: true,
     required: true 
-  },
-
-  lname: {
-    type: String,
-    required: true
   },
 
   email: {
     type: String,
     required: true,
+    unique: true,
+    match: /.+\@.+\..+/,
   },
 
   password: {
     type: String,
     required: true
-  }
-});
+  },
+
+  favPlants: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Flower",
+    }
+  ],
+
+  gardenPlants: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Plant",
+    }
+  ],
+
+  myPosts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Forum",
+    }
+  ],
+
+  myJournals: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Journal"
+    }
+  ]
+},
+{
+  toJSON: {
+    virtuals: false,
+  },
+  id: false,
+}
+);
 
 userSchema.method("verify", async function(pw){
   return await bcrypt.compare(pw, this.password)
