@@ -25,6 +25,10 @@ const commentSchema = new Schema (
   }
 )
 
+commentSchema.virtual('createdTime').get(function () {
+  return this.createdAt.toDateString()
+})
+
 const Comment = model('Plant', commentSchema)
 
 module.exports = Comment
