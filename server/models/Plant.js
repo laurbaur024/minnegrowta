@@ -12,7 +12,7 @@ const plantSchema = new Schema (
       required: true
     },
 
-    image: {
+    type: {
       type: String,
       required: true
     },

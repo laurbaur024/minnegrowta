@@ -22,11 +22,6 @@ const flowerSchema = new Schema (
       required: true
     },
 
-    sun: {
-      type: Boolean,
-      required: true
-    },
-
     annual: {
       type: Boolean,
       required: true

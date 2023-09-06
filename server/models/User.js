@@ -20,21 +20,21 @@ const userSchema = new Schema({
     required: true
   },
 
-  favPlants: [
+  favPlant: [
     {
       type: Schema.Types.ObjectId,
       ref: "Flower",
     }
   ],
 
-  gardenPlants: [
+  gardenPlant: [
     {
       type: Schema.Types.ObjectId,
       ref: "Plant",
     }
   ],
 
-  myPosts: [
+  myForums: [
     {
       type: Schema.Types.ObjectId,
       ref: "Forum",
