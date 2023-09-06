@@ -6,12 +6,17 @@ const commentSchema = new Schema (
       type: String,
       required: true
     },
+
     userId: {
-      type: Number
+        type: Schema.Types.ObjectId,
+        ref: "User",
     },
-    postId: {
-      type: Number
+
+    forumId: {
+      type: Schema.Types.ObjectId,
+      ref: 'Forum'
     },
+    
     dateCreated: {
       type: Date,
       default: Date.now

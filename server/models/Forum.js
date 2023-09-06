@@ -14,10 +14,12 @@ const forumSchema = new Schema (
       required: true
     },
     userId: {
-      type: Number
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
     commentId: {
-      type: Number
+      type: Schema.Types.ObjectId,
+      ref: "Comment",
     },
     dateCreated: {
       type: Date,
