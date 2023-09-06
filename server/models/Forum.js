@@ -17,10 +17,12 @@ const forumSchema = new Schema (
       type: Schema.Types.ObjectId,
       ref: "User",
     },
-    commentId: {
+    commentId: [
+      {
       type: Schema.Types.ObjectId,
       ref: "Comment",
-    },
+    }
+    ],
     dateCreated: {
       type: Date,
       default: Date.now
@@ -29,6 +31,10 @@ const forumSchema = new Schema (
   }
 )
 
-const Forum = model('Plant', forumSchema)
+const Forum = model('Forum', forumSchema)
+
+forumSchema.virtual('createdTime').get(function () {
+  return this.createdAt.toDateString()
+})
 
 module.exports = Forum
