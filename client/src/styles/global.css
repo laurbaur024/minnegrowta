@@ -18,3 +18,38 @@ p, li, td, th, blockquote, label, input, textarea, select {
 p {
   margin-bottom: 1rem;
 }
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.quote {
+  font-style: italic;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-info {
+  font-size: 12px;
+}

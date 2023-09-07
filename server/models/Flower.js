@@ -9,7 +9,7 @@ const flowerSchema = new Schema (
 
     image: {
       type: String,
-      required: true
+      // required: true
     },
 
     sun: {
@@ -29,7 +29,7 @@ const flowerSchema = new Schema (
 
     bloomingSeason: {
       type: String,
-      required: true
+      // required: true
     },
 
     height: {

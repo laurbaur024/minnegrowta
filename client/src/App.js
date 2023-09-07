@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Header, Wrapper } from "./components"
+import { Header, Wrapper, Footer } from "./components"
 import { UserProvider } from "./ctx/UserContext";
 import { HomePage, LoginPage, SignupPage, MyFavorites, Forum, Planner, PlantSearch, UserDashboard } from "./pages";
 import { ChakraProvider } from '@chakra-ui/react';
@@ -11,7 +11,7 @@ import './styles/global.css'
 
 function App() {
   return (
-     <ChakraProvider>
+      <ChakraProvider>
         <BrowserRouter>
           <UserProvider>
             <Wrapper>
@@ -28,6 +28,7 @@ function App() {
                   <Route path="/dashboard" element={<UserDashboard/>} />
                 </Routes>
               </div>
+              <Footer />
             </Wrapper>
           </UserProvider>
         </BrowserRouter>
@@ -36,3 +37,4 @@ function App() {
 }
 
 export default App;
+
