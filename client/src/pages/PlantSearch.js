@@ -15,14 +15,18 @@ export default function PlantSearch () {
   }
 
   const card = {
-    margin: '10px'
+    margin: '15px'
+  }
+
+  const img = {
+    borderRadius: '20px'
   }
 
   return (
     <>
       <div>
         <div>
-          <Card>
+          <Card style={card}>
             <CardBody>
           
               <Editable defaultValue='Search for a plant...'>
@@ -32,9 +36,9 @@ export default function PlantSearch () {
               <Button style={button} colorScheme='orange'>Search</Button>
             </CardBody>
           </Card>
-          <Card>
+          <Card style={card}>
             <CardHeader>
-              <Heading size='md'>Search Results for <span>Tomato</span></Heading>
+              <Heading size='md'>Showing Results for <span>Tomato</span>...</Heading>
             </CardHeader>
             <CardBody>
               <Stack divider={<StackDivider />} spacing='4'>
@@ -42,7 +46,7 @@ export default function PlantSearch () {
                   <Heading size='s' textTransform='uppercase'> Roma Tomato </Heading>
                 </Box>
                 <Box>
-                  <img src='https://hgshydro.com:5001/blog/hgs.19105c12-3b2c-4035-9b68-934641c3f27b_default.jpg' alt='Picture of Plant'/>
+                  <img style={img} src='https://hgshydro.com:5001/blog/hgs.19105c12-3b2c-4035-9b68-934641c3f27b_default.jpg' alt='Picture of Plant'/>
                 </Box>
                 <Box>
                   <UnorderedList>
