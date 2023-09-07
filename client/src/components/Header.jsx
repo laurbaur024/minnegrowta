@@ -1,14 +1,15 @@
 import React from "react";
 import { useUserContext } from "../ctx/UserContext";
 import { Navbar, Nav, Container } from "react-bootstrap";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const Header = () => {
   const { currUser, logout } = useUserContext();
 
   return (
     <header className="pb-0 mb-0" style={{ borderBottom: "1px solid #333" }}>
-      <Navbar bg="dark" variant="dark" expand="md">
-        <Container>
+      <Navbar bg="dark" variant="dark">
+        <Container fluid>
           {/* Logo and Site Name */}
           <Navbar.Brand href="/">
             <img
@@ -18,7 +19,7 @@ const Header = () => {
               height="60"
               className="d-inline-block align-top"
             />
-            MinneGrowta
+            <span className="logo-text">MinneGrowta</span>
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -35,8 +36,7 @@ const Header = () => {
 
               {/* Conditional Rendering based on Authentication */}
               {currUser.status === "notfound" ? (
-                <Nav.Link href="/signup">Signup</Nav.Link>
-                
+                <Nav.Link href="/login" className="navlink">Login</Nav.Link>
               ) : (
                 <>
                 
