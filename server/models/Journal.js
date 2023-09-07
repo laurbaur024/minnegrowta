@@ -18,9 +18,15 @@ const journalSchema = new Schema (
       default: Date.now
     },
 
+  },
+  {
+    toJSON: {
+      virtuals: true,
+    },
+    id: false,
   }
 )
 
-const Journal = model('Plant', journalSchema)
+const Journal = model('Journal', journalSchema)
 
 module.exports = Journal
