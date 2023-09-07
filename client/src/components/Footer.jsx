@@ -5,23 +5,21 @@ const Footer = () => {
   return (
     <footer className="footer">
       <Container fluid>
-        <Navbar bg="dark" variant="dark">
-          <Navbar.Collapse className="justify-content-between">
-            <div className="quote text-center mb-2">
-              <p style={{ fontStyle: "italic", margin: 0 }}>"Your Quote Here" -Author</p>
-            </div>
-            <div className="footer-info">
-              &copy; MinneGrowta @ 2023
-            </div>
+        <div className="quote-container text-center">
+          <p style={{ fontStyle: "italic", margin: 0 }}>"Your Quote Here" -Author</p>
+        </div>
+          <div className="footer-content">
             <div className="footer-links">
-              <Nav>
+              <Nav className="d-flex flex-row">
                 <Nav.Link href="/">Home</Nav.Link>
                 <Nav.Link href="/about">About</Nav.Link>
                 <Nav.Link href="/contact">Contact</Nav.Link>
               </Nav>
             </div>
-          </Navbar.Collapse>
-        </Navbar>
+          <div className="footer-info text-center">
+            <span className="faded-text">&copy; MinneGrowta @2023</span>
+          </div>
+        </div>
       </Container>
     </footer>
   );
