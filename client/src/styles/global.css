@@ -62,10 +62,14 @@ p {
 /* footer styles */
 
 .footer {
-  background-color: #333;
+  background-color: #1d1d1d;
   color: #fff;
   text-align: center;
   padding: 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin-top: 100px;
 }
 
 .container-fluid {
@@ -74,8 +78,7 @@ p {
 
 .quote-container p {
   font-style: italic;
-  margin-bottom: 0;
-  padding: 10px;
+  margin-top: 5px;
 }
 
 .footer-content {
@@ -89,11 +92,10 @@ p {
   width: 100%;
   justify-content: space-between;
   gap: 100px;
-  margin-bottom: 5px;
 }
 
 .footer-content a {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.18);
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -107,5 +109,5 @@ p {
 }
 
 .faded-text {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.18);
 }
