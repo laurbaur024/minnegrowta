@@ -16,7 +16,7 @@ function App() {
           <UserProvider>
             <Wrapper>
               <Header />
-              <div className="pt-3 px-4">
+              <div className="content">
                 <Routes>
                   <Route path="/" element={<HomePage />} />
                   <Route path="/login" element={<LoginPage />} />

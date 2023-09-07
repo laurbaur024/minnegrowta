@@ -1,7 +1,8 @@
 import React from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
+import { Container, Nav } from "react-bootstrap";
 
 const Footer = () => {
+
   return (
     <footer className="footer" style={{ borderTop: "1px solid #333" }}>
       <Container fluid>

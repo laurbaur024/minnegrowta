@@ -7,7 +7,7 @@ const Header = () => {
   const { currUser, logout } = useUserContext();
 
   return (
-    <header className="pb-0 mb-0" style={{ borderBottom: "1px solid #333" }}>
+    <header className="header" style={{ borderBottom: "1px solid #333" }}>
       <Navbar bg="dark" variant="dark">
         <Container fluid>
           {/* Logo and Site Name */}

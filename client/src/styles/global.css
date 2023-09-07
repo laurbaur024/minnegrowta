@@ -21,6 +21,13 @@ p {
 
 /* header styles */
 
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+}
+
 .bi.bi-search::before {
   margin-top: 8px;
 }
@@ -59,6 +66,14 @@ p {
   margin-left: 10px;
 }
 
+/* content styles */
+
+.content {
+  margin-top: 90px;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
 /* footer styles */
 
 .footer {
@@ -66,7 +81,7 @@ p {
   color: #fff;
   text-align: center;
   padding: 0;
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%;
   margin-top: 100px;
