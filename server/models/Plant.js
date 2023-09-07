@@ -21,15 +21,20 @@ const plantSchema = new Schema (
       type: String,
       required: true
     },
+    
+    climbing: {
+      type: Boolean,
 
-    zone: {
+    },
+
+    sun: {
       type: String,
       required: true
     },
 
-    sun: {
-      type: Boolean,
-      required: true
+    zone: {
+      type: String,
+      // required: true
     },
 
     annual: {

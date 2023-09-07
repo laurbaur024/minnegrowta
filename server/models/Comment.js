@@ -17,10 +17,10 @@ const commentSchema = new Schema (
       ref: 'Forum'
     },
     
-    dateCreated: {
-      type: Date,
-      default: Date.now
-    },
+    // dateCreated: {
+    //   type: Date,
+    //   default: Date.now
+    // },
   },
   {
     toJSON: {
