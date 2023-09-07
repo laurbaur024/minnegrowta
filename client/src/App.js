@@ -11,7 +11,7 @@ import './styles/global.css'
 
 function App() {
   return (
-    <ChakraProvider>
+    // <ChakraProvider>
       <BrowserRouter>
         <UserProvider>
           <Wrapper>
@@ -26,7 +26,7 @@ function App() {
           </Wrapper>
         </UserProvider>
       </BrowserRouter>
-    </ChakraProvider>
+    // </ChakraProvider>
   );
 }
 

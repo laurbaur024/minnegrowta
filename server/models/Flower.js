@@ -39,6 +39,6 @@ const flowerSchema = new Schema (
   }
 )
 
-const Flower = model('Plant', flowerSchema)
+const Flower = model('Flower', flowerSchema)
 
 module.exports = Flower

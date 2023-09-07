@@ -21,6 +21,6 @@ const journalSchema = new Schema (
   }
 )
 
-const Journal = model('Plant', journalSchema)
+const Journal = model('Journal', journalSchema)
 
 module.exports = Journal
