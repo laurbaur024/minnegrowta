@@ -1,8 +1,8 @@
-const { Blog } = require('../models');
-const Model = Blog
+const { Forum } = require('../models');
+const Model = Forum
 
 
-//get all blog posts
+//get all Forum posts
 async function find(criteria = {}){
   try {
     const payload = await Model.find(criteria)
@@ -13,7 +13,7 @@ async function find(criteria = {}){
   }
 }
 
-//get blog post by id
+//get Forum post by id
 async function findById(id){
   try {
     const payload = await Model.findById(id)
@@ -24,7 +24,7 @@ async function findById(id){
   }
 }
 
-// create new blog post
+// create new Forum post
 async function create(body){
   try {
     const payload = await Model.create(body)
@@ -35,7 +35,7 @@ async function create(body){
   }
 }
 
-// update existing blog post by id
+// update existing Forum post by id
 async function updateById(id, body){
   try {
     const payload = await Model.findByIdAndUpdate(id, body, { new: true })
@@ -46,7 +46,7 @@ async function updateById(id, body){
   }
 }
 
-// delete blog post by id
+// delete Forum post by id
 async function remove(id){
   try {
     const payload = await Model.findByIdAndDelete(id)

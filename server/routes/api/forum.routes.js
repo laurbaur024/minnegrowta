@@ -9,7 +9,7 @@ const {
 } = require('../../controllers/user.controller');
 
 
-//get all blog posts
+//get all forum posts
 router.get("/", async (req, res) => {
   try {
     const payload = await find(req.query)
@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
   }
 })
 
-//get blog post by id
+//get forum post by id
 router.get("/:id", async (req, res) => {
   const id = req.params.id
   try {
@@ -30,7 +30,7 @@ router.get("/:id", async (req, res) => {
   }
 })
 
-//create new blog post
+//create new forum post
 router.post("/", async (req, res) => {
   try {
     const payload = await create(req.body)
@@ -40,7 +40,7 @@ router.post("/", async (req, res) => {
   }
 })
 
-//update blog post by id
+//update forum post by id
 router.put("/:id", async (req, res) => {
   const id = req.params.id
   try {
@@ -51,7 +51,7 @@ router.put("/:id", async (req, res) => {
   }
 })
 
-//delete blog post by id
+//delete forum post by id
 router.delete("/:id", async (req, res) => {
   const id = req.params.id
   try {
