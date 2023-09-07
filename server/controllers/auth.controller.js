@@ -9,7 +9,6 @@ function signToken(user){
 
 async function register(req) {
   let user 
-
   try {
     user = await create(req.body)
   } catch(err){
