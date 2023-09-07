@@ -16,11 +16,11 @@ const seedDatabase = async () => {
     returning: true, 
   });
 
-  const flowers = await Flower.blukCreate(flowerData, {});
+  const flowers = await Flower.bulkCreate(flowerData, {});
 
-  const plants = await Plant.blukCreate(plantData, {});
+  const plants = await Plant.bulkCreate(plantData, {});
 
-  const comments = await Comment.blukCreate(commentData, {});
+  const comments = await Comment.bulkCreate(commentData, {});
 
   for (const journal of journalData) {
     await Journal.create({
