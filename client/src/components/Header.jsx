@@ -1,44 +1,53 @@
-import { useState } from "react"
-import { useUserContext } from "../ctx/UserContext"
-import { Navbar, Nav } from "react-bootstrap";
+import React from "react";
+import { useUserContext } from "../ctx/UserContext";
+import { Navbar, Nav, Container } from "react-bootstrap";
 
 const Header = () => {
-  const { currUser, logout } = useUserContext()
+  const { currUser, logout } = useUserContext();
+
   return (
     <header className="pb-0 mb-0" style={{ borderBottom: "1px solid #333" }}>
-      <Navbar bg="dark" variant="dark" expand="md" style={{ justifyContent: "space-between" }}>
-        <div className="container-fluid" style={{ width: "65%"}}>
+      <Navbar bg="dark" variant="dark" expand="md">
+        <Container>
+          {/* Logo and Site Name */}
+          <Navbar.Brand href="/">
+            <img
+              src="/favicon.png"
+              alt="Logo"
+              width="60"
+              height="60"
+              className="d-inline-block align-top"
+            />
+            MinneGrowta
+          </Navbar.Brand>
+
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+            </Nav>
 
-            {/* Add the activeKey code below and the rest shoud work  */}
-            <Nav className="me-auto" activeKey={window.location.pathname}>
-              <li><Nav.Link href="/">Home</Nav.Link></li>
+            {/* Right-side Nav Options */}
+            <Nav>
+              {/* Search Icon */}
+              <Nav.Link href="/search">
+                <i className="bi bi-search"></i>
+              </Nav.Link>
 
-              { currUser.status === "notfound" && (
+              {/* Conditional Rendering based on Authentication */}
+              {currUser.status === "notfound" ? (
+                <Nav.Link href="/login">Login</Nav.Link>
+              ) : (
                 <>
-                  <li><Nav.Link href="/signup">Signup Page</Nav.Link></li>
+                  <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+                  <Nav.Link onClick={logout}>Logout</Nav.Link>
                 </>
               )}
             </Nav>
           </Navbar.Collapse>
-        </div>
-        <div style={{ width: "35%", paddingRight: "10px" }}>
-          { currUser.status === "found" && (
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0" style={{ display: "flex", justifyContent: "flex-end"}}>
-              <li className="nav-item">
-                  <span className="nav-link active">Welcome back, {currUser.data.fname}</span>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link active" onClick={logout}>Logout</a>
-              </li>
-            </ul>
-          )}
-        </div>
+        </Container>
       </Navbar>
     </header>
-  )
-}
+  );
+};
 
-
-export default Header
+export default Header;
