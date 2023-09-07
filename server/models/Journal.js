@@ -18,6 +18,12 @@ const journalSchema = new Schema (
       default: Date.now
     },
 
+  },
+  {
+    toJSON: {
+      virtuals: true,
+    },
+    id: false,
   }
 )
 
