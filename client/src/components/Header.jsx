@@ -35,9 +35,12 @@ const Header = () => {
 
               {/* Conditional Rendering based on Authentication */}
               {currUser.status === "notfound" ? (
-                <Nav.Link href="/login">Login</Nav.Link>
+                <Nav.Link href="/signup">Signup</Nav.Link>
+                
               ) : (
                 <>
+                
+                {/* <Nav.Link href="/login">Login</Nav.Link> */}
                   <Nav.Link href="/dashboard">Dashboard</Nav.Link>
                   <Nav.Link onClick={logout}>Logout</Nav.Link>
                 </>
