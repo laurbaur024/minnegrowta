@@ -36,9 +36,15 @@ const flowerSchema = new Schema (
       type: String,
       required: true
     }
+  },
+  {
+    toJSON: {
+      virtuals: true,
+    },
+    id: false,
   }
 )
 
-const Flower = model('Plant', flowerSchema)
+const Flower = model('Flower', flowerSchema)
 
 module.exports = Flower
