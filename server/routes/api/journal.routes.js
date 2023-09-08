@@ -3,10 +3,9 @@ const {
   find,
   findById,
   create,
-  update,
   updateById,
   remove 
-} = require('../../controllers/user.controller');
+} = require('../../controllers/journal.controller');
 
 
 // get all journal entries

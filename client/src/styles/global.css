@@ -103,9 +103,25 @@ p {
 }
 
 .footer-info {
+
+  font-size: 12px;
+}
+
+.card-container {
+  display: flex;
+}
+
+.card {
+  width: 400px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-right: 10px;
+  
+
   margin-bottom: 10px;
 }
 
 .faded-text {
   color: rgba(255, 255, 255, 0.5);
+
 }

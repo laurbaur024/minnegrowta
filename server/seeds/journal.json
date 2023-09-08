@@ -1,0 +1,14 @@
+[
+  {
+    "title": "This is my title",
+    "image": "www.image.com",
+    "text": "this is my text"
+  
+  },
+  {
+    "title": "This is my new title",
+    "image": "www.image.com",
+    "text": "this is my new text"
+  
+  }
+]

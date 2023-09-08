@@ -1,8 +1,5 @@
-
-
-
-const { Plants } = require('../models')
-const Model = Plants
+const { Plant } = require('../models')
+const Model = Plant
 
 
 
@@ -32,10 +29,5 @@ async function findById(id){
 
 module.exports = {
   find,
-  findOne,
   findById,
-  create,
-  update,
-  updateById,
-  remove
 }
