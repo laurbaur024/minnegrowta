@@ -1,10 +1,18 @@
 // react imports
 import React from 'react';
 import { useState, useEffect } from 'react';
-// import forum from '../../../server/models/Forum';
 
 // Chackra imports
-import { Grid, GridItem } from '@chakra-ui/react';
+import {
+  Grid,
+  GridItem,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+  Box,
+} from '@chakra-ui/react'
 import { Card, CardHeader, CardBody, CardFooter, Heading, Text } from '@chakra-ui/react';
 import { Button, ButtonGroup } from '@chakra-ui/react';
 
@@ -38,27 +46,45 @@ export default function Forum () {
         gap={4}
       >
         
-        <GridItem colSpan={1} bg='papayawhip'>
-          <h2>List of my blog posts apear here, when clicked what happens, what to do with delete or update buttons?</h2>
-          
-          
-        </GridItem>
-        <GridItem colSpan={4} bg='papayawhip'>
-          <h2>All blog posts will go here in chronological order, when clicked on what happens?</h2>
-
-
-          <ul className='list-group'>
-            {results.map((data) => (
-              <li className="list-group-item" key={data.payload}>
-              {`${data.title} ${data.image} ${data.content}`}
-              </li>
+        <GridItem colSpan={1}>
+          <h2>My Forum Posts:</h2>
+          {/* <ul className="list-group">
+            {users.map((user) => (
+            <li className="list-group-item" key={user.login.uuid}>
+            {`${user.name.first} ${user.name.last} (${user.login.username})`}
+            </li>
             ))}
-
-          </ul>
-
-
+          </ul> */}
+          
         </GridItem>
-        
+        <GridItem colSpan={4}>
+          <h2>Garden Planner Forum Posts</h2>
+          <h6>See other gardener's tips and tricks, or ask a question!</h6>
+          <Accordion>
+          {results.map((data) => (
+            <AccordionItem>
+              <h2>
+                <AccordionButton>
+                  <Box as="span" flex='1' textAlign='left'>
+                    {`${data.title}`}
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                <div>
+                  <img src={`${data.image}`} alt="image of plants" width="500" height="300"></img>
+                </div>
+                <div>
+                  {`${data.content}`}
+                </div>
+                <Button className='homeButton' colorScheme='orange' href='https://arb.umn.edu/' target='_blank'>Reply to Post
+                </Button>
+              </AccordionPanel>
+            </AccordionItem>
+            ))}
+          </Accordion>
+        </GridItem>
       </Grid>
     </>
   )
