@@ -14,7 +14,7 @@ function App() {
       <ChakraProvider>
         <BrowserRouter>
           <UserProvider>
-            <Wrapper>
+            {/* <Wrapper> */}
               <Header />
               <div className="content">
                 <Routes>
@@ -29,7 +29,7 @@ function App() {
                 </Routes>
                 </div>
               <Footer />
-            </Wrapper>
+            {/* </Wrapper> */}
           </UserProvider>
         </BrowserRouter>
       </ChakraProvider>
