@@ -46,6 +46,7 @@ const SignupPage = (props) => {
       }}
     >
       <SimpleGrid
+        mt={20}
         spacing={10}
         // templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
         templateColumns="repeat(auto-fill, minmax(350px, 1fr))"
@@ -96,7 +97,7 @@ const SignupPage = (props) => {
           </CardBody>
           <CardFooter>
             <Button
-              className="btn btn-primary"
+              className="btn signup"
               colorScheme="orange"
               onClick={handleFormSubmit}
             >

@@ -81,7 +81,7 @@ const LoginPage = () => {
             </CardBody>
             <CardFooter>
               <Button
-                className="btn btn-primary"
+                className="btn login"
                 colorScheme="orange"
                 onClick={handleFormSubmit}
               >
