@@ -1,13 +1,26 @@
 import React from "react";
 import CardContainer from "../components/CardContainer";
 import TimelineContainer from "../components/TimelineContainer";
+import {Card, Stack, CardBody, Heading, Text, Button} from '@chakra-ui/react'
 //more import statements here//
 
 const App = () => {
+  const margin = {
+    marginBottom: "10px"
+  }
   return (
     <div>
       <h1>User Dashboard</h1>
       <CardContainer />
+      <Card style={margin}direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline'>
+        <Stack>
+          <CardBody>
+            <Heading>{TimelineContainer}</Heading>
+            <Text py='2'>Timeline will go here!</Text>
+            <Button>Timeline</Button>
+          </CardBody>
+        </Stack>
+      </Card>
     </div>
   );
 };

@@ -1,14 +1,21 @@
 import React from "react";
 import { useUserContext } from "../ctx/UserContext";
 import { Navbar, Nav, Container } from "react-bootstrap";
+import { useNavigate } from "react-router-dom"; 
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const Header = () => {
   const { currUser, logout } = useUserContext();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   return (
-    <header className="pb-0 mb-0" style={{ borderBottom: "1px solid #333" }}>
-      <Navbar bg="dark" variant="dark">
+    <header className="header" style={{ borderBottom: "1px solid #333" }}>
+      <Navbar bg="dark" variant="dark" expand="md">
         <Container fluid>
           {/* Logo and Site Name */}
           <Navbar.Brand href="/">
@@ -36,13 +43,16 @@ const Header = () => {
 
               {/* Conditional Rendering based on Authentication */}
               {currUser.status === "notfound" ? (
+                <>
                 <Nav.Link href="/login" className="navlink">Login</Nav.Link>
+                <Nav.Link href="/signup" className="navlink2">Signup</Nav.Link>
+                </>
               ) : (
                 <>
                 
                 {/* <Nav.Link href="/login">Login</Nav.Link> */}
-                  <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-                  <Nav.Link onClick={logout}>Logout</Nav.Link>
+                  <Nav.Link href="/dashboard" className="navlink">Dashboard</Nav.Link>
+                  <Nav.Link onClick={handleLogout} className="navlink2">Logout</Nav.Link>
                 </>
               )}
             </Nav>
