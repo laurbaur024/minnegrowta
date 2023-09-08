@@ -164,6 +164,7 @@ p {
   flex-grow: 1;
   flex-direction: column;
   height: 100vh;
+  background-color: "#F2EFE0" !important;
 }
 
 /* footer styles */
@@ -181,6 +182,7 @@ p {
 
 .container-fluid {
   padding: 0;
+  background-color: "#F2EFE0" !important;
 }
 
 .quote-container p {
