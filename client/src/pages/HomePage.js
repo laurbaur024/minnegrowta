@@ -15,6 +15,8 @@ const HomePage = () => {
     position: 'absoulte'
   }
 
+  
+
   return (
     <div>
       <div>

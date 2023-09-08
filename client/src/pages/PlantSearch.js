@@ -23,11 +23,11 @@ export default function PlantSearch () {
   }
 
   return (
-    <SimpleGrid minChildWidth='130px'columns={2}>
+    <SimpleGrid>
       <Card style={card}>
         <CardBody>
           <Editable defaultValue='Search for a plant...'>
-            <EditablePreview />
+            <EditablePreview  />
               <EditableInput />
           </Editable>
           <Button style={button} colorScheme='orange'>Search</Button>
