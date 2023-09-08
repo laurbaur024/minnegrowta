@@ -38,8 +38,8 @@ const forumSchema = new Schema (
 
 const Forum = model('Forum', forumSchema)
 
-forumSchema.virtual('createdTime').get(function () {
-  return this.createdAt.toDateString()
-})
+// forumSchema.virtual('createdTime').get(function () {
+//   return this.createdAt.toDateString()
+// })
 
 module.exports = Forum

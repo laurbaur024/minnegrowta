@@ -3,10 +3,9 @@ const {
   find,
   findById,
   create,
-  update,
   updateById,
   remove 
-} = require('../../controllers/user.controller');
+} = require('../../controllers/comments.controller');
 
 // get all comments
 router.get("/", async (req, res) => {
