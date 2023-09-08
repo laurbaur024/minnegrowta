@@ -19,7 +19,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <div>
+      <div className="home">
         <h1 className="header-text">
           Planting success <br/>
           in the land of 10,000 lakes
