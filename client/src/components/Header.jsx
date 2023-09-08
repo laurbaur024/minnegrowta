@@ -8,7 +8,7 @@ const Header = () => {
 
   return (
     <header className="header" style={{ borderBottom: "1px solid #333" }}>
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="dark" variant="dark" expand="md">
         <Container fluid>
           {/* Logo and Site Name */}
           <Navbar.Brand href="/">
@@ -36,7 +36,10 @@ const Header = () => {
 
               {/* Conditional Rendering based on Authentication */}
               {currUser.status === "notfound" ? (
+                <>
                 <Nav.Link href="/login" className="navlink">Login</Nav.Link>
+                <Nav.Link href="/signup" className="navlink2">Signup</Nav.Link>
+                </>
               ) : (
                 <>
                   <Nav.Link href="/dashboard">Dashboard</Nav.Link>

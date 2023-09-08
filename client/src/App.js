@@ -27,7 +27,7 @@ function App() {
                   <Route path="/search" element={<PlantSearch/>} />
                   <Route path="/dashboard" element={<UserDashboard/>} />
                 </Routes>
-              </div>
+                </div>
               <Footer />
             </Wrapper>
           </UserProvider>
