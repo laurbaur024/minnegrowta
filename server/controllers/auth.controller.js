@@ -10,11 +10,7 @@ function signToken(user) {
 async function register(req) {
   let user;
   try {
-    user = await create(
-      req.body
-      // username: req.body.username,
-      // password: req.body.password,
-    );
+    user = await create(req.body);
   } catch (err) {
     if (process.env.NODE_ENV === "development") console.log(err);
     throw err;
