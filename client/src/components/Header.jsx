@@ -1,10 +1,17 @@
 import React from "react";
 import { useUserContext } from "../ctx/UserContext";
 import { Navbar, Nav, Container } from "react-bootstrap";
+import { useNavigate } from "react-router-dom"; 
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const Header = () => {
   const { currUser, logout } = useUserContext();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   return (
     <header className="header" style={{ borderBottom: "1px solid #333" }}>
@@ -44,8 +51,8 @@ const Header = () => {
                 <>
                 
                 {/* <Nav.Link href="/login">Login</Nav.Link> */}
-                  <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-                  <Nav.Link onClick={logout}>Logout</Nav.Link>
+                  <Nav.Link href="/dashboard" className="navlink">Dashboard</Nav.Link>
+                  <Nav.Link onClick={handleLogout} className="navlink2">Logout</Nav.Link>
                 </>
               )}
             </Nav>
