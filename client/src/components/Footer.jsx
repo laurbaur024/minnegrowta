@@ -1,9 +1,10 @@
 import React from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
+import { Container, Nav } from "react-bootstrap";
 
 const Footer = () => {
+
   return (
-    <footer className="footer">
+    <footer className="footer" style={{ borderTop: "1px solid #333" }}>
       <Container fluid>
         <div className="quote-container text-center">
           <p style={{ fontStyle: "italic", margin: 0 }}>"Your Quote Here" -Author</p>
