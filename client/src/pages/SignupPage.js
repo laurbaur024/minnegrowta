@@ -8,6 +8,7 @@ import {
   SimpleGrid,
   Text,
   Button,
+  AbsoluteCenter,
 } from "@chakra-ui/react";
 
 const SignupPage = (props) => {
@@ -40,76 +41,79 @@ const SignupPage = (props) => {
   return (
     <div
       style={{
-        width: "50%",
+        width: "100%",
         marginLeft: "auto",
         marginRight: "auto",
+        background: "#F2EFE0",
       }}
     >
       <SimpleGrid
+        alignItems={"center"}
         mt={20}
         spacing={10}
-        // templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
-        templateColumns="repeat(auto-fill, minmax(350px, 1fr))"
+        templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
       >
-        <Card>
-          <CardHeader>
-            <Heading size="md" color="#6c9920">
-              {" "}
-              Sign Up
-            </Heading>
-          </CardHeader>
-          <CardBody>
-            <Text color="#6c9920">Please create a new account</Text>
-            <div className="form-group mb-3">
-              <label color="#6c9920">Username</label>
-              <input
-                type="text"
-                name="username"
-                placeholder="Name"
-                className="form-control"
-                value={formData.username}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="form-group mb-3">
-              <label color="#6c9920">Email Address</label>
-              <input
-                type="text"
-                name="email"
-                placeholder="email@gmail.com"
-                className="form-control"
-                value={formData.email}
-                onChange={handleInputChange}
-              />
-            </div>
+        <AbsoluteCenter axis="horizontal" paddingTop="500px">
+          <Card background="#85AE5A" size="lg" px={20}>
+            <CardHeader>
+              <Heading size="lg" color="#09302F">
+                {" "}
+                Sign Up
+              </Heading>
+            </CardHeader>
+            <CardBody>
+              <Text color="#09302F">Please create a new account</Text>
+              <div className="form-group mb-3">
+                <label color="#09302F">Username</label>
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="Name"
+                  className="form-control"
+                  value={formData.username}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="form-group mb-3">
+                <label color="#6c9920">Email Address</label>
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="email@gmail.com"
+                  className="form-control"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                />
+              </div>
 
-            <div className="form-group mb-3">
-              <label color="#6c9920">Password</label>
-              <input
-                type="password"
-                name="password"
-                placeholder="Enter a password"
-                className="form-control"
-                value={formData.password}
-                onChange={handleInputChange}
-              />
-            </div>
-          </CardBody>
-          <CardFooter>
-            <Button
-              className="btn signup"
-              colorScheme="orange"
-              onClick={handleFormSubmit}
-            >
-              Sign Up
-            </Button>
-          </CardFooter>
-          {signupResult === "fail" && (
-            <div className="alert alert-danger" role="alert">
-              Signup failed!
-            </div>
-          )}
-        </Card>
+              <div className="form-group mb-3">
+                <label color="#6c9920">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Enter a password"
+                  className="form-control"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </CardBody>
+            <CardFooter>
+              <Button
+                className="btn signup"
+                colorScheme="orange"
+                onClick={handleFormSubmit}
+              >
+                Sign Up
+              </Button>
+            </CardFooter>
+            {signupResult === "fail" && (
+              <div className="alert alert-danger" role="alert">
+                Signup failed!
+              </div>
+            )}
+          </Card>
+        </AbsoluteCenter>
       </SimpleGrid>
     </div>
   );
