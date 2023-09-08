@@ -19,6 +19,17 @@ p {
   margin-bottom: 1rem;
 }
 
+.home h1 {
+  color: #F8D589;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0);
+  font-size: 30px !important;
+}
+
+.home .header-text {
+  margin-top: -100px;
+  margin-left: -50px;
+}
+
 /* header styles */
 
 .header {
