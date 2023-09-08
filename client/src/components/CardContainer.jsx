@@ -25,7 +25,7 @@ const CardContainer = () => {
         <CardBody>
           <h3>My Favorites</h3>
           <Text>I love these plants!</Text>
-          <img src={Orange} alt='flowers'/>
+          <img src={Orange} alt='flowers' style={{ width: "300px", height: "300px"}} />
           <Button colorScheme="orange">My Favorites</Button>
         </CardBody>
       </Card>
@@ -33,7 +33,7 @@ const CardContainer = () => {
         <CardBody>
           <h3>My Garden</h3>
           <Text>Plants in My Garden</Text>
-          <img src={Garden} alt='garden'/>
+          <img src={Garden} alt='garden' style={{ width: "300px", height: "300px"}} />
           <Button colorScheme="orange">My Garden</Button>
         </CardBody>
       </Card>
@@ -41,7 +41,7 @@ const CardContainer = () => {
         <CardBody>
           <h3>Forum</h3>
           <Text>Have a question or just want to share a beautiful photo of your garden? Post it in the forum!</Text>
-          <img src={Forum} alt='Garden with fountain'/>
+          <img src={Forum} alt='Garden with fountain' style={{ width: "300px", height: "300px"}} />
           <Button colorScheme="orange">Forum</Button>
         </CardBody>
       </Card>
