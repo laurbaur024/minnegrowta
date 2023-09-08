@@ -1,16 +1,42 @@
+/* === typography ====== */
 
-
-/* === typography ====== */ 
-
-h1, h2, h3, h4, h5, h6, p, li, td, th, blockquote, label, input, textarea, select, span {
-  color: #09302F;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li,
+td,
+th,
+blockquote,
+label,
+input,
+textarea,
+select,
+span {
+  color: #09302f;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: bold;
 }
 
-p, li, td, th, blockquote, label, input, textarea, select {
+p,
+li,
+td,
+th,
+blockquote,
+label,
+input,
+textarea,
+select {
   font-size: 1.2rem;
   line-height: 165%;
 }
@@ -29,21 +55,21 @@ p {
 }
 
 .header .navbar-dark {
-  background-color: #85AE5A !important;
+  background-color: #85ae5a !important;
 }
 
 .header .navbar-dark .navbar-nav .nav-link {
-  background-color: #85AE5A !important;
+  background-color: #85ae5a !important;
 }
 
 .header .navbar-dark .navbar-brand {
-  background-color: #85AE5A !important;
+  background-color: #85ae5a !important;
 }
 
 .bi.bi-search::before {
   margin-top: 8px;
   margin-left: 3%;
-  color: #09302F;
+  color: #09302f;
   transition: color 0.3s ease;
   margin-right: 10px;
 }
@@ -57,7 +83,7 @@ p {
 }
 
 .navlink {
-  color: #09302F;
+  color: #09302f;
   text-decoration: none;
   transition: color 0.3s ease;
   margin-left: 3%;
@@ -66,7 +92,7 @@ p {
 }
 
 .navlink2 {
-  color: #09302F;
+  color: #09302f;
   text-decoration: none;
   transition: color 0.3s ease;
   font-size: 20px;
@@ -86,6 +112,10 @@ p {
   margin: 0px;
   margin-left: 5px;
   margin-right: 0px;
+}
+
+#root {
+  background-color: "#F2EFE0" !important;
 }
 
 .navbar-brand {
@@ -135,7 +165,7 @@ p {
   position: relative;
   bottom: 0;
   width: 100%;
-  background-color: #85AE5A !important;
+  background-color: #85ae5a !important;
 }
 
 .container-fluid {
@@ -172,7 +202,6 @@ p {
 }
 
 .footer-info {
-
   font-size: 12px;
 }
 
@@ -185,7 +214,6 @@ p {
   border: 1px solid #ccc;
   padding: 10px;
   margin-right: 10px;
-  
 
   margin-bottom: 10px;
 }
@@ -196,9 +224,8 @@ p {
 }
 
 .footer .footer-content {
-  background-color: #85AE5A !important;
+  background-color: #85ae5a !important;
 }
-
 
 .header-text {
   position: absolute;
@@ -210,10 +237,9 @@ p {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform:translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   border-radius: 5px;
 }
-
 
 @media screen and (max-width: 1278px) {
   .header-text {
@@ -227,9 +253,8 @@ p {
   }
 }
 
-
 @media screen and (max-width: 500px) {
   .header-text {
-    display: none
+    display: none;
   }
 }
