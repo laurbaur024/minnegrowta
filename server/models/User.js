@@ -49,21 +49,21 @@ const userSchema = new Schema({
   ]
 },
 {
-  // toJSON: {
-  //   virtuals: false,
-  // },
+  toJSON: {
+    virtuals: false,
+  },
   id: false,
 }
 );
 
-// userSchema.method("verify", async function(pw){
-//   return await bcrypt.compare(pw, this.password)
-// })
+userSchema.method("verify", async function(pw){
+  return await bcrypt.compare(pw, this.password)
+})
 
-// userSchema.pre("save", async function(next){
-//   this.password = await bcrypt.hash(this.password, 10)
-//   next()
-// })
+userSchema.pre("save", async function(next){
+  this.password = await bcrypt.hash(this.password, 10)
+  next()
+})
 
 const User = model('User', userSchema);
 module.exports = User;

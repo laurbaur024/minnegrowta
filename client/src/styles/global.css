@@ -19,38 +19,91 @@ p {
   margin-bottom: 1rem;
 }
 
+/* header styles */
+
+.bi.bi-search::before {
+  margin-top: 8px;
+}
+
+.nav-link:hover {
+  color: #fff;
+}
+
+.navlink {
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  margin-left: 20px;
+  font-size: 20px;
+  margin-right: 40px;
+}
+
+.navlink:hover {
+  color: #fff;
+}
+
+.container {
+  margin: 0px;
+  margin-left: 5px;
+  margin-right: 0px;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  margin-left: 40px;
+}
+
+.logo-text {
+  font-size: 40px;
+  margin-left: 10px;
+}
+
+/* footer styles */
+
 .footer {
   background-color: #333;
   color: #fff;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: 0;
 }
 
 .container-fluid {
   padding: 0;
 }
 
-.quote {
+.quote-container p {
   font-style: italic;
-  margin-bottom: 20px;
-  text-align: center;
+  margin-bottom: 0;
+  padding: 10px;
 }
 
-.footer-links {
+.footer-content {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: center;
 }
 
-.footer-links a {
-  color: #fff;
+.footer-content .nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 100px;
+  margin-bottom: 5px;
+}
+
+.footer-content a {
+  color: rgba(255, 255, 255, 0.5);
   text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-content a:hover {
+  color: #fff;
 }
 
 .footer-info {
+
   font-size: 12px;
 }
 
@@ -64,4 +117,11 @@ p {
   padding: 10px;
   margin-right: 10px;
   
+
+  margin-bottom: 10px;
+}
+
+.faded-text {
+  color: rgba(255, 255, 255, 0.5);
+
 }

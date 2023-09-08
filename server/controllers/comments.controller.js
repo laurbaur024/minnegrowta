@@ -1,5 +1,5 @@
-const { User } = require('../models');
-const Model = User
+const { Comment } = require('../models');
+const Model = Comment
 
 
 // get all comments
@@ -64,10 +64,8 @@ async function remove(id){
 
 module.exports = {
   find,
-  findOne,
   findById,
   create,
-  update,
   updateById,
   remove
 }

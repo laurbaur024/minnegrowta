@@ -13,6 +13,7 @@ async function find(criteria = {}){
   }
 }
 
+
 //get Forum post by id
 async function findById(id){
   try {
@@ -59,10 +60,8 @@ async function remove(id){
 
 module.exports = {
   find,
-  findOne,
   findById,
   create,
-  update,
   updateById,
   remove
 }

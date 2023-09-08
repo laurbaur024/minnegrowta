@@ -63,10 +63,8 @@ async function remove(id){
 
 module.exports = {
   find,
-  findOne,
   findById,
   create,
-  update,
   updateById,
   remove
 }
