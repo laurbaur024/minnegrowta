@@ -18,8 +18,11 @@ async function register(req) {
 
   const token = signToken(user);
 
-  const { password, ...modifiedUser } = user;
-  return { token, user: modifiedUser };
+  // const { password, ...modifiedUser } = user;
+
+  // console.log(modifiedUser.toObject());
+
+  return { token, user };
 }
 
 async function login(req) {
