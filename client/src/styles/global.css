@@ -53,3 +53,15 @@ p {
 .footer-info {
   font-size: 12px;
 }
+
+.card-container {
+  display: flex;
+}
+
+.card {
+  width: 400px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-right: 10px;
+  
+}
