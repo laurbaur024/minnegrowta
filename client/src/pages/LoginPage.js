@@ -80,7 +80,11 @@ const LoginPage = () => {
               </div>
             </CardBody>
             <CardFooter>
-              <Button className="btn btn-primary" onClick={handleFormSubmit}>
+              <Button
+                className="btn btn-primary"
+                colorScheme="orange"
+                onClick={handleFormSubmit}
+              >
                 Log In
               </Button>
             </CardFooter>
