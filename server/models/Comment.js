@@ -30,9 +30,9 @@ const commentSchema = new Schema (
   }
 )
 
-commentSchema.virtual('createdTime').get(function () {
-  return this.createdAt.toDateString()
-})
+// commentSchema.virtual('createdTime').get(function () {
+//   return this.createdAt.toDateString()
+// })
 
 const Comment = model('Comment', commentSchema)
 

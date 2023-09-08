@@ -3,7 +3,7 @@ const connection = require('../config/connection');
 const comments = require('./comments.json');
 const flowers = require('./flowers.json');
 const forum = require('./forum.json');
-// const journal = require('./journal.json');
+const journal = require('./journal.json');
 const plants = require('./plants.json');
 const users = require('./users.json');
 
@@ -52,6 +52,15 @@ connection.once('open', async () => {
   let forumInserted
   try {
     forumInserted = await Forum.insertMany(forum)
+  } catch (err) {
+    throw new Error(err)
+  }
+
+  let journalDB = await connection.db.listCollections({name: 'journal'}).toArray();
+  if (journalDB.length) await connection.dropCollection('journal');
+  let journalInserted
+  try {
+    journalInserted = await Journal.insertMany(journal)
   } catch (err) {
     throw new Error(err)
   }
