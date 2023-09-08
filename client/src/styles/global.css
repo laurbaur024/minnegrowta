@@ -103,9 +103,60 @@ p {
 }
 
 .footer-info {
+
+  font-size: 12px;
+}
+
+.card-container {
+  display: flex;
+}
+
+.card {
+  width: 400px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-right: 10px;
+  
+
   margin-bottom: 10px;
 }
 
 .faded-text {
   color: rgba(255, 255, 255, 0.5);
+
+}
+
+
+.header-text {
+  position: absolute;
+  left: 10%;
+  top: 140px;
+}
+
+.homeButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%, -50%);
+  border-radius: 5px;
+}
+
+
+@media screen and (max-width: 1278px) {
+  .header-text {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 1145px) {
+  .header-text {
+    font-size: 20px;
+  }
+}
+
+
+@media screen and (max-width: 500px) {
+  .header-text {
+    display: none
+  }
 }

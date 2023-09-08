@@ -1,21 +1,39 @@
-import { useState, useEffect } from "react"
-import { Link } from "react-router-dom";
-import { useUserContext } from "../ctx/UserContext"
+// import '../styles/global.css'
+import Background from '../images/background-img.jpg'
+import {Button} from "@chakra-ui/button"
 
 const HomePage = () => {
-  const { currUser } = useUserContext()
 
-  if( currUser.status === "searching" ) return <></>
+  const img = {
+    marginTop: '-16px',
+    marginLeft: '-30px',
+    marginBottom: '-40px',
+    width: '100%'
+  }
+
+  const button = {
+    position: 'absoulte'
+  }
+
+  
+
   return (
-    <>
-      <h1>Home Page</h1>
-
-      { currUser.status === "notfound" ? (
-        <p>You are not logged in.</p>
-      ) : (
-        <p>You are logged in.</p>
-      )}
-    </>
+    <div>
+      <div>
+        <h1 className="header-text">
+          Planting success <br/>
+          in the land of 10,000 lakes
+          </h1>
+      </div>
+      <div >
+        <img style={img} src={Background} alt='garden'/>
+      </div>
+      <div>
+        <Button className='homeButton' colorScheme='orange' href='https://arb.umn.edu/' target='_blank'>Click for Resources <br/>
+        from the Minnesota Arboretum!
+        </Button>
+      </div>
+    </div>
   )
 }
 
