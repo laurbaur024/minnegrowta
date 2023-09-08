@@ -39,6 +39,8 @@ const Header = () => {
                 <Nav.Link href="/login" className="navlink">Login</Nav.Link>
               ) : (
                 <>
+                
+                {/* <Nav.Link href="/login">Login</Nav.Link> */}
                   <Nav.Link href="/dashboard">Dashboard</Nav.Link>
                   <Nav.Link onClick={logout}>Logout</Nav.Link>
                 </>
