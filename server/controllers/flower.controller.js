@@ -28,10 +28,5 @@ async function findById(id){
 
 module.exports = {
   find,
-  findOne,
   findById,
-  create,
-  update,
-  updateById,
-  remove
 }
