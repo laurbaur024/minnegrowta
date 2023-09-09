@@ -15,7 +15,7 @@ const App = () => {
       <Card style={margin}direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline'>
         <Stack>
           <CardBody>
-            <Heading size='md'>Timeline Placeholder</Heading>
+            <Heading>{TimelineContainer}</Heading>
             <Text py='2'>Timeline will go here!</Text>
             <Button>Timeline</Button>
           </CardBody>

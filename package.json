@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "bootstrap-icons": "^1.10.5",
-    "kill-port": "^2.0.1",
-    "react-icons": "^4.11.0"
+    "dotenv": "^16.3.1",
+    "kill-port": "^2.0.1"
   }
 }
