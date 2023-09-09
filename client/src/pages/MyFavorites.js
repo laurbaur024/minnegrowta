@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "@chakra-ui/react";
 
 import {
   Card,
@@ -50,9 +51,32 @@ export default function MyFavorites(props) {
               <Heading size="md">My Favorite Plants</Heading>
             </CardHeader>
             <CardBody>
-              <Text>List of Plants</Text>
-
-              <Button colorScheme="orange">Delete</Button>
+              <Text>
+                <Link color="#09302F" href="#">
+                  Roma Tomato
+                </Link>
+              </Text>
+              <Text>
+                <Link color="#09302F" href="#">
+                  Plant 2
+                </Link>
+              </Text>
+              <Text>
+                <Link color="#09302F" href="#">
+                  Plant 3
+                </Link>
+              </Text>
+              <Text>
+                <Link color="#09302F" href="#">
+                  Plant 4
+                </Link>
+              </Text>
+              <Text>
+                <Link color="#09302F" href="#">
+                  Plant 5
+                </Link>
+              </Text>
+              {/* <Button colorScheme="orange">Delete</Button> */}
             </CardBody>
           </Card>
         </GridItem>
