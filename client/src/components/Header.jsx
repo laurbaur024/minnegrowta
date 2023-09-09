@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useUserContext } from "../ctx/UserContext";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom"; 
@@ -7,10 +7,16 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 const Header = () => {
   const { currUser, logout } = useUserContext();
   const navigate = useNavigate();
-
+  const [isSearchBarVisible, setSearchBarVisible] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const handleLogout = () => {
     logout();
     navigate("/");
+  };
+
+  const handleSearch = () => {
+    // Navigate to the search route/page with the search query
+    navigate(`/search/${searchQuery}`);
   };
 
   return (
@@ -37,9 +43,36 @@ const Header = () => {
             {/* Right-side Nav Options */}
             <Nav>
               {/* Search Icon */}
-              <Nav.Link href="/search">
+              <Nav.Link onClick={() => setSearchBarVisible(!isSearchBarVisible)}>
                 <i className="bi bi-search"></i>
               </Nav.Link>
+
+              {isSearchBarVisible && (
+                <div className="search-bar" style={{ display: "flex", alignItems: "center" }}>
+                  <input
+                    type="text"
+                    placeholder="Search for a plant..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    style={{ 
+                      display: "inline-block", 
+                      marginRight: "20px", 
+                      borderRadius: "20px",
+                      border: "1px solid #ccc",
+                      padding: "8px", }}
+                  />
+                  <button 
+                    onClick={handleSearch}
+                    className="button"
+                    style={{
+                      color: 'white',
+                      border: "1px solid #ccc",
+                      borderRadius: "20px",
+                      padding: "8px 16px", 
+                      transition: "background-color 0.3s ease" }}
+                    >Search</button>
+                </div>
+              )}
 
               {/* Conditional Rendering based on Authentication */}
               {currUser.status === "notfound" ? (
