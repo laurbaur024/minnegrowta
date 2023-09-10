@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 // import Card from "./DashboardCards";
-import { Stack } from "@chakra-ui/react";
-import Orange from "../images/orange.jpg"
-import Forum from "../images/forum.jpg"
-import Garden from "../images/garden.jpeg"
+import { HStack } from "@chakra-ui/react";
+import Fav from "../images/cute-happy-smiling-girl-hug-pot-with-plant-vector-30417575.jpg"
+import Forum from "../images/group-chat-bubbles-or-forum-discussion-icon-vector-23623518.jpg"
+import Garden from "../images/download.png"
 import { CardBody, Text, Card, Button} from "@chakra-ui/react";
 
 
@@ -11,48 +12,48 @@ import { CardBody, Text, Card, Button} from "@chakra-ui/react";
 const CardContainer = () => {
   const cards = [
 
-    { img: {Orange}, title: "My Favorites", description: "I love these plants!"},
-    { img: {Forum}, title: "My Garden", description: "Plants in my garden / My gardening journal"},
-    { img: {Garden}, title: "Forum", description: "Have a question or just want to share a spectacular picture of your garden?  Post it in the forum!"},
+    { img: Fav, title: "My Favorites", description: "I love these plants!"},
+    { img: Garden, title: "My Garden", description: "Plants in my garden / My gardening journal"},
+    { img: Forum, title: "Florum", description: "Have a question or just want to share a spectacular picture of your garden?  Post it in the florum!"},
   ];
 
 
 
 
   return (
-   <div>
-      <Card>
-        <CardBody>
-          <h3>My Favorites</h3>
-          <Text>I love these plants!</Text>
-          <img src={Orange} alt='flowers' style={{ width: "300px", height: "300px"}} />
-          <Button colorScheme="orange">My Favorites</Button>
-        </CardBody>
-      </Card>
-      <Card>
-        <CardBody>
-          <h3>My Garden</h3>
-          <Text>Plants in My Garden</Text>
-          <img src={Garden} alt='garden' style={{ width: "300px", height: "300px"}} />
-          <Button colorScheme="orange">My Garden</Button>
-        </CardBody>
-      </Card>
-      <Card>
-        <CardBody>
-          <h3>Forum</h3>
-          <Text>Have a question or just want to share a beautiful photo of your garden? Post it in the forum!</Text>
-          <img src={Forum} alt='Garden with fountain' style={{ width: "300px", height: "300px"}} />
-          <Button colorScheme="orange">Forum</Button>
-        </CardBody>
-      </Card>
-    </div> 
+    <HStack spacing={4}>
+  {cards.map((card, index) => {
+    const paths = ['/favorites', '/planner', '/florum'];
 
-
-    // <div className="card-container">
-    //   {cards.map((card, index) => (
-    //     <Card key={index} title={card.title} description={card.description} img={card.img} />
-    //   ))}
-    // </div>
+    return (
+      <div className="container-card">
+      <Card className="card-22" key={index} maxW="sm">
+        <img className="img99"
+          src={card.img}
+          alt="flowers"
+          style={{
+            height: "auto",
+            maxWidth: "100%",
+            objectFit: "cover",
+            position: "absolute",
+            top: 0,
+            left: 0,
+          }}
+        />
+        <CardBody className="card-contents">
+          <h3>{card.title}</h3>
+          <Text>{card.description}</Text>
+          <Link to={paths[index]}>
+            <Button className="dashbutton" colorScheme="orange">
+              {card.title}
+            </Button>
+          </Link>
+        </CardBody>
+      </Card>
+      </div>
+    );
+  })}
+</HStack>
   );
 };
 

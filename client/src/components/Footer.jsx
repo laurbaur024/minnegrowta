@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import { Container, Nav } from "react-bootstrap";
 import Modal from "react-modal";
 

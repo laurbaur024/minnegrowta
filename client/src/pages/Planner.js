@@ -7,7 +7,7 @@ import { Button, ButtonGroup } from '@chakra-ui/react';
 export default function Planner() {
   return (
     <>
-      <Grid
+      <Grid className="garden-content"
         h='700px'
         templateRows='repeat(2, 1fr)'
         templateColumns='repeat(5, 1fr)'

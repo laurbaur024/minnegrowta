@@ -38,6 +38,8 @@ export default function MyFavorites(props) {
   }
 
   return (
+
+    <div className="fav-content">
     <>
       <Grid
         h="500"
@@ -150,5 +152,6 @@ export default function MyFavorites(props) {
         </GridItem>
       </Grid>
     </>
+    </div>
   );
 }

@@ -7,7 +7,7 @@ import { Button, ButtonGroup } from '@chakra-ui/react';
 export default function Forum () {
   return (
     <>
-        <Grid
+        <Grid className="forum-content"
         h='700px'
         templateRows='repeat(1, 1fr)'
         templateColumns='repeat(5, 1fr)'
