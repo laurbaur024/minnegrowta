@@ -11,7 +11,7 @@ const HomePage = () => {
   const buttonStyles = {
     position: "fixed",
     top: 150,
-    right: "8%",
+    right: "6%",
     padding: 2,
     zIndex: 999
   };

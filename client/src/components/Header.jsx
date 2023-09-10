@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useUserContext } from "../ctx/UserContext";
 import { Navbar, Nav, Container } from "react-bootstrap";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate, useLocation } from "react-router-dom"; 
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const Header = () => {
@@ -9,13 +9,21 @@ const Header = () => {
   const navigate = useNavigate();
   const [isSearchBarVisible, setSearchBarVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  
   const handleLogout = () => {
     logout();
     navigate("/");
   };
 
+  const handleSearchToggle = () => {
+    // Toggle search bar
+    setSearchBarVisible(!isSearchBarVisible);
+  };
+
   const handleSearch = () => {
-    // Navigate to the search route/page with the search query
     navigate(`/search/${searchQuery}`);
   };
 
@@ -24,7 +32,7 @@ const Header = () => {
       <Navbar bg="dark" variant="dark" expand="md">
         <Container fluid>
           {/* Logo and Site Name */}
-          <Navbar.Brand href="/">
+          <Navbar.Brand className="me-auto" href="/">
             <img
               src="/favicon.png"
               alt="Logo"
@@ -43,8 +51,12 @@ const Header = () => {
             {/* Right-side Nav Options */}
             <Nav>
               {/* Search Icon */}
-              <Nav.Link onClick={() => setSearchBarVisible(!isSearchBarVisible)}>
-                <i className="bi bi-search"></i>
+              <Nav.Link onClick={handleSearchToggle}>
+                {isSearchBarVisible ? (
+                  <i className="bi bi-x"></i>
+                ) : (
+                  <i className="bi bi-search"></i>
+                )}
               </Nav.Link>
 
               {isSearchBarVisible && (
@@ -77,15 +89,25 @@ const Header = () => {
               {/* Conditional Rendering based on Authentication */}
               {currUser.status === "notfound" ? (
                 <>
-                <Nav.Link href="/login" className="navlink">Login</Nav.Link>
-                <Nav.Link href="/signup" className="navlink2">Signup</Nav.Link>
+                  {currentPath !== "/login" && (
+                    <Nav.Link href="/login" className="navlink">Login</Nav.Link>
+                  )}
+                  {currentPath !== "/signup" && (
+                    <Nav.Link href="/signup" className="navlink2">Signup</Nav.Link>
+                  )}
                 </>
               ) : (
                 <>
-                
-                {/* <Nav.Link href="/login">Login</Nav.Link> */}
-                  <Nav.Link href="/dashboard" className="navlink">Dashboard</Nav.Link>
-                  <Nav.Link onClick={handleLogout} className="navlink2">Logout</Nav.Link>
+                  {currentPath !== "/florum" && (
+                    <Nav.Link href="/florum" className="navlink3">Florum</Nav.Link>
+                  )}
+                  {currentPath !== "/planner" && (
+                    <Nav.Link href="/planner" className="navlink4" style={{ whiteSpace: "nowrap" }}>My Garden</Nav.Link>
+                  )}
+                  {currentPath !== "/dashboard" && (
+                    <Nav.Link href="/dashboard" className="navlink5">Dashboard</Nav.Link>
+                  )}
+                  <Nav.Link onClick={handleLogout} className="navlink6">Logout</Nav.Link>
                 </>
               )}
             </Nav>
