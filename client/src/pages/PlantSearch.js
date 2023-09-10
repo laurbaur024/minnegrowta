@@ -1,7 +1,7 @@
 
 
 
-import { Card, CardBody, Button, CardHeader, Heading, Stack, StackDivider, Box, UnorderedList, ListItem, SimpleGrid} from '@chakra-ui/react'
+import { Card, CardBody, Button, CardHeader, Heading, Stack, StackDivider, Box, UnorderedList, ListItem, Flex} from '@chakra-ui/react'
 import { useUserContext } from "../ctx/UserContext"
 import React, {useState} from "react"
 
@@ -15,6 +15,8 @@ export default function PlantSearch () {
   console.log(id)
 
   const [favPlant, setFavPlant] = useState([])
+  const [gardenPlant, setGardenPlant] = useState([])
+  
 
   //css classes
   const bold = {
@@ -28,8 +30,6 @@ export default function PlantSearch () {
     backgroundColor: '#85ae5a',
     color: '#09302f',
     width: '75%',
-    alignContent: 'center',
-    justifyContent: 'center'
   }
   const img = {
     borderRadius: '20px'
@@ -41,7 +41,10 @@ export default function PlantSearch () {
     e.preventDefault();
     const response = await fetch(`./api/user/${id}/favorites/:plantId`, {
       method: 'POST',
-      body: JSON.stringify(data),
+      body: JSON.stringify({
+        _id: id,
+        plantID: '64fb776ddf07cf20146e2015' //currently hardcoded with a plantId
+      }),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -51,11 +54,14 @@ export default function PlantSearch () {
   }
 
   
-  const addGarden = async (e) => {
+  const addGardenPlant = async (e) => {
     e.preventDefault();
     const response = await fetch(`./api/user/${id}/garden/:plantId`, {
       method: 'POST',
-      body: JSON.stringify(data),
+      body: JSON.stringify({
+        _id: id,
+        plantID: '64fb776ddf07cf20146e2015' //currently hardcoded with a plantId
+      }),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -67,7 +73,7 @@ export default function PlantSearch () {
 
   
   return (
-    <SimpleGrid>
+    <Flex width={"100vw"} height={"90vh"} alignContent={"center"} justifyContent={"center"}>
       <Card style={card}>
         <CardHeader>
           <Heading size='md'>Showing Results for <span>Tomato</span>...</Heading>
@@ -98,7 +104,7 @@ export default function PlantSearch () {
           </div>
         </CardBody>
       </Card>
-    </SimpleGrid>    
+    </Flex>    
     )
 }
 
