@@ -1,4 +1,4 @@
-const { Comment } = require('../models');
+const { Comment, Forum } = require('../models');
 const Model = Comment
 
 
@@ -25,10 +25,14 @@ async function findById(id){
 }
 
 // create a new comment 
-async function create(body){
+async function create(params, body){
   try {
     const payload = await Model.create(body)
-    return payload
+    const forumUpdate = await Forum.findOneAndUpdate({_id: params.id },
+      {
+        $push: {commentId: payload._id}
+      })
+    return forumUpdate
   } catch(err){
     if(process.env.NODE_ENV === "development") console.log(err)
     throw new Error(err)

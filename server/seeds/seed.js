@@ -47,8 +47,8 @@ connection.once('open', async () => {
     throw new Error(err)
   }
 
-  let forumDB = await connection.db.listCollections({name: 'forum'}).toArray();
-  if (forumDB.length) await connection.dropCollection('forum');
+  let forumDB = await connection.db.listCollections({name: 'forums'}).toArray();
+  if (forumDB.length) await connection.dropCollection('forums');
   let forumInserted
   try {
     forumInserted = await Forum.insertMany(forum)
@@ -56,8 +56,8 @@ connection.once('open', async () => {
     throw new Error(err)
   }
 
-  let journalDB = await connection.db.listCollections({name: 'journal'}).toArray();
-  if (journalDB.length) await connection.dropCollection('journal');
+  let journalDB = await connection.db.listCollections({name: 'journals'}).toArray();
+  if (journalDB.length) await connection.dropCollection('journals');
   let journalInserted
   try {
     journalInserted = await Journal.insertMany(journal)
