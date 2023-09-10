@@ -2,10 +2,19 @@
 
 
 import { Card, CardBody, Button, CardHeader, Heading, Stack, StackDivider, Box, UnorderedList, ListItem, SimpleGrid} from '@chakra-ui/react'
+import { useUserContext } from "../ctx/UserContext"
+import React, {useState} from "react"
+
 
 
 
 export default function PlantSearch () {
+
+  const { currUser } = useUserContext();
+  const id = currUser?.data?._id;
+  console.log(id)
+
+  const [favPlant, setFavPlant] = useState([])
 
   //css classes
   const bold = {
@@ -27,6 +36,35 @@ export default function PlantSearch () {
   }
 
   //button fetch calls
+
+  const addFavPlant = async (e) => {
+    e.preventDefault();
+    const response = await fetch(`./api/user/${id}/favorites/:plantId`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const result = await response.json();
+    console.log(result);
+  }
+
+  
+  const addGarden = async (e) => {
+    e.preventDefault();
+    const response = await fetch(`./api/user/${id}/garden/:plantId`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const result = await response.json();
+    console.log(result);
+  }
+
+
   
   return (
     <SimpleGrid>
