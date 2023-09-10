@@ -10,6 +10,7 @@ import {
   Button,
   AbsoluteCenter,
 } from "@chakra-ui/react";
+import '../styles/global.css'
 
 const LoginPage = () => {
   const defForm = { email: "", password: "" };
@@ -36,12 +37,13 @@ const LoginPage = () => {
   };
   return (
     <>
-      <div
+      <div className="login-content"
         style={{
           width: "100%",
           marginLeft: "auto",
           marginRight: "auto",
           background: "#F2EFE0",
+          minHeight: "120vh"
         }}
       >
         <SimpleGrid
@@ -51,7 +53,7 @@ const LoginPage = () => {
           templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
         >
           <AbsoluteCenter axis="horizontal" paddingTop="400px">
-            <Card background="#85AE5A" size="lg" px={20}>
+            <Card background="#85AE5A" size="lg" px={20} width="450px">
               <CardHeader>
                 <Heading size="lg" color="#09302F">
                   {" "}
