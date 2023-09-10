@@ -1,10 +1,40 @@
-import { Grid, GridItem } from '@chakra-ui/react';
+// react imports
+import React from 'react';
+import { useState, useEffect } from 'react';
+
+// Chackra imports
+import { 
+  Button,
+  Grid, 
+  GridItem,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+  Box,
+} from '@chakra-ui/react';
 import { Card, CardHeader, CardBody, CardFooter, Heading, Text } from '@chakra-ui/react';
-import { Button, ButtonGroup } from '@chakra-ui/react';
+
 
 
 
 export default function Planner() {
+
+  const [results, setResults] = useState([]);
+
+  const searchJournal = async () => {
+    const response = await fetch("/api/journal");
+    const data = await response.json()
+    setResults(data.payload);
+    console.log(data)
+  }
+    useEffect(() => {
+    searchJournal();
+
+  }, []);
+
+
   return (
     <>
       <Grid className="garden-content"
@@ -16,17 +46,37 @@ export default function Planner() {
         <GridItem rowSpan={1} colSpan={5} bg='tomato'>
           <h1>Insert timeline here</h1>
         </GridItem>
-        <GridItem colSpan={1} bg='papayawhip'>
-          <h2>Insert form here to add new journal post, maybe a button that opens a modal</h2>
+        <GridItem colSpan={1}>
+          <h2>Add Journal Post:</h2>
         </GridItem>
-        <GridItem colSpan={4} bg='papayawhip'>
-          <h2>Get all my journal posts to populate here in chronological order, maybe we should get these to appear on timeline too?</h2>
+        <GridItem colSpan={4}>
+          <h2>My Journal Entries:</h2>
+          <Accordion>
+          {results.map((data) => (
+            <AccordionItem>
+              <h2>
+                <AccordionButton>
+                  <Box as="span" flex='1' textAlign='left'>
+                    {`${data.title}`}
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                <div>
+                  <img src={`${data.image}`} alt="image of plants" width="500" height="300"></img>
+                </div>
+                <div>
+                  {`${data.text}`}
+                </div>
+                <Button className='homeButton' colorScheme='orange' href='https://arb.umn.edu/' target='_blank'>Reply to Post
+                </Button>
+              </AccordionPanel>
+            </AccordionItem>
+            ))}
+          </Accordion>
         </GridItem>
-        
       </Grid>
-    
-    
-    
     </>
   )
 }
