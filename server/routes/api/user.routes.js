@@ -65,5 +65,28 @@ router.delete("/:id", async (req, res) => {
   }
 })
 
+//add plant to favorites
+router.get("/:id/favorites/:plantId", async (req, res) => {
+  const id = req.params.id
+  try {
+    const payload = await update(id)
+    return res.status(200).json({ status: "success", payload })
+  } catch(err) {
+    return res.status(400).json({ status: "error", msg })
+  }
+})
+
+//add plant to garden
+router.get("/:id/garden/:plantId", async (req, res) => {
+  const id = req.params.id
+  try {
+    const payload = await update(id)
+    return res.status(200).json({ status: "success", payload })
+  } catch(err) {
+    return res.status(400).json({ status: "error", msg })
+  }
+})
+
+
 
 module.exports = router;
