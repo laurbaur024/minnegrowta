@@ -1,7 +1,7 @@
 
 
 
-import { Card, CardBody, Editable, EditablePreview, EditableInput, Button, CardHeader, Heading, Stack, StackDivider, Box, UnorderedList, ListItem, SimpleGrid} from '@chakra-ui/react'
+import { Card, CardBody, Button, CardHeader, Heading, Stack, StackDivider, Box, UnorderedList, ListItem, SimpleGrid} from '@chakra-ui/react'
 
 
 
@@ -24,15 +24,6 @@ export default function PlantSearch () {
 
   return (
     <SimpleGrid>
-      <Card style={card}>
-        <CardBody>
-          <Editable defaultValue='Search for a plant...'>
-            <EditablePreview  />
-              <EditableInput />
-          </Editable>
-          <Button style={button} colorScheme='orange'>Search</Button>
-        </CardBody>
-      </Card>
       <Card style={card}>
         <CardHeader>
           <Heading size='md'>Showing Results for <span>Tomato</span>...</Heading>

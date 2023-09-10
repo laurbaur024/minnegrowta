@@ -45,6 +45,8 @@ const SignupPage = (props) => {
         marginLeft: "auto",
         marginRight: "auto",
         background: "#F2EFE0",
+        minHeight: "140vh",
+        
       }}
     >
       <SimpleGrid
@@ -54,7 +56,7 @@ const SignupPage = (props) => {
         templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
       >
         <AbsoluteCenter axis="horizontal" paddingTop="500px">
-          <Card background="#85AE5A" size="lg" px={20}>
+          <Card background="#85AE5A" size="lg" px={20} width="500px">
             <CardHeader>
               <Heading size="lg" color="#09302F">
                 {" "}

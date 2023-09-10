@@ -45,17 +45,6 @@ p {
   margin-bottom: 1rem;
 }
 
-.home h1 {
-  color: #F8D589;
-  text-shadow: 2px 2px 2px rgba(0, 0, 0);
-  font-size: 30px !important;
-}
-
-.home .header-text {
-  margin-top: -100px;
-  margin-left: -50px;
-}
-
 /* header styles */
 
 .header {
@@ -86,14 +75,18 @@ p {
 }
 
 .bi.bi-search:hover::before {
-  color: #fff;
+  color: #F99E23;
+}
+
+.button:hover {
+  background-color: #F99E23;
 }
 
 .nav-link:hover {
-  color: #fff;
+  color: white;
 }
 
-.navlink {
+.header .navlink {
   color: #09302f;
   text-decoration: none;
   transition: color 0.3s ease;
@@ -102,7 +95,7 @@ p {
   margin-right: 3%;
 }
 
-.navlink2 {
+.header .navlink2 {
   color: #09302f;
   text-decoration: none;
   transition: color 0.3s ease;
@@ -111,12 +104,12 @@ p {
   margin-left: 3%;
 }
 
-.navlink:hover {
-  color: #fff;
+.nav-link .navlink:hover {
+  color: white;
 }
 
-.navlink2:hover {
-  color: #fff;
+.nav-link .navlink2:hover {
+  color: white;
 }
 
 .container {
@@ -163,8 +156,89 @@ p {
   margin-top: 89px;
   flex-grow: 1;
   flex-direction: column;
-  height: 100vh;
+  height: 147%;
   background-color: "#F2EFE0" !important;
+}
+
+/* home styles */
+
+.home-header h1 {
+  color: #F8D589;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0);
+  font-size: 30px !important;
+}
+
+.home-header .header-text {
+  margin-top: -100px;
+  margin-left: -50px;
+}
+
+.header-text {
+  position: absolute;
+  left: 10%;
+  top: 230px;
+}
+
+@media screen and (max-width: 1278px) {
+  .header-text {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 1145px) {
+  .header-text {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .header-text {
+    display: none;
+  }
+}
+
+/* login styles */
+
+/* signup styles */
+
+/* modal styles */
+
+.ReactModal__Overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+
+/* Style the modal content */
+.ReactModal__Content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 80%;
+  position: relative;
+  z-index: 1001;
+  top: 20%;
+}
+
+/* Style the modal close button */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #333;
+}
+
+.close-button:hover {
+  color: white;
 }
 
 /* footer styles */
@@ -175,7 +249,7 @@ p {
   text-align: center;
   padding: 0;
   position: relative;
-  bottom: 0;
+  bottom: 0%;
   width: 100%;
   background-color: #85ae5a !important;
 }
@@ -192,8 +266,11 @@ p {
 
 .footer-content {
   display: flex;
+  position: relative;
+  bottom: 0%;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .footer-content .nav {
@@ -238,36 +315,5 @@ p {
 
 .footer .footer-content {
   background-color: #85ae5a !important;
-}
-
-.header-text {
-  position: absolute;
-  left: 10%;
-  top: 140px;
-}
-
-.homeButton {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 5px;
-}
-
-@media screen and (max-width: 1278px) {
-  .header-text {
-    font-size: 28px;
-  }
-}
-
-@media screen and (max-width: 1145px) {
-  .header-text {
-    font-size: 20px;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .header-text {
-    display: none;
-  }
+  flex-grow: 1;
 }
