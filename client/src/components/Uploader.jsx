@@ -31,9 +31,9 @@ export default function Uploader () {
       }
      }).then(files => {
       if (files.length === 0) {
-        // console.log('No files selected.')
+        console.log('No files selected.')
       } else {
-        // console.log('Pet Picture added!');
+        console.log('Picture added!');
         const imageUrl = files.map(editedFile => editedFile.fileUrl);
         if (imageUrl) {
           addImageBtn.attr('style', 'background-color: var(--brand-light); color: black').text('Photo added!') 
