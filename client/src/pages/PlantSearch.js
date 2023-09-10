@@ -1,29 +1,79 @@
 
 
 
-import { Card, CardBody, Button, CardHeader, Heading, Stack, StackDivider, Box, UnorderedList, ListItem, SimpleGrid} from '@chakra-ui/react'
+import { Card, CardBody, Button, CardHeader, Heading, Stack, StackDivider, Box, UnorderedList, ListItem, Flex} from '@chakra-ui/react'
+import { useUserContext } from "../ctx/UserContext"
+import React, {useState} from "react"
+
 
 
 
 export default function PlantSearch () {
+
+  const { currUser } = useUserContext();
+  const id = currUser?.data?._id;
+  console.log(id)
+
+  const [favPlant, setFavPlant] = useState([])
+  const [gardenPlant, setGardenPlant] = useState([])
+  
+
+  //css classes
   const bold = {
     fontWeight: 'bold'
   }
-
   const button = {
     margin: '10px'
   }
-
   const card = {
-    margin: '15px'
+    margin: '30px',
+    backgroundColor: '#85ae5a',
+    color: '#09302f',
+    width: '75%',
   }
-
   const img = {
     borderRadius: '20px'
   }
 
+  //button fetch calls
+
+  const addFavPlant = async (e) => {
+    e.preventDefault();
+    const response = await fetch(`./api/user/${id}/favorites/:plantId`, {
+      method: 'POST',
+      body: JSON.stringify({
+        _id: id,
+        plantID: '64fb776ddf07cf20146e2015' //currently hardcoded with a plantId
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const result = await response.json();
+    console.log(result);
+  }
+
+  
+  const addGardenPlant = async (e) => {
+    e.preventDefault();
+    const response = await fetch(`./api/user/${id}/garden/:plantId`, {
+      method: 'POST',
+      body: JSON.stringify({
+        _id: id,
+        plantID: '64fb776ddf07cf20146e2015' //currently hardcoded with a plantId
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const result = await response.json();
+    console.log(result);
+  }
+
+
+  
   return (
-    <SimpleGrid>
+    <Flex width={"100vw"} height={"90vh"} alignContent={"center"} justifyContent={"center"}>
       <Card style={card}>
         <CardHeader>
           <Heading size='md'>Showing Results for <span>Tomato</span>...</Heading>
@@ -54,7 +104,7 @@ export default function PlantSearch () {
           </div>
         </CardBody>
       </Card>
-    </SimpleGrid>    
+    </Flex>    
     )
 }
 

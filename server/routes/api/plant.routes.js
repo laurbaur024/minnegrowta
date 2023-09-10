@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { 
   find,
-  findById,
+  findById
 } = require('../../controllers/plant.controller');
 
 
@@ -27,6 +27,8 @@ router.get("/:id", async (req, res) => {
     return res.status(400).json({ status: "error", msg })
   }
 })
+
+
 
 
 module.exports = router;
