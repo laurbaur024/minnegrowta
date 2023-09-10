@@ -24,7 +24,7 @@ There is a timeline feature in which the user can record when a particular seed 
 - Lauren Bleyl
 - Sean Chen
 - Beth Haynes  (https://github.com/beffylaureen)
-- Jacqueling Stiehl
+- Jacqueline Stiehl
 - Damon Tweedy
 - Aidan Wildebank
 
