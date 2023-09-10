@@ -6,22 +6,28 @@ import { Card, CardBody, Button, CardHeader, Heading, Stack, StackDivider, Box, 
 
 
 export default function PlantSearch () {
+
+  //css classes
   const bold = {
     fontWeight: 'bold'
   }
-
   const button = {
     margin: '10px'
   }
-
   const card = {
-    margin: '15px'
+    margin: '30px',
+    backgroundColor: '#85ae5a',
+    color: '#09302f',
+    width: '75%',
+    alignContent: 'center',
+    justifyContent: 'center'
   }
-
   const img = {
     borderRadius: '20px'
   }
 
+  //button fetch calls
+  
   return (
     <SimpleGrid>
       <Card style={card}>
