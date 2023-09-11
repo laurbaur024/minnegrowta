@@ -19,6 +19,8 @@ There is a timeline feature in which the user can record when a particular seed 
 
 ## Acknowledgements
 
+We would like to thank Gary Almes, Austin Slater, and Kathryn Vincent for their help and expertise.
+
 ## Authors
 
 - Lauren Bleyl (https://github.com/laurbaur024)
