@@ -8,7 +8,7 @@
       "sun": "full",
       "zone": "",
       "annual": true,
-      "maturity": "50-70 days"
+      "maturity": 60
   },
   {
       "name": "broccoli",
@@ -19,7 +19,7 @@
       "sun": "full",
       "zone": "2-11",
       "annual": true,
-      "maturity": "85 days"
+      "maturity": 85
   },
   {
       "name": "Brussels sprouts",
@@ -30,7 +30,7 @@
       "sun": "partial",
       "zone": "2-10",
       "annual": true,
-      "maturity": "80-100 days"
+      "maturity": 90
   },
   {
       "name": "cabbage",
@@ -41,7 +41,7 @@
       "sun": "partial",
       "zone": "1-10",
       "annual": true,
-      "maturity": "70-80 days"
+      "maturity": 75
   },
   {
       "name": "carrots",
@@ -52,7 +52,7 @@
       "sun": "full",
       "zone": "3-10",
       "annual": true,
-      "maturity": "70 days"
+      "maturity": 70
   },
   {
       "name": "corn",
@@ -63,7 +63,7 @@
       "sun": "full",
       "zone": "5-7",
       "annual": true,
-      "maturity": "60-100 days"
+      "maturity": 80
   },
   {
       "name": "cucumbers",
@@ -74,7 +74,7 @@
       "sun": "full",
       "zone": "4-12",
       "annual": true,
-      "maturity": "65 days"
+      "maturity": 65
   },
   {
       "name": "leeks",
@@ -85,7 +85,7 @@
       "sun": "full",
       "zone": "3-12",
       "annual": true,
-      "maturity": "150 days"
+      "maturity": 150
   },
   {
       "name": "lettuce (Grand Rapids)",
@@ -96,7 +96,7 @@
       "sun": "partial",
       "zone": "all",
       "annual": true,
-      "maturity": "45 days"
+      "maturity": 45
   },
   {
       "name": "onions (red)",
@@ -107,7 +107,7 @@
       "sun": "full",
       "zone": "2-9",
       "annual": true,
-      "maturity": "100 days"
+      "maturity": 100
   },
   {
       "name": "snap peas",
@@ -118,7 +118,7 @@
       "sun": "full",
       "zone": "1-11",
       "annual": true,
-      "maturity": "65 days"
+      "maturity": 65
   },
   {
       "name": "pepper, green bell",
@@ -129,7 +129,7 @@
       "sun": "full",
       "zone": "3-10",
       "annual": true,
-      "maturity": "85 days"
+      "maturity": 85
   },
   {
       "name": "potato, Yukon Gold",
@@ -140,7 +140,7 @@
       "sun": "full",
       "zone": "3-9",
       "annual": true,
-      "maturity": "80-95 days"
+      "maturity": 90
   },
   {
       "name": "pumpkins",
@@ -151,7 +151,7 @@
       "sun": "full",
       "zone": "3-12",
       "annual": true,
-      "maturity": "110 days"
+      "maturity": 110
   },
   {
       "name": "radishes",
@@ -162,7 +162,7 @@
       "sun": "full",
       "zone": "3-12",
       "annual": true,
-      "maturity": "20-30 days"
+      "maturity": 25
   },
   {
       "name": "squash, summer",
@@ -173,7 +173,7 @@
       "sun": "full",
       "zone": "3-10",
       "annual": true,
-      "maturity": "50-60 days"
+      "maturity": 55
   },
   {
       "name": "spinach",
@@ -184,7 +184,7 @@
       "sun": "partial",
       "zone": "2-9",
       "annual": true,
-      "maturity": "45 days"
+      "maturity": 45
   },
   {
       "name": "tomatillos",
@@ -195,7 +195,7 @@
       "sun": "full",
       "zone": "3-11",
       "annual": true,
-      "maturity": "80 days"
+      "maturity": 80
   },
   {
       "name": "roma tomato",
@@ -206,7 +206,7 @@
       "sun": "full",
       "zone": "3-11",
       "annual": true,
-      "maturity": "70-80 days"
+      "maturity": 75
   },
   {
       "name": "zucchini",
@@ -217,6 +217,6 @@
       "sun": "full",
       "zone": "3-9",
       "annual": true,
-      "maturity": "55-65 days"
+      "maturity": 60
   }
 ]
