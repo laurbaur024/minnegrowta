@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "@chakra-ui/react";
-
+import { useUserContext } from "../ctx/UserContext";
 import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
   Card,
   CardHeader,
   CardBody,
@@ -16,6 +21,15 @@ import {
   ListItem,
   Grid,
   GridItem,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  FormControl,
 } from "@chakra-ui/react";
 
 export default function MyFavorites(props) {
@@ -36,6 +50,69 @@ export default function MyFavorites(props) {
   function handleClick(event) {
     navigate("/search");
   }
+
+  const { currUser } = useUserContext();
+  const id = currUser?.data?._id;
+
+  //based off of code starting on line 41 in Forum.js
+  //attempting to pull favorites onto MyFavorites page
+  const [results, setResults] = useState([]);
+
+  const searchFavorites = async () => {
+    const response = await fetch(`./api/user/${id}/favorites/:plantId`);
+    const data = await response.json();
+    setResults(data.payload);
+  };
+  useEffect(() => {
+    searchFavorites();
+  }, []);
+
+  // const addGardenPlant = async (e) => {
+  //   e.preventDefault();
+  //   const response = await fetch(`./api/user/${id}/garden/:plantId`, {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       _id: id,
+  //       plantID: "64fb776ddf07cf20146e2015", //currently hardcoded with a plantId
+  //     }),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   });
+  //   const result = await response.json();
+  //   console.log(result);
+  // };
+
+  //code into button Jackie/me
+  //remove (delete) plant from user's favorites list
+  //try to get plant id from page (not hard coded in)
+  const onDelete = async (e) => {
+    e.preventDefault();
+    const response = await fetch(`./api/user/${id}/garden/:plantId`, {
+      method: "DELETE",
+      body: JSON.stringify({
+        _id: id,
+        plantID: "64fb776ddf07cf20146e2015", //currently hardcoded with a plantId
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const result = await response.json();
+    console.log(result);
+  };
+
+  //from Forum.js
+  const {
+    isOpen: isFavoriteOpen,
+    onOpen: onFavoriteOpen,
+    onClose: onFavoriteClose,
+  } = useDisclosure();
+  const {
+    isOpen: isDeleteOpen,
+    onOpen: onDeleteOpen,
+    onClose: onDeleteClose,
+  } = useDisclosure();
 
   return (
     <div className="fav-content">
@@ -84,7 +161,58 @@ export default function MyFavorites(props) {
 
           <GridItem rowSpan={5} colSpan={4} bg="#85AE5A" m="4">
             <Card bg="#85AE5A">
-              <CardHeader>
+              {/* trying out accordian below based on Forum.js */}
+              <Accordion>
+                {results.map((data) => (
+                  <AccordionItem>
+                    <h2>
+                      <AccordionButton>
+                        <Box as="span" flex="1" textAlign="left">
+                          {`${data.title}`}
+                        </Box>
+                        <AccordionIcon />
+                      </AccordionButton>
+                    </h2>
+                    <AccordionPanel pb={4}>
+                      <div>
+                        <img
+                          src={`${data.image}`}
+                          alt="image of plants"
+                          width="500"
+                          height="300"
+                        ></img>
+                      </div>
+                      <div>{`${data.content}`}</div>
+                      <Button onClick={onDeleteOpen}>
+                        Remove Plant from Favorites
+                      </Button>
+                      <Modal isOpen={isDeleteOpen} onClose={onDeleteClose}>
+                        <ModalOverlay />
+                        <ModalContent>
+                          <ModalHeader>Remove Plant from Favorites</ModalHeader>
+                          <ModalCloseButton />
+                          <ModalBody>
+                            <FormControl></FormControl>
+                          </ModalBody>
+
+                          <ModalFooter>
+                            <Button
+                              colorScheme="orange"
+                              mr={3}
+                              onClick={() => onDelete(data._id)}
+                            >
+                              Remove
+                            </Button>
+                          </ModalFooter>
+                        </ModalContent>
+                      </Modal>
+                    </AccordionPanel>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+
+              {/* commented out stuff below to try accordian style from Forum.js */}
+              {/* <CardHeader>
                 <Heading size="lg">Roma Tomato</Heading>
               </CardHeader>
               <CardBody>
@@ -136,7 +264,7 @@ export default function MyFavorites(props) {
                     Add to Garden
                   </Button>
                 </div>
-              </CardBody>
+              </CardBody> */}
             </Card>
           </GridItem>
 
