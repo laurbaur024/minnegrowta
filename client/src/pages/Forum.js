@@ -1,6 +1,7 @@
 // react imports
 import React from "react";
 import { useState, useEffect } from "react";
+import Upload from "../components/Uploader";
 
 // Chackra imports
 import {
@@ -118,6 +119,7 @@ export default function Forum() {
       >
         <GridItem colSpan={1}>
           <h2>My Forum Posts:</h2>
+
           <Button onClick={onForumOpen}>Add a New Forum Post</Button>
 
           <Modal isOpen={isForumOpen} onClose={onForumClose}>
@@ -152,6 +154,7 @@ export default function Forum() {
                 <Button colorScheme="blue" mr={3} onClick={onSubmit}>
                   Submit
                 </Button>
+                <Upload setImage={setImage} />
               </ModalFooter>
             </ModalContent>
           </Modal>
