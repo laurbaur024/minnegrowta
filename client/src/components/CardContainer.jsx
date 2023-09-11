@@ -5,7 +5,7 @@ import { HStack } from "@chakra-ui/react";
 import Fav from "../images/cute-happy-smiling-girl-hug-pot-with-plant-vector-30417575.jpg"
 import Forum from "../images/group-chat-bubbles-or-forum-discussion-icon-vector-23623518.jpg"
 import Garden from "../images/download.png"
-import { CardBody, Text, Card, Button} from "@chakra-ui/react";
+import { CardBody, Text, Card, Button, Heading, Box, Flex } from "@chakra-ui/react";
 
 
 

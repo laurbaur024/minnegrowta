@@ -5,8 +5,8 @@ import Modal from "react-modal";
 const aboutContent = (
   <div>
     <h2>About Our Site</h2>
-    <p>This is a brief description of our website...</p>
-    <p>add more details here</p>
+    <p>The great state of Minnesota has a very short growing season.  We hope you find this site very useful in selecting outdoor plants that will thrive from early Spring to late Autumn.</p>
+    <p>Enjoy!</p>
   </div>
 );
 

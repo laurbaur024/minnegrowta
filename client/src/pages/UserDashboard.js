@@ -1,8 +1,11 @@
 import React from "react";
 import CardContainer from "../components/CardContainer";
 import TimelineContainer from "../components/TimelineContainer";
-import {Card, Stack, CardBody, Heading, Text, Button} from '@chakra-ui/react'
+import {Card, Stack, CardBody, Heading, Text, Button, Box, Flex} from '@chakra-ui/react'
 import { useUserContext } from "../ctx/UserContext"; 
+
+
+
 
 const App = () => {
   const margin = {
@@ -14,7 +17,7 @@ const App = () => {
 
   return (
     <div className="dash-container">
-      <h1>Welcome to Your Dashboard, @{username}</h1>
+      <h1>Welcome to Your Dashboard, {username}</h1>
       <CardContainer className="cardcont"/>
       <Card className="timeline-content" style={margin}direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline'>
         <Stack>
