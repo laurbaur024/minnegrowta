@@ -24,16 +24,18 @@ const Header = ({setSearch}) => {
   };
 
   const handleSearch = async () => {
-   console.log(searchQuery)
-   const response = await fetch(`/api/plant/search/${searchQuery}`, {
-  //  const response = await fetch(`/api/plant/`, {
+  //  console.log(searchQuery)
+  //  const response = await fetch(`/api/plant/search/${searchQuery}`, {
+   const response = await fetch(`/api/plant/`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
     }
   });
   const result = await response.json();
-  setSearch(result.payload);
+  console.log(result.payload)
+  setSearch(result.payload)
+  navigate("/search");
   };
 
   return (

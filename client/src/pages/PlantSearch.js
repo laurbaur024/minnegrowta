@@ -12,7 +12,7 @@ export default function PlantSearch ({search}) {
 
   const { currUser } = useUserContext();
   const id = currUser?.data?._id;
-  console.log(id)
+ 
 
   const [favPlant, setFavPlant] = useState([])
   const [gardenPlant, setGardenPlant] = useState([])
@@ -74,7 +74,7 @@ export default function PlantSearch ({search}) {
   
   return (
     <Flex width={"100vw"} height={"90vh"} alignContent={"center"} justifyContent={"center"}>
-      {search.map(function (plant){
+      {search?.map(function (plant){
         return (
           <Card style={card}>
           <CardHeader>
@@ -90,12 +90,12 @@ export default function PlantSearch ({search}) {
               </Box>
               <Box>
                 <UnorderedList>
-                  <ListItem><span style={bold}>Type: </span>{plant.type}</ListItem>
-                  <ListItem><span style={bold}>Sow Space: </span>{plant.sowSpace}</ListItem>
-                  <ListItem><span style={bold}>Climbing: </span>{plant.climbing}</ListItem>
-                  <ListItem><span style={bold}>Sun: </span>{plant.sun}</ListItem>
-                  <ListItem><span style={bold}>Grow Zone: </span>{plant.zone}</ListItem>
-                  <ListItem><span style={bold}>Maturity: </span>{plant.maturity}</ListItem>
+                  <ListItem><span key= {plant.type} style={bold}>Type: </span>{plant.type}</ListItem>
+                  <ListItem><span key= {plant.sowSpace} style={bold}>Sow Space: </span>{plant.sowSpace}</ListItem>
+                  <ListItem><span key= {plant.climbing} style={bold}>Climbing: </span>{plant.climbing}</ListItem>
+                  <ListItem><span key= {plant.sun} style={bold}>Sun: </span>{plant.sun}</ListItem>
+                  <ListItem><span key= {plant.zone} style={bold}>Grow Zone: </span>{plant.zone}</ListItem>
+                  <ListItem><span key= {plant.maturity} style={bold}>Maturity: </span>{plant.maturity}</ListItem>
                 </UnorderedList>
               </Box>
             </Stack>
@@ -109,6 +109,40 @@ export default function PlantSearch ({search}) {
       })}
 
     </Flex>    
+    // <Flex width={"100vw"} height={"90vh"} alignContent={"center"} justifyContent={"center"}>
+    //       <Card style={card}>
+    //       <CardHeader>
+    //         <Heading size='md'>Showing Results for <span>{search.name}</span>...</Heading>
+    //       </CardHeader>
+    //       <CardBody>
+    //         <Stack divider={<StackDivider />} spacing='4'>
+    //           <Box>
+    //             <Heading size='s' textTransform='uppercase'> {search.name} </Heading>
+    //           </Box>
+    //           <Box>
+    //             <img style={img} src={search.image} alt='Searched Plant'/>
+    //           </Box>
+    //           <Box>
+    //             <UnorderedList>
+    //               <ListItem><span key= 'type' style={bold}>Type: </span>{search.type}</ListItem>
+    //               <ListItem><span key= 'sow' style={bold}>Sow Space: </span>{search.sowSpace}</ListItem>
+    //               <ListItem><span key= 'climbing' style={bold}>Climbing: </span>{search.climbing}</ListItem>
+    //               <ListItem><span key= 'sun' style={bold}>Sun: </span>{search.sun}</ListItem>
+    //               <ListItem><span key= 'zone' style={bold}>Grow Zone: </span>{search.zone}</ListItem>
+    //               <ListItem><span key= 'maturity' style={bold}>Maturity: </span>{search.maturity}</ListItem>
+    //             </UnorderedList>
+    //           </Box>
+    //         </Stack>
+    //         <div>
+    //           <Button style={button} colorScheme='orange'>Add to Favorites</Button>
+    //           <Button style={button} colorScheme='orange'>Add to Garden</Button>
+    //         </div>
+    //       </CardBody>
+    //     </Card>
+  
+
+    // </Flex>   
+    
     )
 }
 

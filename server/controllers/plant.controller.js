@@ -24,10 +24,10 @@ async function findById(id){
   }
 }
 
-//get all plants by name
-async function findByName(req){
+//get a plant by name
+async function findByName(name = {}){
   try {
-    const payload = await Model.find({name: req.params.name})
+    const payload = await Model.find(name)
     return payload
   } catch(err){
     if(process.env.NODE_ENV === "development") console.log(err)
