@@ -60,53 +60,71 @@ export default function MyFavorites(props) {
     searchFavorites();
   }, []);
 
-  const addGardenPlant = async (e) => {
-    e.preventDefault();
-    const response = await fetch(`./api/user/${id}/garden/:plantId`, {
-      method: "POST",
-      body: JSON.stringify({
-        _id: id,
-        plantID: "64fb776ddf07cf20146e2015", //currently hardcoded with a plantId
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const result = await response.json();
-    console.log(result);
-  };
-
   // from Forum.js
-  const {
-    isOpen: isFavoriteOpen,
-    onOpen: onFavoriteOpen,
-    onClose: onFavoriteClose,
-  } = useDisclosure();
+  // const {
+  //   isOpen: isFavoriteOpen,
+  //   onOpen: onFavoriteOpen,
+  //   onClose: onFavoriteClose,
+  // } = useDisclosure();
 
-  const {
-    isOpen: isDeleteOpen,
-    onOpen: onDeleteOpen,
-    onClose: onDeleteClose,
-  } = useDisclosure();
+  // const {
+  //   isOpen: isDeleteOpen,
+  //   onOpen: onDeleteOpen,
+  //   onClose: onDeleteClose,
+  // } = useDisclosure();
 
   //code into button Jackie/me
   //remove (delete) plant from user's favorites list
   //try to get plant id from page (not hard coded in)
-  const onDelete = async (e) => {
-    e.preventDefault();
-    const response = await fetch(`./api/user/${id}/garden/:plantId`, {
-      method: "DELETE",
-      body: JSON.stringify({
-        _id: id,
-        plantID: "64fb776ddf07cf20146e2015", //currently hardcoded with a plantId
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const result = await response.json();
-    console.log(result);
-  };
+  // const onDelete = async (e) => {
+  //   e.preventDefault();
+  //   const response = await fetch(`./api/user/${id}/garden/:plantId`, {
+  //     method: "DELETE",
+  //     body: JSON.stringify({
+  //       _id: id,
+  //       plantID: "64fb776ddf07cf20146e2015", //currently hardcoded with a plantId
+  //     }),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   });
+  //   const result = await response.json();
+  //   console.log(result);
+  // };
+
+  // function removeFavPlant(e) {
+  //   e.preventDefault();
+  //   const response = fetch(`./api/user/${id}/garden/:plantId`, {
+  //     method: "DELETE",
+  //     body: JSON.stringify({
+  //       _id: id,
+  //       plantID: "",
+  //     }),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   });
+  //   const result = response.json();
+  //   console.log(result);
+  // }
+
+  // const addGardenPlant = async (e) => {
+  //   e.preventDefault();
+  //   const response = await fetch(`./api/user/${id}/garden/:plantId`, {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       _id: id,
+  //       plantID: "64fb776ddf07cf20146e2015", //currently hardcoded with a plantId
+  //     }),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   });
+  //   const result = await response.json();
+  //   console.log(result);
+  // };
+
+  // function addPlantToGarden(event) {}
 
   return (
     <div className="fav-content">
@@ -188,10 +206,16 @@ export default function MyFavorites(props) {
                       </UnorderedList>
 
                       <ButtonGroup spacing="6">
-                        <Button colorScheme="orange" onClick={onDeleteOpen}>
+                        <Button
+                          colorScheme="orange"
+                          // onClick={removeFavPlant}
+                        >
                           Remove from Favorites
                         </Button>
-                        <Button colorScheme="orange" onClick={onFavoriteOpen}>
+                        <Button
+                          colorScheme="orange"
+                          // onClick={addPlantToGarden}
+                        >
                           Add to Garden
                         </Button>
                       </ButtonGroup>
