@@ -154,7 +154,7 @@ export default function Forum() {
                 <Button colorScheme="blue" mr={3} onClick={onSubmit}>
                   Submit
                 </Button>
-                <Upload setImage={setImage} />
+                {/* <Upload setImage={setImage} /> */}
               </ModalFooter>
             </ModalContent>
           </Modal>
