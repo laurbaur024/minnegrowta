@@ -46,7 +46,7 @@ export default function Forum () {
     const response = await fetch("/api/forum");
     const data = await response.json()
     setResults(data.payload);
-    console.log(data.payload)
+    // console.log(data.payload)
   }
   useEffect(() => {
     searchForum();
@@ -95,7 +95,7 @@ export default function Forum () {
   }
 
   let handleAccordianClickChange = (e) => {
-    console.log(e.target.id)
+    // console.log(e.target.id)
     setReply({...reply, forumId: e.target.id})
   }
 
