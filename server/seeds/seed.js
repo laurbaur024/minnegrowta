@@ -39,7 +39,8 @@ connection.once("open", async () => {
   let usersInserted;
   try {
     const plantIds = plantsInserted.map((plant) => plant._id);
-    usersInserted = await User.insertMany([
+    // usersInserted = await User.insertMany([
+    usersInserted = await User.create([
       ...users,
       {
         username: "GreenThumb123",
