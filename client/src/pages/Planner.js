@@ -53,7 +53,7 @@ export default function Planner() {
           <h2>My Journal Entries:</h2>
           <Accordion>
           {results.map((data) => (
-            <AccordionItem>
+            <AccordionItem key={data._id}>
               <h2>
                 <AccordionButton>
                   <Box as="span" flex='1' textAlign='left'>
