@@ -109,6 +109,7 @@ export default function Forum () {
 
 
   return (
+    <div className="forumcontainer">
     <>
         <Grid className="forum-content"
         h='700px'
@@ -215,5 +216,6 @@ export default function Forum () {
         </GridItem>
       </Grid>
     </>
+    </div>
   )
 }
