@@ -31,7 +31,8 @@ router.get("/:id", async (req, res) => {
 // create new comment
 router.post("/:id", async (req, res) => {
   try {
-    const payload = await create(req.params)
+    console.log(req.session)
+    const payload = await create(req.params, req.body)
     return res.status(200).json({ status: "success", payload })
   } catch(err) {
     return res.status(400).json({ status: "error", msg })

@@ -1,6 +1,7 @@
 // react imports
 import React from 'react';
 import { useState, useEffect } from 'react';
+import {useUserContext} from "../ctx/UserContext";
 
 // Chackra imports
 import {
@@ -43,6 +44,7 @@ export default function Forum () {
     const response = await fetch("/api/forum");
     const data = await response.json()
     setResults(data.payload);
+    console.log(data.payload)
   }
   useEffect(() => {
     searchForum();
@@ -83,23 +85,30 @@ export default function Forum () {
   }
 
   // monitors what is being typed in reply modal form
-  const [reply, setReply] = useState({text: ""});
+  const [reply, setReply] = useState({text: "", forumId: ""});
   let handleReplyInputChange = (e) => {
     if(e.target.name === "replyText"){
       setReply({...reply, text: e.target.value})
     } 
   }
 
+  let handleAccordianClickChange = (e) => {
+    console.log(e.target.id)
+    setReply({...reply, forumId: e.target.id})
+  }
+
   // code for post reply to forum post
-  const onReply = async (postId) => {
+  const { currUser } = useUserContext();
+  const id = currUser?.data?._id;
+  // console.log(id)
+  const onReply = async () => {
     try {
-      let response = await fetch(`/api/comment/${postId}`, {
+      let response = await fetch(`/api/comment/${reply.forumId}`, {
         method: "POST",
-        headers: {"content-type": "application/json"},
-        body: reply.text
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({text: reply.text, userId: id })      
       })
       console.log(reply)
-      console.log(postId)
       console.log("success")
     } catch (error) {
       console.log(error)
@@ -167,9 +176,9 @@ export default function Forum () {
           {results.map((data) => (
             <AccordionItem>
               <h2>
-                <AccordionButton>
-                  <Box as="span" flex='1' textAlign='left'>
-                    {`${data.title}`}
+                <AccordionButton >
+                  <Box as="span" flex='1' textAlign='left' id={data._id} onClick={handleAccordianClickChange}>
+                    {`${data.title}`} 
                   </Box>
                   <AccordionIcon />
                 </AccordionButton>
@@ -178,7 +187,7 @@ export default function Forum () {
                 <div>
                   <img src={`${data.image}`} alt="image of plants" width="500" height="300"></img>
                 </div>
-                <div>
+                <div >
                   {`${data.content}`}
                 </div>
                 <Button onClick={onReplyOpen}>Reply to Forum Post</Button>
@@ -196,6 +205,7 @@ export default function Forum () {
                       placeholder='Enter Reply Here'
                       size='lg'
                       name="replyText"
+                      
                     />
                     </FormControl>
                       {/* <Lorem count={2} /> */}
