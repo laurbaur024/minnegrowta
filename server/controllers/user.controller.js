@@ -23,7 +23,8 @@ async function findOne(criteria = {}) {
 
 async function findById(id) {
   try {
-    const payload = await Model.findById(id);
+    const payload = await Model.findById(id).populate("favPlant");
+    console.log(payload);
     return payload;
   } catch (err) {
     if (process.env.NODE_ENV === "development") console.log(err);
