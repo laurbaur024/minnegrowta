@@ -4,7 +4,7 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom"; 
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-const Header = () => {
+const Header = ({setSearch}) => {
   const { currUser, logout } = useUserContext();
   const navigate = useNavigate();
   const [isSearchBarVisible, setSearchBarVisible] = useState(false);
@@ -23,8 +23,17 @@ const Header = () => {
     setSearchBarVisible(!isSearchBarVisible);
   };
 
-  const handleSearch = () => {
-    navigate(`/search/${searchQuery}`);
+  const handleSearch = async () => {
+   console.log(searchQuery)
+   const response = await fetch(`/api/plant/search/${searchQuery}`, {
+  //  const response = await fetch(`/api/plant/`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+  const result = await response.json();
+  setSearch(result.payload);
   };
 
   return (

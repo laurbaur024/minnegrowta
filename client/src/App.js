@@ -7,15 +7,19 @@ import { ChakraProvider } from '@chakra-ui/react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/global.css'
+import Upload from "./components/Uploader";
+import { useState } from "react";
 
 
 function App() {
+  const [search, setSearch] = useState([])
+
   return (
       <ChakraProvider>
         <BrowserRouter>
           <UserProvider>
             {/* <Wrapper> */}
-              <Header />
+              <Header setSearch={setSearch}/>
               <div className="content">
                 <Routes>
                   <Route path="/" element={<HomePage />} />
@@ -24,7 +28,7 @@ function App() {
                   <Route path="/favorites" element={<MyFavorites />} />
                   <Route path="/florum" element={<Forum />} />
                   <Route path="/planner" element={<Planner />} />
-                  <Route path="/search" element={<PlantSearch/>} />
+                  <Route path="/search" element={<PlantSearch search={search}/>} />
                   <Route path="/dashboard" element={<UserDashboard/>} />
                 </Routes>
                 </div>
