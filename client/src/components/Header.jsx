@@ -25,8 +25,8 @@ const Header = ({setSearch}) => {
 
   const handleSearch = async () => {
    console.log(searchQuery)
-  //  const response = await fetch(`/api/plant/search/${searchQuery}`, {
-   const response = await fetch(`/api/plant/`, {
+   const response = await fetch(`/api/plant/search/${searchQuery}`, {
+  //  const response = await fetch(`/api/plant/`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
