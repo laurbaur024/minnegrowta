@@ -1,6 +1,7 @@
 // react imports
 import React from 'react';
 import { useState, useEffect } from 'react';
+import Upload from '../components/Uploader';
 
 // Chackra imports
 import {
@@ -73,7 +74,7 @@ export default function Forum () {
       let response = await fetch('/api/forum', {
         method: "POST",
         headers: {"content-type": "application/json"},
-        body: JSON.stringify( {title: form.title, content: form.content} )
+        body: JSON.stringify( {title: form.title, content: form.content, image: "https://upcdn.io/W142hJk/thumbnail/demo/4mB638K545.jpg.crop"} )
       })
       console.log("success")
     } catch (error) {
@@ -119,6 +120,7 @@ export default function Forum () {
         
         <GridItem colSpan={1}>
           <h2>My Forum Posts:</h2>
+         
           <Button onClick={onForumOpen}>Add a New Forum Post</Button>
 
           <Modal isOpen={isForumOpen} onClose={onForumClose}>
@@ -148,6 +150,7 @@ export default function Forum () {
                 <Button colorScheme='blue' mr={3} onClick={onSubmit}>
                   Submit
                 </Button>
+                <Upload />
               </ModalFooter>
             </ModalContent>
           </Modal>

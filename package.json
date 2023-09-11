@@ -20,6 +20,8 @@
     "bootstrap-icons": "^1.10.5",
     "jsonwebtoken": "^9.0.2",
     "kill-port": "^2.0.1",
-    "react-modal": "^3.16.1"
+    "react-modal": "^3.16.1",
+    "react-uploader": "^3.41.0",
+    "uploader": "^3.48.0"
   }
 }
