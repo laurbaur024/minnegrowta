@@ -2,8 +2,14 @@
   {
       "username": "GreenThumb123",
       "email": "greenthumb123@email.com",
-      "password": "$2b$10$3U6P2fX3A.oE0c074/J0T.lMf4oA2UC1IrxNoX2g6ie5ve7DeB0PW",
-      "favPlant": [],
+      "password": "$2b$10$uio7ChfVJoEJ6hKIaHMCr.nlDPCorerTlyOg5B..uCbRc.o6BZUZi",
+      "favPlant": [
+        "64ff3cfbbc0d22c8410872fd",
+        "64ff3cfbbc0d22c841087304",
+        "64ff3cfbbc0d22c8410872fc",
+        "64ff3cfbbc0d22c84108730c",
+        "64ff3cfbbc0d22c84108733c"
+      ],
       "gardenPlant": [],
       "myForums": [],
       "myJournals": []

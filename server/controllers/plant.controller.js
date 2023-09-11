@@ -24,6 +24,16 @@ async function findById(id){
   }
 }
 
+//get all plants by name
+async function findByName(req){
+  try {
+    const payload = await Model.find({name: req.params.name})
+    return payload
+  } catch(err){
+    if(process.env.NODE_ENV === "development") console.log(err)
+  }
+}
+
 
 
 
@@ -31,4 +41,5 @@ async function findById(id){
 module.exports = {
   find,
   findById,
+  findByName,
 }

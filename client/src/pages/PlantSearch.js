@@ -8,7 +8,7 @@ import React, {useState} from "react"
 
 
 
-export default function PlantSearch () {
+export default function PlantSearch ({search}) {
 
   const { currUser } = useUserContext();
   const id = currUser?.data?._id;
@@ -74,36 +74,40 @@ export default function PlantSearch () {
   
   return (
     <Flex width={"100vw"} height={"90vh"} alignContent={"center"} justifyContent={"center"}>
-      <Card style={card}>
-        <CardHeader>
-          <Heading size='md'>Showing Results for <span>Tomato</span>...</Heading>
-        </CardHeader>
-        <CardBody>
-          <Stack divider={<StackDivider />} spacing='4'>
-            <Box>
-              <Heading size='s' textTransform='uppercase'> Roma Tomato </Heading>
-            </Box>
-            <Box>
-              <img style={img} src='https://hgshydro.com:5001/blog/hgs.19105c12-3b2c-4035-9b68-934641c3f27b_default.jpg' alt=' of Searched Plant'/>
-            </Box>
-            <Box>
-              <UnorderedList>
-                <ListItem><span style={bold}>Type: </span>Vegetable</ListItem>
-                <ListItem><span style={bold}>Sow Space: </span>36</ListItem>
-                <ListItem><span style={bold}>Climbing: </span>no</ListItem>
-                <ListItem><span style={bold}>Sun: </span>full</ListItem>
-                <ListItem><span style={bold}>Grow Zone: </span>Zone 3 or higher</ListItem>
-                <ListItem><span style={bold}>Annual: </span>Yes</ListItem>
-                <ListItem><span style={bold}>Maturity: </span>70-80 days</ListItem>
-              </UnorderedList>
-            </Box>
-          </Stack>
-          <div>
-            <Button style={button} colorScheme='orange'>Add to Favorites</Button>
-            <Button style={button} colorScheme='orange'>Add to Garden</Button>
-          </div>
-        </CardBody>
-      </Card>
+      {search.map(function (plant){
+        return (
+          <Card style={card}>
+          <CardHeader>
+            <Heading size='md'>Showing Results for <span>{plant.name}</span>...</Heading>
+          </CardHeader>
+          <CardBody>
+            <Stack divider={<StackDivider />} spacing='4'>
+              <Box>
+                <Heading size='s' textTransform='uppercase'> {plant.name} </Heading>
+              </Box>
+              <Box>
+                <img style={img} src='https://hgshydro.com:5001/blog/hgs.19105c12-3b2c-4035-9b68-934641c3f27b_default.jpg' alt='Searched Plant'/>
+              </Box>
+              <Box>
+                <UnorderedList>
+                  <ListItem><span style={bold}>Type: </span>{plant.type}</ListItem>
+                  <ListItem><span style={bold}>Sow Space: </span>{plant.sowSpace}</ListItem>
+                  <ListItem><span style={bold}>Climbing: </span>{plant.climbing}</ListItem>
+                  <ListItem><span style={bold}>Sun: </span>{plant.sun}</ListItem>
+                  <ListItem><span style={bold}>Grow Zone: </span>{plant.zone}</ListItem>
+                  <ListItem><span style={bold}>Maturity: </span>{plant.maturity}</ListItem>
+                </UnorderedList>
+              </Box>
+            </Stack>
+            <div>
+              <Button style={button} colorScheme='orange'>Add to Favorites</Button>
+              <Button style={button} colorScheme='orange'>Add to Garden</Button>
+            </div>
+          </CardBody>
+        </Card>
+        )
+      })}
+
     </Flex>    
     )
 }

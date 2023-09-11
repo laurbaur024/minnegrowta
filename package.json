@@ -17,9 +17,15 @@
     "concurrently": "^5.3.0"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.8.1",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "bootstrap-icons": "^1.10.5",
+    "framer-motion": "^10.16.4",
     "jsonwebtoken": "^9.0.2",
     "kill-port": "^2.0.1",
-    "react-modal": "^3.16.1"
+    "react-modal": "^3.16.1",
+    "react-uploader": "^3.41.0",
+    "uploader": "^3.48.0"
   }
 }

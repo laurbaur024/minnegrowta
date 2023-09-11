@@ -8,7 +8,6 @@ import Garden from "../images/download.png"
 import { CardBody, Text, Card, Button} from "@chakra-ui/react";
 import "../styles/global.css";
 
-
 const CardContainer = () => {
   const cards = [
 
