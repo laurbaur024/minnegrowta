@@ -21,6 +21,7 @@ async function findOne(criteria = {}) {
   }
 }
 
+//find a user's favorite plants
 async function findById(id) {
   try {
     const payload = await Model.findById(id).populate("favPlant");
@@ -53,9 +54,24 @@ async function update(criteria, body) {
   }
 }
 
-async function updateById(id, body) {
+//original version of updateById:
+// async function updateById(id, body) {
+//   try {
+//     const payload = await Model.findByIdAndUpdate(id, body, { new: true });
+//     return payload;
+//   } catch (err) {
+//     if (process.env.NODE_ENV === "development") console.log(err);
+//     throw new Error(err);
+//   }
+// }
+
+async function updateById(userId, plantId) {
   try {
-    const payload = await Model.findByIdAndUpdate(id, body, { new: true });
+    const payload = await Model.findByIdAndUpdate(
+      { _id: req.params.userId },
+      { $pull: { favPlant: plantId } },
+      { runValidators: true, new: true }
+    );
     return payload;
   } catch (err) {
     if (process.env.NODE_ENV === "development") console.log(err);
@@ -63,6 +79,20 @@ async function updateById(id, body) {
   }
 }
 
+//tried findByIdAndUpdate and didn't work; tutor suggested using findOneAndUpdate
+// async function remove(userId, plantId) {
+//   try {
+//     const payload = await Model.findOneAndUpdate(userId, {
+//       $pull: { favPlant: plantId },
+//     });
+//     return payload;
+//   } catch (err) {
+//     if (process.env.NODE_ENV === "development") console.log(err);
+//     throw new Error(err);
+//   }
+// }
+
+//original version of remove:
 async function remove(id) {
   try {
     const payload = await Model.findByIdAndDelete(id);

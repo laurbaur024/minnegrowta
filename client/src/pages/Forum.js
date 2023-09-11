@@ -36,7 +36,8 @@ export default function Forum() {
   // code for getting all forum posts, useState used and fetch request from api used to bring all forum posts from
   //api and turned into array of objects we can map over and display on page
   const [results, setResults] = useState([]);
-
+  const [ image, setImage] = useState('')
+  const [expandedItem, setExpandedItem] = useState(null);
   const searchForum = async () => {
     const response = await fetch("/api/forum");
     const data = await response.json();
@@ -45,6 +46,18 @@ export default function Forum() {
   useEffect(() => {
     searchForum();
   }, []);
+  
+  const handleAccordionChange = (index) => {
+    if (index === expandedItem) {
+      setExpandedItem(null);
+    } else {
+      setExpandedItem(index);
+    }
+  };
+  
+  //code for modals, one for forum post one for reply, this makes the two buttons open different models
+  const { isOpen: isForumOpen , onOpen: onForumOpen, onClose: onForumClose } = useDisclosure()
+  const { isOpen: isReplyOpen , onOpen: onReplyOpen, onClose: onReplyClose } = useDisclosure() 
 
   //code for modals, one for forum post one for reply, this makes the two buttons open different models
   const {
@@ -110,45 +123,49 @@ export default function Forum() {
 
   return (
     <div className="forumcontainer">
-      <>
-        <Grid
-          className="forum-content"
-          h="700px"
-          templateRows="repeat(1, 1fr)"
-          templateColumns="repeat(5, 1fr)"
-          gap={4}
-        >
-          <GridItem colSpan={1}>
-            <h2>My Forum Posts:</h2>
+    <>
+        <Grid className="forum-content"
+        templateRows='repeat(1, 1fr)'
+        templateColumns='repeat(5, 1fr)'
+        gap={4}
+      >
+        
+        <GridItem colSpan={1}>
+          <h2>My Forum Posts:</h2>
+        
+          <Button onClick={onForumOpen}>Add a New Forum Post</Button>
 
-            <Button onClick={onForumOpen}>Add a New Forum Post</Button>
+          <Modal isOpen={isForumOpen} onClose={onForumClose}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>New Forum Post</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+              <FormControl>
+                <FormLabel>Forum Post Title:</FormLabel>
+                <Input type='text' value={form.title} onChange={handleInputChange} name="forumTitle"/>
+              </FormControl>
+              <FormControl>
+              <Text mb='8px'>Forum Post Content:</Text>
+              <Textarea
+                value={form.content}
+                onChange={handleInputChange}
+                placeholder='Enter Post Content Here'
+                size='lg'
+                name="forumContent"
+              />
+              </FormControl>
+                {/* <Lorem count={2} /> */}
+              </ModalBody>
 
-            <Modal isOpen={isForumOpen} onClose={onForumClose}>
-              <ModalOverlay />
-              <ModalContent>
-                <ModalHeader>New Forum Post</ModalHeader>
-                <ModalCloseButton />
-                <ModalBody>
-                  <FormControl>
-                    <FormLabel>Forum Post Title:</FormLabel>
-                    <Input
-                      type="text"
-                      value={form.title}
-                      onChange={handleInputChange}
-                      name="forumTitle"
-                    />
-                  </FormControl>
-                  <FormControl>
-                    <Text mb="8px">Forum Post Content:</Text>
-                    <Textarea
-                      value={form.content}
-                      onChange={handleInputChange}
-                      placeholder="Enter Post Content Here"
-                      size="lg"
-                      name="forumContent"
-                    />
-                  </FormControl>
-                  {/* <Lorem count={2} /> */}
+              <ModalFooter>
+                <Button colorScheme='blue' mr={3} onClick={onSubmit}>
+                  Submit
+                </Button>
+                <Upload setImage={setImage}/>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
                 </ModalBody>
 
                 <ModalFooter>
@@ -159,76 +176,67 @@ export default function Forum() {
                 </ModalFooter>
               </ModalContent>
             </Modal>
-            {/* <ul className="list-group">
-            {users.map((user) => (
-            <li className="list-group-item" key={user.login.uuid}>
-            {`${user.name.first} ${user.name.last} (${user.login.username})`}
-            </li>
-            ))}
-          </ul> */}
-          </GridItem>
-          <GridItem colSpan={4}>
-            <h2>Garden Planner Forum Posts</h2>
-            <h6>See other gardener's tips and tricks, or ask a question!</h6>
-            <Accordion>
-              {results.map((data) => (
-                <AccordionItem>
-                  <h2>
-                    <AccordionButton>
-                      <Box as="span" flex="1" textAlign="left">
-                        {`${data.title}`}
-                      </Box>
-                      <AccordionIcon />
-                    </AccordionButton>
-                  </h2>
-                  <AccordionPanel pb={4}>
-                    <div>
-                      <img
-                        src={`${data.image}`}
-                        alt="image of plants"
-                        width="500"
-                        height="300"
-                      ></img>
-                    </div>
-                    <div>{`${data.content}`}</div>
-                    <Button onClick={onReplyOpen}>Reply to Forum Post</Button>
-                    <Modal isOpen={isReplyOpen} onClose={onReplyClose}>
-                      <ModalOverlay />
-                      <ModalContent>
-                        <ModalHeader>Reply to Forum Post</ModalHeader>
-                        <ModalCloseButton />
-                        <ModalBody>
-                          <FormControl>
-                            <Text mb="8px">Reply to Post Here:</Text>
-                            <Textarea
-                              value={reply.text}
-                              onChange={handleReplyInputChange}
-                              placeholder="Enter Reply Here"
-                              size="lg"
-                              name="replyText"
-                            />
-                          </FormControl>
-                          {/* <Lorem count={2} /> */}
-                        </ModalBody>
 
-                        <ModalFooter>
-                          <Button
-                            colorScheme="blue"
-                            mr={3}
-                            onClick={() => onReply(data._id)}
-                          >
-                            Submit
-                          </Button>
-                        </ModalFooter>
-                      </ModalContent>
-                    </Modal>
-                  </AccordionPanel>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </GridItem>
-        </Grid>
-      </>
+          
+        </GridItem>
+        <GridItem colSpan={4} className="forumgrid">
+          <h2>Garden Planner Forum Posts</h2>
+          <h6>See other gardener's tips and tricks, or ask a question!</h6>
+          <Accordion allowToggle>
+          {results.map((data, index) => (
+            <AccordionItem key={index} isExpanded={index === expandedItem}>
+              <h2>
+                <AccordionButton onClick={() => handleAccordionChange(index)}>
+                  <Box as="span" flex='1' textAlign='left'>
+                    {`${data.title}`}
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                <Box maxH="400px" overflowY="auto">
+                  <div>
+                    <img src={`${data.image}`} alt="image of plants" width="500" height="300"></img>
+                  </div>
+                  <div>
+                    {`${data.content}`}
+                  </div>
+                </Box>
+                <Button onClick={onReplyOpen}>Reply to Forum Post</Button>
+                <Modal isOpen={isReplyOpen} onClose={onReplyClose}>
+                  <ModalOverlay />
+                  <ModalContent>
+                    <ModalHeader>Reply to Forum Post</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                    <FormControl>
+                    <Text mb='8px'>Reply to Post Here:</Text>
+                    <Textarea
+                      value={reply.text}
+                      onChange={handleReplyInputChange}
+                      placeholder='Enter Reply Here'
+                      size='lg'
+                      name="replyText"
+                    />
+                    </FormControl>
+                      {/* <Lorem count={2} /> */}
+                    </ModalBody>
+
+                    <ModalFooter>
+                      <Button colorScheme='blue' mr={3} onClick={() => onReply(data._id)}>
+                        Submit
+                      </Button>
+                    </ModalFooter>
+                  </ModalContent>
+                </Modal>
+              </AccordionPanel>
+            </AccordionItem>
+            ))}
+          </Accordion>
+        </GridItem>
+      </Grid>
+    </>
+
     </div>
   );
 }

@@ -36,6 +36,7 @@ export default function Planner() {
 
 
   return (
+    <div className="garden-container">
     <>
       <Grid className="garden-content"
         h='700px'
@@ -49,9 +50,9 @@ export default function Planner() {
         <GridItem colSpan={1}>
           <h2>Add Journal Post:</h2>
         </GridItem>
-        <GridItem colSpan={4}>
+        <GridItem colSpan={4} className="journal-grid">
           <h2>My Journal Entries:</h2>
-          <Accordion>
+          <Accordion allowToggle>
           {results.map((data) => (
             <AccordionItem key={data._id}>
               <h2>
@@ -78,5 +79,6 @@ export default function Planner() {
         </GridItem>
       </Grid>
     </>
+    </div>
   )
 }

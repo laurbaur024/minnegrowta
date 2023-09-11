@@ -24,9 +24,7 @@ const Header = ({setSearch}) => {
   };
 
   const handleSearch = async () => {
-  //  console.log(searchQuery)
    const response = await fetch(`/api/plant/search/${searchQuery}`, {
-  //  const response = await fetch(`/api/plant/`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -38,9 +36,15 @@ const Header = ({setSearch}) => {
   navigate("/search");
   };
 
+  const handleFavoritesClick = () => {
+    // Navigate to the favorites page
+    navigate("/favorites");
+  };
+
+
   return (
     <header className="header" style={{ borderBottom: "1px solid #333" }}>
-      <Navbar bg="dark" variant="dark" expand="md">
+      <Navbar bg="dark" variant="dark" expand="sm">
         <Container fluid>
           {/* Logo and Site Name */}
           <Navbar.Brand className="me-auto" href="/">
@@ -96,6 +100,10 @@ const Header = ({setSearch}) => {
                     >Search</button>
                 </div>
               )}
+
+              <Nav.Link onClick={handleFavoritesClick}>
+                <i className="bi bi-star"></i>
+              </Nav.Link>
 
               {/* Conditional Rendering based on Authentication */}
               {currUser.status === "notfound" ? (
