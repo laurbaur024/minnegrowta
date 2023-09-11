@@ -30,23 +30,26 @@ const MyUploadButton = ({setFiles}) =>
 
 
 
-const MyUploadedFiles = ({files}) => files.map(file => {
+const MyUploadedFiles = ({files, setImage}) => files.map(file => {
   const filePath = file.filePath 
   const fileUrl  = uploader.url(filePath, "thumbnail")
-  console.log(fileUrl)
+  setImage (fileUrl)
   return (
+  <div>
     <p key={fileUrl}> Photo Added!
     </p>
+    <input type="hidden" name="image" value={fileUrl}></input>
+  </div>
   );
 })
 
 
-const Upload = () => {
+const Upload = (props) => {
   const [files, setFiles] = useState([])
   return (
     <>
       {files.length 
-         ? <MyUploadedFiles files={files} /> 
+         ? <MyUploadedFiles setImage={props.setImage} files={files} /> 
          : <MyUploadButton setFiles={setFiles} />
       }
     </>

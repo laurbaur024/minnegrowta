@@ -39,6 +39,7 @@ export default function Forum () {
 
   // code for getting all forum posts, useState used and fetch request from api used to bring all forum posts from api and turned into array of objects we can map over and display on page
   const [results, setResults] = useState([]);
+  const [ image, setImage] = useState('')
   
   const searchForum = async () => {
     const response = await fetch("/api/forum");
@@ -74,7 +75,7 @@ export default function Forum () {
       let response = await fetch('/api/forum', {
         method: "POST",
         headers: {"content-type": "application/json"},
-        body: JSON.stringify( {title: form.title, content: form.content, image: "https://upcdn.io/W142hJk/thumbnail/demo/4mB638K545.jpg.crop"} )
+        body: JSON.stringify( {title: form.title, content: form.content, image: image} )
       })
       console.log("success")
     } catch (error) {
@@ -150,7 +151,7 @@ export default function Forum () {
                 <Button colorScheme='blue' mr={3} onClick={onSubmit}>
                   Submit
                 </Button>
-                <Upload />
+                <Upload setImage={setImage}/>
               </ModalFooter>
             </ModalContent>
           </Modal>
