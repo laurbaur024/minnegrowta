@@ -21,15 +21,22 @@ There is a timeline feature in which the user can record when a particular seed 
 
 ## Authors
 
-- Lauren Bleyl
-- Sean Chen
+- Lauren Bleyl (https://github.com/laurbaur024)
+- Sean Chen  (https://github.com/Ad31aid)
 - Beth Haynes  (https://github.com/beffylaureen)
-- Jacqueline Stiehl
-- Damon Tweedy
-- Aidan Wildebank
+- Jacqueline Stiehl  (https://github.com/Jacqueline-Stiehl)
+- Damon Tweedy  (https://github.com/dmtweedy)
+- Aidan Windebank  (https://github.com/Aidan-Windebank)
 
 ## Deployment
 
 ## Screenshots
 
+## <img src="./client/src/images/MinneGrowtaHomePage.jpg" alt = "MinneGrowta Home page" />
+
 ## Resources Used
+
+- Minnesota Landscape Arboretum  https://arb.umn.edu/
+- https://www.icangarden.com/zone-3-perennials/
+- https://www.lifeinminnesota.com/best-perennials-for-minnesota/
+- https://www.gardenloversclub.com/plant-finder/annuals/minnesota-annuals/
