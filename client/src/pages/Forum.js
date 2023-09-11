@@ -40,6 +40,7 @@ export default function Forum () {
   // code for getting all forum posts, useState used and fetch request from api used to bring all forum posts from api and turned into array of objects we can map over and display on page
   const [results, setResults] = useState([]);
   const [ image, setImage] = useState('')
+  const [expandedItem, setExpandedItem] = useState(null);
   
   const searchForum = async () => {
     const response = await fetch("/api/forum");
@@ -50,7 +51,13 @@ export default function Forum () {
     searchForum();
   }, []);
   
-  
+  const handleAccordionChange = (index) => {
+    if (index === expandedItem) {
+      setExpandedItem(null);
+    } else {
+      setExpandedItem(index);
+    }
+  };
   
   //code for modals, one for forum post one for reply, this makes the two buttons open different models
   const { isOpen: isForumOpen , onOpen: onForumOpen, onClose: onForumClose } = useDisclosure()
@@ -114,7 +121,6 @@ export default function Forum () {
     <div className="forumcontainer">
     <>
         <Grid className="forum-content"
-        h='700px'
         templateRows='repeat(1, 1fr)'
         templateColumns='repeat(5, 1fr)'
         gap={4}
@@ -122,7 +128,7 @@ export default function Forum () {
         
         <GridItem colSpan={1}>
           <h2>My Forum Posts:</h2>
-         
+        
           <Button onClick={onForumOpen}>Add a New Forum Post</Button>
 
           <Modal isOpen={isForumOpen} onClose={onForumClose}>
@@ -165,14 +171,14 @@ export default function Forum () {
           </ul> */}
           
         </GridItem>
-        <GridItem colSpan={4}>
+        <GridItem colSpan={4} className="forumgrid">
           <h2>Garden Planner Forum Posts</h2>
           <h6>See other gardener's tips and tricks, or ask a question!</h6>
-          <Accordion>
-          {results.map((data) => (
-            <AccordionItem>
+          <Accordion allowToggle>
+          {results.map((data, index) => (
+            <AccordionItem key={index} isExpanded={index === expandedItem}>
               <h2>
-                <AccordionButton>
+                <AccordionButton onClick={() => handleAccordionChange(index)}>
                   <Box as="span" flex='1' textAlign='left'>
                     {`${data.title}`}
                   </Box>
@@ -180,12 +186,14 @@ export default function Forum () {
                 </AccordionButton>
               </h2>
               <AccordionPanel pb={4}>
-                <div>
-                  <img src={`${data.image}`} alt="image of plants" width="500" height="300"></img>
-                </div>
-                <div>
-                  {`${data.content}`}
-                </div>
+                <Box maxH="400px" overflowY="auto">
+                  <div>
+                    <img src={`${data.image}`} alt="image of plants" width="500" height="300"></img>
+                  </div>
+                  <div>
+                    {`${data.content}`}
+                  </div>
+                </Box>
                 <Button onClick={onReplyOpen}>Reply to Forum Post</Button>
                 <Modal isOpen={isReplyOpen} onClose={onReplyClose}>
                   <ModalOverlay />
