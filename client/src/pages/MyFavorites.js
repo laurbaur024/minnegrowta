@@ -67,21 +67,33 @@ export default function MyFavorites(props) {
     searchFavorites();
   }, []);
 
-  // const addGardenPlant = async (e) => {
-  //   e.preventDefault();
-  //   const response = await fetch(`./api/user/${id}/garden/:plantId`, {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       _id: id,
-  //       plantID: "64fb776ddf07cf20146e2015", //currently hardcoded with a plantId
-  //     }),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
-  //   const result = await response.json();
-  //   console.log(result);
-  // };
+  const addGardenPlant = async (e) => {
+    e.preventDefault();
+    const response = await fetch(`./api/user/${id}/garden/:plantId`, {
+      method: "POST",
+      body: JSON.stringify({
+        _id: id,
+        plantID: "64fb776ddf07cf20146e2015", //currently hardcoded with a plantId
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const result = await response.json();
+    console.log(result);
+  };
+
+  //from Forum.js
+  // const {
+  //   isOpen: isFavoriteOpen,
+  //   onOpen: onFavoriteOpen,
+  //   onClose: onFavoriteClose,
+  // } = useDisclosure();
+  const {
+    isOpen: isDeleteOpen,
+    onOpen: onDeleteOpen,
+    onClose: onDeleteClose,
+  } = useDisclosure();
 
   //code into button Jackie/me
   //remove (delete) plant from user's favorites list
@@ -101,18 +113,6 @@ export default function MyFavorites(props) {
     const result = await response.json();
     console.log(result);
   };
-
-  //from Forum.js
-  const {
-    isOpen: isFavoriteOpen,
-    onOpen: onFavoriteOpen,
-    onClose: onFavoriteClose,
-  } = useDisclosure();
-  const {
-    isOpen: isDeleteOpen,
-    onOpen: onDeleteOpen,
-    onClose: onDeleteClose,
-  } = useDisclosure();
 
   return (
     <div className="fav-content">
@@ -163,12 +163,13 @@ export default function MyFavorites(props) {
             <Card bg="#85AE5A">
               {/* trying out accordian below based on Forum.js */}
               <Accordion>
+                <Heading size="md">My Favorite Plants</Heading>
                 {results.map((data) => (
                   <AccordionItem>
                     <h2>
                       <AccordionButton>
                         <Box as="span" flex="1" textAlign="left">
-                          {`${data.title}`}
+                          {`${data.name}`}
                         </Box>
                         <AccordionIcon />
                       </AccordionButton>
@@ -182,7 +183,36 @@ export default function MyFavorites(props) {
                           height="300"
                         ></img>
                       </div>
-                      <div>{`${data.content}`}</div>
+                      <div>
+                        <span style={bold}>Type: </span> {`${data.type}`}
+                      </div>
+                      <div>
+                        <span style={bold}>Sow Space: </span>
+                        {`${data.sowSpace}`} inches
+                      </div>
+                      <div>
+                        <span style={bold}>Climbing: </span>
+                        {`${data.climbing}`}
+                      </div>
+                      <div>
+                        <span style={bold}>Sun: </span>
+                        {`${data.sun}`}
+                      </div>
+                      <div>
+                        <span style={bold}>Grow Zone: </span>
+                        {`${data.zone}`}
+                      </div>
+                      <div>
+                        <span style={bold}>Annual: </span>
+                        {`${data.annual}`}
+                      </div>
+                      <div>
+                        <span style={bold}>Maturity: </span>
+                        {`${data.maturity}`}
+                      </div>
+                      <Button style={button} colorScheme="orange">
+                        Add to Garden
+                      </Button>
                       <Button onClick={onDeleteOpen}>
                         Remove Plant from Favorites
                       </Button>
