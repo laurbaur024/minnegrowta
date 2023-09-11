@@ -71,11 +71,11 @@ p {
   margin-left: 3%;
   color: #09302f;
   transition: color 0.3s ease;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
 .bi.bi-search:hover::before {
-  color: white;
+  color: #F8D589;
 }
 
 .button:hover {
@@ -83,7 +83,7 @@ p {
 }
 
 .nav-link:hover {
-  color: white;
+  color: #F8D589;
 }
 
 .header .navlink {
@@ -92,7 +92,7 @@ p {
   transition: color 0.3s ease;
   margin-left: 3%;
   font-size: 20px;
-  margin-right: 20px;
+  margin-right: 16px;
 }
 
 .header .navlink2 {
@@ -100,7 +100,7 @@ p {
   text-decoration: none;
   transition: color 0.3s ease;
   font-size: 20px;
-  margin-right: 20px;
+  margin-right: 16px;
   margin-left: 3%;
 }
 
@@ -137,8 +137,28 @@ p {
   margin-right: 0px;
 }
 
+.header .navlink:hover {
+  color: #F8D589;
+}
+
+.header .navlink2:hover {
+  color: #F8D589;
+}
+
 .header .navlink6:hover {
   color: #F99E23
+}
+
+.header .navlink3:hover {
+  color: #F8D589;
+}
+
+.header .navlink4:hover {
+  color: #F8D589;
+}
+
+.header .navlink5:hover {
+  color: #F8D589;
 }
 
 .container {
@@ -183,6 +203,12 @@ p {
 
   .navbar-expand-md .show {
     display: block;
+  }
+}
+
+@media (max-width: 400px) {
+  .logo-text {
+    display: none;
   }
 }
 
@@ -241,7 +267,7 @@ p {
 }
 
 .dash-container {
-  margin-bottom: 20%;
+  margin-bottom: 200px;
 }
 
 .timeline-content {
@@ -260,10 +286,12 @@ p {
   text-align: bottom;
 }
 
-.card-contents .dashbutton:nth-child(1) {
-  position: absolute;
-  bottom: -230px;
-  right: 30%;
+.card-contents .dashbutton-blue {
+  bottom: -95px;
+}
+
+.card-contents .dashbutton-green {
+  bottom: -63px;
 }
 
 .card-22 {
@@ -271,24 +299,175 @@ p {
 }
 
 .container-card {
-  margin-top: -60px;
-  margin-left: 29px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  text-align: center;
+  height: 300px;
+  margin-top: 3%;
   margin-bottom: -20px;
 }
 
-@media (max-width: 768px) {
-  .card-22 {
-    height: 50%;
+.container-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 9%;
+}
+
+@media (max-width: 936px) {
+  .timeline-content {
+    margin-top: -100px;
   }
-  .card-22 .img99 {
-    height: 50%;
-  }
+
   .container-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 200px;
+    margin: 10px;
+  }
+
+  .card-contents .descr {
+    display: none;
+  }
+
+  .card-22 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+  }
+
+  .card-contents {
+    margin-bottom: -50px;
+    width: 75%;
+    height: 75%;
+  }
+
+  .card-contents .dashbutton-blue {
+    bottom: -20px;
+  }
+  
+  .card-contents .dashbutton-green {
+    bottom: -20px;
+  }
+  .card-contents .dashbutton-orange {
+    bottom: -20px;
+  }
+
+  .container-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 700px) {
+  .timeline-content {
+    margin-top: -80px;
+  }
+
+  .container-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 120px;
+    width: 120px;
+    margin: 15px;
+    margin-top: 30px;
+  }
+
+  .card-22 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+  }
+
+  .card-contents {
+    margin-bottom: 40px;
+    width: 50%;
     height: 50%;
+  }
+
+  .card-contents .descr {
+    display: none;
+  }
+
+  .card-contents .dashbutton-blue {
+    bottom: -20px;
+  }
+  
+  .card-contents .dashbutton-green {
+    bottom: -20px;
+  }
+  .card-contents .dashbutton-orange {
+    bottom: -20px;
+  }
+
+  .container-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 472px) {
+  .timeline-content {
+    margin-top: -180px;
+  }
+
+  .container-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 40px;
+    width: 120px;
+    margin: 15px;
+    margin-top: 60px;
+  }
+
+  .card-22 {
+    display: none;
+  }
+
+  .card-contents {
+    margin-top: 290px;
+    height: 50px;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+    text-align: bottom;
+  }
+
+  .img99,
+  .card-contents h3,
+  .card-contents .descr {
+    display: none;
+  }
+
+  .card-contents .dashbutton-blue {
+    bottom: -20px;
+  }
+  
+  .card-contents .dashbutton-green {
+    bottom: -20px;
+  }
+  .card-contents .dashbutton-orange {
+    bottom: -20px;
+  }
+
+  .container-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -299,9 +478,19 @@ p {
   margin-bottom: 35%;
 }
 
-/* login styles */
+/* planner styles */
 
-/* signup styles */
+.garden-content {
+  margin-top: 11px;
+  margin-bottom: 450px;
+}
+
+/* forum styles */
+
+.forumcontainer {
+  margin-top: 20px;
+  margin-bottom: 340px;
+}
 
 /* modal styles */
 
