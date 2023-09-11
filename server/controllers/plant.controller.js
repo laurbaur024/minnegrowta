@@ -23,9 +23,10 @@ async function findById(id) {
 }
 
 //get a plant by name
-async function findByName(name = {}){
+async function findByName(name){
   try {
-    const payload = await Model.find(name)
+    const payload = await Model.find({name})
+    console.log(payload)
     return payload
   } catch(err){
     if(process.env.NODE_ENV === "development") console.log(err)

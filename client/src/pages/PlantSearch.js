@@ -86,7 +86,7 @@ export default function PlantSearch ({search}) {
                 <Heading size='s' textTransform='uppercase'> {plant.name} </Heading>
               </Box>
               <Box>
-                <img style={img} src='https://hgshydro.com:5001/blog/hgs.19105c12-3b2c-4035-9b68-934641c3f27b_default.jpg' alt='Searched Plant'/>
+                <img style={img} src={plant.image} alt='Searched Plant'/>
               </Box>
               <Box>
                 <UnorderedList>
