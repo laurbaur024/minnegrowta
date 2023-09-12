@@ -43,15 +43,16 @@ export default function Planner() {
   const [ image, setImage] = useState('')
   const  [ okToRender, setOkToRender ] = useState(false)
   const [ journalPosts, setJournalPosts ] = useState([]);
+
+
   const myJournalPosts = async (userId) => {
     try {
       const response = await fetch(`/api/user/${userId}`);
       const journalPostsData = await response.json()
-      // console.log(journalPostsData)
-      // const myPostsId = journalPostsData.payload.myJournals
+      console.log(journalPostsData)
+
       setJournalPosts(journalPostsData.payload.myJournals)
-      // const fetchPromises = myPostsId.map((id) => getMyPosts(id));
-      // await Promise.all(fetchPromises);
+
       setOkToRender(true);
     } catch (error) {
       console.error('error fetching journal posts', error);
@@ -72,9 +73,13 @@ const onSubmit = async () => {
     let response = await fetch('/api/journal', {
       method: "POST",
       headers: {"content-type": "application/json"},
-      body: JSON.stringify( {title: form.title, text: form.text } )
+      body: JSON.stringify( {title: form.title, text: form.text, userId: id } )
     })
     console.log("success")
+    const newJournalPost = await response.json()
+    setJournalPosts([...journalPosts, newJournalPost])
+    console.log(journalPosts)
+    onJournalClose()
   } catch (error) {
     console.log(error)
   }
@@ -127,20 +132,25 @@ let handleInputChange = (e) => {
             <Button onClick={onJournalOpen}>Add a New Journal Post</Button>
             <p></p>
             <h2>My Journal Posts:</h2>
+            
+
+
+
+
             <div>
-              {journalPosts?.map((data1) => (
-                <div key={data1?._id}>
+              {journalPosts.map((index) => (
+                <div key={index.title}>
                   <ul>
                     <li>
-                      {data1 ? (
+                      {/* {data ? ( */}
                         <>
-                          {data1.title}
+                          {index.title}
                           {/* <Button onClick={() => deleteJournalPost(data1?._id)}>Delete Journal Post</Button> */}
                         </>
-                      ) : (
-                        <p>Post data is not available.</p>
-                      )}
-                    </li>
+                      {/* ) : ( */}
+                        {/* <p>Post data is not available.</p> */}
+                      {/* )} */}
+                     </li> 
                   </ul>
                 </div>
               ))}

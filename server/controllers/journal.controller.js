@@ -32,9 +32,9 @@ async function create(body){
   try {
     const payload = await Model.create(body);
     const updateUser = await User.findOneAndUpdate(
-      { _id: body.userId },
+     { _id: payload.userId },
       { $push: { myJournals: payload._id } },
-      { new: true }
+      //{ new: true }
     );
 
     return payload

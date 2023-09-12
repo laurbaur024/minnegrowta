@@ -13,12 +13,12 @@ const journalSchema = new Schema (
       type: String,
       required: true
     },
-    userId: [
+    userId: 
       {
       type: Schema.Types.ObjectId,
       ref: "User",
-    }
-    ],
+    },
+    
     // dateCreated: {
     //   type: Date,
     //   default: Date.now
