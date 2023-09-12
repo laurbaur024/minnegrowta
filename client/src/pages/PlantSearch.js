@@ -3,7 +3,7 @@
 
 import { Card, CardBody, Button, CardHeader, Heading, Stack, StackDivider, Box, UnorderedList, ListItem, Flex} from '@chakra-ui/react'
 import { useUserContext } from "../ctx/UserContext"
-import React, {useState} from "react"
+
 
 
 
@@ -12,11 +12,7 @@ export default function PlantSearch ({search}) {
 
   const { currUser } = useUserContext();
   const id = currUser?.data?._id;
-  const plantId = search._id
 
-  const [favPlant, setFavPlant] = useState('')
-  const [gardenPlant, setGardenPlant] = useState('')
-  
 
   //css classes
   const bold = {
@@ -68,6 +64,8 @@ export default function PlantSearch ({search}) {
     const result = await response.json();
     console.log(result);
   }
+
+
 
 
   
