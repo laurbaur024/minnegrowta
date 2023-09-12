@@ -58,11 +58,13 @@ export default function Forum () {
   
   // code for displaying my forum posts, gets myforums associated with user if user has been verified, then iterates over array of forum ids to get individual posts
   const [ forumPosts, setForumPosts ] = useState([]);
+  const  [ okToRender, setOkToRender ] = useState(false)
 
-  const myForumPosts = async () => {
+  const myForumPosts = async (userId) => {
+    console.log("fetching", userId)
     try {
-      if (isUserVerified){
-      const response1 = await fetch(`/api/user/${id}`);
+      // if (isUserVerified){
+      const response1 = await fetch(`/api/user/${userId}`);
       const forumPostsData = await response1.json()
       setForumPosts(forumPostsData)
       // console.log(forumPostsData.payload.myForums)
@@ -82,14 +84,18 @@ export default function Forum () {
       myPostsId.forEach((id) => {
         getMyPosts(id);
       })
-      } 
+
+      setOkToRender(true)
+      // } 
     } catch (error) {
       console.error("Error fetching forum posts:", error);
     }
   };
+
   useEffect(() => {
-    myForumPosts();
-  }, [isUserVerified, id]);
+    if( currUser?.data?._id )
+      myForumPosts(currUser?.data?._id);
+  }, [currUser]);
   
 
 
@@ -157,7 +163,7 @@ console.log(forumPosts)
   }
 
 
-
+  if( !okToRender ) return <p>Loading...</p>
   return (
     <div className="forumcontainer">
     <>
@@ -171,11 +177,6 @@ console.log(forumPosts)
         <GridItem colSpan={1}>
             <h2>My Forum Posts:</h2>
             <div>
-            {forumPosts.map((index) => (
-              <div key={index.title}>
-                <p>{index.title}</p>
-              </div>
-            ))}
               {/* {forumPosts ? (
                 forumPosts.map((id) => (
                   <div key={id.title}>
