@@ -7,7 +7,9 @@ const {
   updateById,
   remove,
   addFavorite,
+  addGarden,
 } = require("../../controllers/user.controller");
+const mongoose = require("mongoose")
 
 router.get("/", async (req, res) => {
   try {
@@ -74,7 +76,7 @@ router.put("/:id/addfavorite/:plantId", async (req, res) => {
     const payload = await addFavorite(id, plantID);
     return res.status(200).json({ status: "success", payload });
   } catch (err) {
-    console.error(error);
+    console.error(err);
     return res.status(400).json({ status: "error", message: "no good" });
   }
 });
@@ -82,11 +84,13 @@ router.put("/:id/addfavorite/:plantId", async (req, res) => {
 //add plant to garden
 router.put("/:id/addgarden/:plantId", async (req, res) => {
   const id = req.params.id;
+  const plantID = req.params.plantId;
   try {
-    const payload = await update(id);
+    const payload = await addGarden(id, plantID);
     return res.status(200).json({ status: "success", payload });
   } catch (err) {
-    return res.status(400).json({ status: "error", msg });
+    console.error(err);
+    return res.status(400).json({ status: "error", message: "no good" });
   }
 });
 
