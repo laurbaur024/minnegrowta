@@ -9,7 +9,6 @@ const {
   addFavorite,
   addGarden,
 } = require("../../controllers/user.controller");
-const mongoose = require("mongoose")
 
 router.get("/", async (req, res) => {
   try {
@@ -96,6 +95,7 @@ router.put("/:id/addgarden/:plantId", async (req, res) => {
 
 //update user by removing plant from their favorites
 router.put("/:id/favorites-remove/:plantId", async (req, res) => {
+  console.log(req.params);
   const userId = req.params.id;
   const plantId = req.params.plantId;
   try {
