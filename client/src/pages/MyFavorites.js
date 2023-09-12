@@ -71,23 +71,20 @@ export default function MyFavorites(props) {
     console.log(result);
   };
 
-  // const addGardenPlant = async (e) => {
-  //   e.preventDefault();
-  //   const response = await fetch(`./api/user/${id}/garden/:plantId`, {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       _id: id,
-  //       plantID: "64fb776ddf07cf20146e2015", //currently hardcoded with a plantId
-  //     }),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
-  //   const result = await response.json();
-  //   console.log(result);
-  // };
-
-  // function addPlantToGarden(event) {}
+  const addGardenPlant = async (e, plantId) => {
+    e.preventDefault();
+    const response = await fetch(`./api/user/${id}/addgarden/${plantId}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        _id: id,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const result = await response.json();
+    console.log(result);
+  };
 
   return (
     <div className="fav-content">
@@ -177,7 +174,7 @@ export default function MyFavorites(props) {
                         </Button>
                         <Button
                           colorScheme="orange"
-                          // onClick={addPlantToGarden}
+                          onClick={(e) => addGardenPlant(e, data._id)}
                         >
                           Add to Garden
                         </Button>

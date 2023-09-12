@@ -9,9 +9,6 @@ const {
   addFavorite,
   addGarden,
 } = require("../../controllers/user.controller");
-const mongoose = require("mongoose")
-
-const mongoose = require("mongoose");
 
 router.get("/", async (req, res) => {
   try {
