@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Link } from "@chakra-ui/react";
 import { useUserContext } from "../ctx/UserContext";
 // import { useNavigate, useLocation } from "react-router-dom";
 import {
@@ -34,16 +33,14 @@ export default function MyFavorites(props) {
 
   const { currUser } = useUserContext();
   const id = currUser?.data?._id;
-  // const plantId = currUser?.data?._plantId;
-
-  // const [removeMyFavPlant, setRemoveMyFavPlant] = useState("");
 
   const [results, setResults] = useState([]);
 
+  // user's favorite plants on MyFavorites page
   const searchFavorites = async () => {
     const response = await fetch(`/api/user/${id}`);
     const data = await response.json();
-    setResults(data.payload.favPlant);
+    setResults(data.payload?.favPlant);
     console.log(data);
   };
   useEffect(() => {
@@ -53,7 +50,7 @@ export default function MyFavorites(props) {
   //update (remove) plant from user's favorites list
   const removeFavPlant = async (e, plantId) => {
     e.preventDefault();
-    navigate("/favorites");
+
     const response = await fetch(
       `./api/user/${id}/favorites-remove/${plantId}`,
       {
@@ -68,6 +65,14 @@ export default function MyFavorites(props) {
       }
     );
     const result = await response.json();
+    setResults([
+      ...results.filter((plant) => {
+        if (plant._id !== plantId) {
+          return true;
+        }
+      }),
+    ]);
+    // window.location.reload();
     console.log(result);
   };
 
@@ -83,6 +88,7 @@ export default function MyFavorites(props) {
       },
     });
     const result = await response.json();
+
     console.log(result);
   };
 
@@ -116,7 +122,7 @@ export default function MyFavorites(props) {
           <GridItem colSpan={4}>
             <h2>My Favorite Plants</h2>
             <h6>Click on a plant name to see more details</h6>
-            <Accordion>
+            <Accordion allowToggle>
               {results &&
                 results.map((data) => (
                   <AccordionItem>
