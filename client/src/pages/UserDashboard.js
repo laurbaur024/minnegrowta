@@ -1,7 +1,7 @@
 import React from "react";
 import CardContainer from "../components/CardContainer";
 import TimelineContainer from "../components/TimelineContainer";
-import {Card, Stack, CardBody, Heading, Text, Button, Box, Flex} from '@chakra-ui/react'
+import {Card, Stack, CardBody, Heading, Text, Button} from '@chakra-ui/react'
 import { useUserContext } from "../ctx/UserContext"; 
 
 

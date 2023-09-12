@@ -45,6 +45,7 @@ export default function Forum () {
   // code for getting all forum posts, useState used and fetch request from api used to bring all forum posts from api and turned into array of objects we can map over and display on page
   const [results, setResults] = useState([]);
   const [ image, setImage] = useState('')
+  const [expandedItem, setExpandedItem] = useState(null);
   
   const searchForum = async () => {
     const response = await fetch("/api/forum");
@@ -56,6 +57,7 @@ export default function Forum () {
     searchForum();
   }, []);
   
+
   // code for displaying my forum posts, gets myforums associated with user if user has been verified, then iterates over array of forum ids to get individual posts
   const [ forumPosts, setForumPosts ] = useState([]);
 
@@ -95,6 +97,16 @@ export default function Forum () {
 
 console.log(forumPosts)
 
+
+
+//   const handleAccordionChange = (index) => {
+//     if (index === expandedItem) {
+//       setExpandedItem(null);
+//     } else {
+//       setExpandedItem(index);
+//     }
+//   };
+  
 
   //code for modals, one for forum post one for reply, this makes the two buttons open different models
   const { isOpen: isForumOpen , onOpen: onForumOpen, onClose: onForumClose } = useDisclosure()
@@ -162,13 +174,13 @@ console.log(forumPosts)
     <div className="forumcontainer">
     <>
         <Grid className="forum-content"
-        h='700px'
         templateRows='repeat(1, 1fr)'
         templateColumns='repeat(5, 1fr)'
         gap={4}
       >
         
         <GridItem colSpan={1}>
+
             <h2>My Forum Posts:</h2>
             <div>
             {forumPosts.map((index) => (
@@ -187,6 +199,7 @@ console.log(forumPosts)
               )} */}
             </div>
          
+
           <Button onClick={onForumOpen}>Add a New Forum Post</Button>
 
           <Modal isOpen={isForumOpen} onClose={onForumClose}>
@@ -230,27 +243,44 @@ console.log(forumPosts)
           </ul> */}
           
         </GridItem>
-        <GridItem colSpan={4}>
+        <GridItem colSpan={4} className="forumgrid">
           <h2>Garden Planner Forum Posts</h2>
           <h6>See other gardener's tips and tricks, or ask a question!</h6>
-          <Accordion>
-          {results.map((data) => (
-            <AccordionItem>
+          <Accordion allowToggle>
+          {results.map((data, index) => (
+            <AccordionItem key={index} isExpanded={index === expandedItem}>
               <h2>
+
                 <AccordionButton >
                   <Box as="span" flex='1' textAlign='left' id={data._id} key={data.title} onClick={handleAccordianClickChange}>
                     {`${data.title}`} 
+
+                <AccordionButton onClick={() => handleAccordionChange(index)}>
+                  <Box as="span" flex='1' textAlign='left'>
+                    {`${data.title}`}
+
                   </Box>
                   <AccordionIcon />
                 </AccordionButton>
               </h2>
               <AccordionPanel pb={4}>
+
                 <div>
                   <img src={`${data.image}`} alt="image of plants" width="500" height="300" key={data.image}></img>
                 </div>
                 <div key={data.content} >
                   {`${data.content}`}
                 </div>
+
+                <Box maxH="400px" overflowY="auto">
+                  <div>
+                    <img src={`${data.image}`} alt="image of plants" width="500" height="300"></img>
+                  </div>
+                  <div>
+                    {`${data.content}`}
+                  </div>
+                </Box>
+
                 <Button onClick={onReplyOpen}>Reply to Forum Post</Button>
                 <Modal isOpen={isReplyOpen} onClose={onReplyClose}>
                   <ModalOverlay />
