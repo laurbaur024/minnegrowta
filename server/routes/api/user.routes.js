@@ -6,6 +6,8 @@ const {
   update,
   updateById,
   remove,
+  addFavorite,
+  addGarden,
 } = require("../../controllers/user.controller");
 
 router.get("/", async (req, res) => {
@@ -65,44 +67,48 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-//add plant to favorites
-//route needs to be changed so that this doesn't interfere with update/
-//remove plant from user's favorites; suggestions: "removefavorites" or "remove"
-// router.put("/:id/favorites/:plantId", async (req, res) => {
-//   const id = req.params.id;
-//   try {
-//     const payload = await update(id);
-//     return res.status(200).json({ status: "success", payload });
-//   } catch (err) {
-//     return res.status(400).json({ status: "error", msg });
-//   }
-// });
-
-//add plant to garden
-router.put("/:id/garden/:plantId", async (req, res) => {
+//add favorite plant
+router.put("/:id/addfavorite/:plantId", async (req, res) => {
   const id = req.params.id;
+  const plantID = req.params.plantId;
   try {
-    const payload = await update(id);
+    const payload = await addFavorite(id, plantID);
     return res.status(200).json({ status: "success", payload });
   } catch (err) {
-    return res.status(400).json({ status: "error", msg });
+    console.error(err);
+    return res.status(400).json({ status: "error", message: "no good" });
+  }
+});
+
+//add plant to garden
+router.put("/:id/addgarden/:plantId", async (req, res) => {
+  const id = req.params.id;
+  const plantID = req.params.plantId;
+  try {
+    const payload = await addGarden(id, plantID);
+    return res.status(200).json({ status: "success", payload });
+  } catch (err) {
+    console.error(err);
+    return res.status(400).json({ status: "error", message: "no good" });
   }
 });
 
 //update user by removing plant from their favorites
-router.put("/:id/favorites/:plantId", async (req, res) => {
+router.put("/:id/favorites-remove/:plantId", async (req, res) => {
+  console.log(req.params);
   const userId = req.params.id;
   const plantId = req.params.plantId;
   try {
-    const payload = await remove(userId, plantId);
+    const payload = await updateById(userId, plantId);
     return res.status(200).json({ status: "success", payload });
   } catch (error) {
+    console.error(error);
     return res.status(400).json({ status: "error" });
   }
 });
 
 //remove plant from garden
-router.delete("/:id/garden/:plantId", async (req, res) => {
+router.delete("/:id/removegarden/:plantId", async (req, res) => {
   const id = req.params.id;
   try {
     const payload = await remove(id);

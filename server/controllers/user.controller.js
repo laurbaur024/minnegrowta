@@ -54,21 +54,22 @@ async function update(criteria, body) {
   }
 }
 
-//original version of updateById:
-// async function updateById(id, body) {
-//   try {
-//     const payload = await Model.findByIdAndUpdate(id, body, { new: true });
-//     return payload;
-//   } catch (err) {
-//     if (process.env.NODE_ENV === "development") console.log(err);
-//     throw new Error(err);
-//   }
-// }
-
-async function updateById(userId, plantId) {
+async function updateById(id, body) {
   try {
-    const payload = await Model.findByIdAndUpdate(
-      { _id: req.params.userId },
+    const payload = await Model.findByIdAndUpdate(id, body, { new: true });
+    return payload;
+  } catch (err) {
+    if (process.env.NODE_ENV === "development") console.log(err);
+    throw new Error(err);
+  }
+}
+
+//remove plant from a user's favorites list
+async function updateById(userId, plantId) {
+  console.log(plantId);
+  try {
+    const payload = await Model.findOneAndUpdate(
+      { _id: userId },
       { $pull: { favPlant: plantId } },
       { runValidators: true, new: true }
     );
@@ -78,19 +79,6 @@ async function updateById(userId, plantId) {
     throw new Error(err);
   }
 }
-
-//tried findByIdAndUpdate and didn't work; tutor suggested using findOneAndUpdate
-// async function remove(userId, plantId) {
-//   try {
-//     const payload = await Model.findOneAndUpdate(userId, {
-//       $pull: { favPlant: plantId },
-//     });
-//     return payload;
-//   } catch (err) {
-//     if (process.env.NODE_ENV === "development") console.log(err);
-//     throw new Error(err);
-//   }
-// }
 
 //original version of remove:
 async function remove(id) {
@@ -103,6 +91,33 @@ async function remove(id) {
   }
 }
 
+async function addFavorite(userId, plantId) {
+  try {
+    const payload = await Model.findOneAndUpdate(
+      { _id: userId },
+      { $push: { favPlant: plantId } },
+      { new: true }
+    );
+    return payload;
+  } catch (err) {
+    if (process.env.NODE_ENV === "development") console.log(err);
+    throw new Error(err);
+  }
+}
+
+async function addGarden(userId, plantId) {
+  try {
+    const payload = await Model.findOneAndUpdate(
+      {_id: userId},
+      {$push: {gardenPlant: plantId}},
+      {new:true},
+    );return payload
+  }   catch (err) {
+      if (process.env.NODE_ENV === "development") console.log(err);
+      throw new Error(err);
+  }
+}
+
 module.exports = {
   find,
   findOne,
@@ -111,4 +126,6 @@ module.exports = {
   update,
   updateById,
   remove,
+  addFavorite,
+  addGarden,
 };

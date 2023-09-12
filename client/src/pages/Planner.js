@@ -15,6 +15,7 @@ import {
   Box,
 } from '@chakra-ui/react';
 import { Card, CardHeader, CardBody, CardFooter, Heading, Text } from '@chakra-ui/react';
+import TimelineContainer from '../components/TimelineContainer';
 
 
 
@@ -45,7 +46,9 @@ export default function Planner() {
         gap={4}
       >
         <GridItem className="timeline" rowSpan={1} colSpan={5} bg='tomato'>
-          <h1>Insert timeline here</h1>
+          <div>
+            {TimelineContainer}
+          </div>
         </GridItem>
         <GridItem className="addpost" colSpan={1}>
           <h2 style={{ whiteSpace: 'nowrap' }}>Add Journal Post</h2>

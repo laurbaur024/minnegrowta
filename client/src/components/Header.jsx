@@ -24,22 +24,23 @@ const Header = ({setSearch}) => {
   };
 
   const handleSearch = async () => {
-    console.log(searchQuery)
-    const response = await fetch(`/api/plant/search/${searchQuery}`, {
-  //  const response = await fetch(`/api/plant/`, {
+   const response = await fetch(`/api/plant/search/${searchQuery}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
     }
-  });
-  const result = await response.json();
-  setSearch(result.payload);
-  };
+    });
+    const result = await response.json();
+    console.log(result.payload)
+    setSearch(result.payload)
+    navigate("/search");
+    };
 
   const handleFavoritesClick = () => {
     // Navigate to the favorites page
     navigate("/favorites");
   };
+
 
   return (
     <header className="header" style={{ borderBottom: "1px solid #333" }}>

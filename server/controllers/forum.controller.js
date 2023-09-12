@@ -1,4 +1,4 @@
-const { Forum } = require('../models');
+const { Forum, User } = require('../models');
 const Model = Forum
 
 
@@ -29,6 +29,11 @@ async function findById(id){
 async function create(body){
   try {
     const payload = await Model.create(body)
+    console.log(payload)
+    const userUpdate = await User.findOneAndUpdate({_id: payload.userId},
+      {
+        $push: {myForums: payload}
+      })
     return payload
   } catch(err){
     if(process.env.NODE_ENV === "development") console.log(err)
