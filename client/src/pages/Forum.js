@@ -3,6 +3,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import Upload from '../components/Uploader';
 import {useUserContext} from "../ctx/UserContext";
+
 // Chackra imports
 import {
   Grid,
@@ -31,16 +32,21 @@ import {
   Textarea,
   Text,
 } from '@chakra-ui/react'
+
 export default function Forum () {
   const { currUser } = useUserContext();
   const id = currUser?.data?._id;
   const isUserVerified = !!id;
-  // code for getting all forum posts, useState used and fetch request from api used to bring all forum posts from api and turned into array of objects we can map over and display on page
   const [results, setResults] = useState([]);
   const [ image, setImage] = useState('')
   const [expandedItem, setExpandedItem] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
-  
+  const [form, setForm] = useState({title: "", content: ""});
+  const [ forumPosts, setForumPosts ] = useState([]);
+  const  [ okToRender, setOkToRender ] = useState(false)
+  const [deletePost, setdeletePost] = useState([]);
+
+   // code for getting all forum posts, useState used and fetch request from api used to bring all forum posts from api and turned into array of objects we can map over and display on page
   const searchForum = async () => {
     const response = await fetch("/api/forum");
     const data = await response.json()
@@ -50,29 +56,14 @@ export default function Forum () {
   useEffect(() => {
     searchForum();
   }, []);
-  // code for displaying my forum posts, gets myforums associated with user if user has been verified, then iterates over array of forum ids to get individual posts
-  const [ forumPosts, setForumPosts ] = useState([]);
-  const  [ okToRender, setOkToRender ] = useState(false)
 
-  // const getMyPosts = async(id) => {
-  //   try{
-  //     const response = await fetch(`/api/forum/${id}`);
-  //     const data1 = await response.json();
-  //     setForumPosts((prevPosts) => [...prevPosts, data1.payload]);
-  //   } catch (error) {
-  //     console.error('error fetching data for id', error)
-  //   }
-  // };
 
+  // code for displaying my forum posts,
   const myForumPosts = async (userId) => {
     try {
       const response1 = await fetch(`/api/user/${userId}`);
       const forumPostsData = await response1.json()
-      // console.log(forumPostsData)
-      // const myPostsId = forumPostsData.payload.myForums 
       setForumPosts(forumPostsData.payload.myForums)
-      // const fetchPromises = myPostsId.map((id) => getMyPosts(id));
-      // await Promise.all(fetchPromises); 
       setOkToRender(true);
     } catch (error) {
       console.error('error fetching forum posts', error);
@@ -83,15 +74,13 @@ export default function Forum () {
       myForumPosts(currUser?.data?._id) 
   }, [currUser]);
 
+  
   // code to delete a users forum post
-  const [deletePost, setdeletePost] = useState([]);
-
   const deleteForumPost = async (postId) => {
     try {
       let response = await fetch(`/api/forum/${postId}`, {
         method: "DELETE",
         headers: { "content-type": "application/json" },
-
       });
       console.log('success')
       setForumPosts((prevPosts) => prevPosts.filter((post) => post._id !== postId));
@@ -100,14 +89,12 @@ export default function Forum () {
     }
   }
 
-
-
-
   //code for modals, one for forum post one for reply, this makes the two buttons open different models
   const { isOpen: isForumOpen , onOpen: onForumOpen, onClose: onForumClose } = useDisclosure()
   const { isOpen: isReplyOpen , onOpen: onReplyOpen, onClose: onReplyClose } = useDisclosure()
+
+
   // monitors what is being typed in new forum post form
-  const [form, setForm] = useState({title: "", content: ""});
   let handleInputChange = (e) => {
     if(e.target.name === "forumTitle"){
       setForm({...form, title: e.target.value})
@@ -115,6 +102,8 @@ export default function Forum () {
       setForm({...form, content: e.target.value})
     }
   }
+
+
   // code for submitting new forum post, text from modal input fields is turned into object and posted to api/forum with the rest of the forum posts. Has to be stringified
   const [value, setValue] = React.useState('')
   const onSubmit = async () => {
@@ -129,6 +118,8 @@ export default function Forum () {
       console.log(error)
     }
   }
+
+  
   // monitors what is being typed in reply modal form
   const [reply, setReply] = useState({text: "", forumId: ""});
   let handleReplyInputChange = (e) => {
@@ -136,10 +127,14 @@ export default function Forum () {
       setReply({...reply, text: e.target.value})
     }
   }
+
+  // handles accordian functionality
   let handleAccordianClickChange = (e) => {
     // console.log(e.target.id)
     setReply({...reply, forumId: e.target.id})
   }
+
+
   // code for post reply to forum post
   const onReply = async () => {
     try {
@@ -154,6 +149,7 @@ export default function Forum () {
       console.log(error)
     }
   }
+
 
   const fetchCurrentUser = async () => {
     try {
@@ -170,6 +166,21 @@ export default function Forum () {
     searchForum();
   }, []);
 
+
+  // delete route for users forum posts
+  const onDelete = async (event) => {
+    try {
+      const response = await fetch(`/api/forum/${event.target.id}`, {
+        method: "DELETE",
+      });
+      console.log(response)
+      const data = await response.json();
+      setCurrentUser(data.user);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+    }
+  }
+
   if( !okToRender ) return <p>Loading...</p>
 
   return (
@@ -185,20 +196,14 @@ export default function Forum () {
         <GridItem colSpan={1} className="postgrid">
           <h2 style={{ whiteSpace: 'nowrap' }}>My Forum Posts</h2>
             <div>
-            {forumPosts.map((index) => (
-              <div key={index.title}>
-                <p>{index.title}</p>
-              </div>
-            ))}
-              {/* {forumPosts ? (
-                forumPosts.map((id) => (
-                  <div key={id.title}>
-                    {`${id.title}`}
-                  </div>
-                ))
-              ) : (
-                <p>Loading forum posts...</p>
-              )} */}
+              {forumPosts.map((index) => (
+                <div key={index.title}>
+                  <p>{index.title}</p>
+                  <Button colorScheme='blue' mr={3} onClick={onDelete} id={index._id}>
+                    Delete Entry
+                  </Button>
+                </div>
+              ))}
             </div>
          
           <Button onClick={onForumOpen}>Add a New Forum Post</Button>
@@ -224,7 +229,7 @@ export default function Forum () {
                   key={form.content}
                 />
                 </FormControl>
-                  {/* <Lorem count={2} /> */}
+                
               </ModalBody>
               <ModalFooter>
                 <Button colorScheme='blue' mr={3} onClick={onSubmit}>
@@ -234,13 +239,7 @@ export default function Forum () {
               </ModalFooter>
             </ModalContent>
           </Modal>
-          {/* <ul className="list-group">
-            {users.map((user) => (
-            <li className="list-group-item" key={user.login.uuid}>
-            {`${user.name.first} ${user.name.last} (${user.login.username})`}
-            </li>
-            ))}
-          </ul> */}
+          
         </GridItem>
         <GridItem colSpan={4}>
           <h2>Garden Planner Forum Posts</h2>
@@ -266,6 +265,14 @@ export default function Forum () {
                   </div>
                 </Box>
                 <Button onClick={onReplyOpen}>Add Reply</Button>
+                <p>Replies</p>
+                {data.commentId.map((comment, index) => {
+                  return (
+                    <div>
+                      {comment.text}
+                    </div>
+                  )
+                })}
                 <Modal isOpen={isReplyOpen} onClose={onReplyClose}>
                   <ModalOverlay />
                   <ModalContent>
@@ -283,7 +290,7 @@ export default function Forum () {
                       key={reply.text}
                     />
                     </FormControl>
-                      {/* <Lorem count={2} /> */}
+                     
                     </ModalBody>
                     <ModalFooter>
                       <Button colorScheme='blue' mr={3} onClick={() => onReply(data._id)}>

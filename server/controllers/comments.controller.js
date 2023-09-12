@@ -31,7 +31,7 @@ async function create(params, body){
     const payload = await Model.create({...body, forumId: params.id })
     const forumUpdate = await Forum.findOneAndUpdate({_id: params.id },
       {
-        $push: {commentId: body._id}
+        $push: {commentId: payload._id}
       })
     return forumUpdate
   } catch(err){
