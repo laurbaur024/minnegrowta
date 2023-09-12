@@ -45,6 +45,8 @@ async function login(req) {
 }
 
 async function verify(req) {
+
+
   const cookie = req.cookies["auth-cookie"];
   if (!cookie) throw new Error("Could not authenticate");
 
