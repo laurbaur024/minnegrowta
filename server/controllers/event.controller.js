@@ -32,7 +32,7 @@ async function findByName(req) {
   }
 }
 
-// create new Forum post
+// create new event
 async function create(body){
     try {
             const payload = await Model.create(body)
@@ -43,7 +43,7 @@ async function create(body){
     }
     }
 
-    // update existing Forum post by id
+    // update existing event by id
     async function updateById(id, body){
     try {
             const payload = await Model.findByIdAndUpdate(id, body, { new: true })
@@ -54,7 +54,7 @@ async function create(body){
     }
     }
 
-    // delete Forum post by id
+    // delete event by id
     async function remove(id){
     try {
             const payload = await Model.findByIdAndDelete(id)
@@ -71,4 +71,7 @@ module.exports = {
   find,
   findById,
   findByName,
+  create,
+  updateById,
+  remove
 };

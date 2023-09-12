@@ -20,7 +20,9 @@ const App = () => {
         <Stack>
           <CardBody>
             <Heading>{TimelineContainer}</Heading>
-            <Text py='2'>Timeline will go here!</Text>
+              <div>
+                <TimelineContainer></TimelineContainer>
+              </div>
             <Button>Timeline</Button>
           </CardBody>
         </Stack>
