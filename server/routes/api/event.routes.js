@@ -29,7 +29,7 @@ router.get("/:id", async (req, res) => {
   }
 })
 
-//create net event post
+//create new event post
 router.post("/", async (req, res) => {
   try {
     const payload = await create(req.body)
