@@ -37,6 +37,10 @@ import {
 
 
 export default function Forum () {
+  const { currUser } = useUserContext();
+  const id = currUser?.data?._id;
+  const isUserVerified = !!id;
+  
 
   // code for getting all forum posts, useState used and fetch request from api used to bring all forum posts from api and turned into array of objects we can map over and display on page
   const [results, setResults] = useState([]);
@@ -52,8 +56,46 @@ export default function Forum () {
     searchForum();
   }, []);
   
+  // code for displaying my forum posts, gets myforums associated with user if user has been verified, then iterates over array of forum ids to get individual posts
+  const [ forumPosts, setForumPosts ] = useState([]);
+
+  const myForumPosts = async () => {
+    try {
+      if (isUserVerified){
+      const response1 = await fetch(`/api/user/${id}`);
+      const forumPostsData = await response1.json()
+      setForumPosts(forumPostsData)
+      // console.log(forumPostsData.payload.myForums)
+
+      const myPostsId = forumPostsData.payload.myForums 
+      const getMyPosts = async(id) => {
+        try{
+          const response = await fetch(`/api/forum/${id}`);
+          const data1 = await response.json();
+          // console.log(data1.payload);
+          setForumPosts(data1.payload);
+          
+        } catch (error) {
+          console.error('error fetching data for id', error)
+        }
+      };
+      myPostsId.forEach((id) => {
+        getMyPosts(id);
+      })
+      } 
+    } catch (error) {
+      console.error("Error fetching forum posts:", error);
+    }
+  };
+  useEffect(() => {
+    myForumPosts();
+  }, [isUserVerified, id]);
   
-  
+
+
+console.log(forumPosts)
+
+
   //code for modals, one for forum post one for reply, this makes the two buttons open different models
   const { isOpen: isForumOpen , onOpen: onForumOpen, onClose: onForumClose } = useDisclosure()
   const { isOpen: isReplyOpen , onOpen: onReplyOpen, onClose: onReplyClose } = useDisclosure() 
@@ -77,7 +119,7 @@ export default function Forum () {
       let response = await fetch('/api/forum', {
         method: "POST",
         headers: {"content-type": "application/json"},
-        body: JSON.stringify( {title: form.title, content: form.content, image: image} )
+        body: JSON.stringify( {title: form.title, content: form.content, image: image, userId: id} )
       })
       console.log("success")
     } catch (error) {
@@ -100,9 +142,6 @@ export default function Forum () {
   }
 
   // code for post reply to forum post
-  const { currUser } = useUserContext();
-  const id = currUser?.data?._id;
-  // console.log(id)
   const onReply = async () => {
     try {
       let response = await fetch(`/api/comment/${reply.forumId}`, {
@@ -130,7 +169,23 @@ export default function Forum () {
       >
         
         <GridItem colSpan={1}>
-          <h2>My Forum Posts:</h2>
+            <h2>My Forum Posts:</h2>
+            <div>
+            {forumPosts.map((index) => (
+              <div key={index.title}>
+                <p>{index.title}</p>
+              </div>
+            ))}
+              {/* {forumPosts ? (
+                forumPosts.map((id) => (
+                  <div key={id.title}>
+                    {`${id.title}`}
+                  </div>
+                ))
+              ) : (
+                <p>Loading forum posts...</p>
+              )} */}
+            </div>
          
           <Button onClick={onForumOpen}>Add a New Forum Post</Button>
 
@@ -140,21 +195,22 @@ export default function Forum () {
               <ModalHeader>New Forum Post</ModalHeader>
               <ModalCloseButton />
               <ModalBody>
-              <FormControl>
-                <FormLabel>Forum Post Title:</FormLabel>
-                <Input type='text' value={form.title} onChange={handleInputChange} name="forumTitle"/>
-              </FormControl>
-              <FormControl>
-              <Text mb='8px'>Forum Post Content:</Text>
-              <Textarea
-                value={form.content}
-                onChange={handleInputChange}
-                placeholder='Enter Post Content Here'
-                size='lg'
-                name="forumContent"
-              />
-              </FormControl>
-                {/* <Lorem count={2} /> */}
+                <FormControl>
+                  <FormLabel>Forum Post Title:</FormLabel>
+                  <Input type='text' value={form.title} key={form.title} onChange={handleInputChange} name="forumTitle"/>
+                </FormControl>
+                <FormControl>
+                <Text mb='8px'>Forum Post Content:</Text>
+                <Textarea
+                  value={form.content}
+                  onChange={handleInputChange}
+                  placeholder='Enter Post Content Here'
+                  size='lg'
+                  name="forumContent"
+                  key={form.content}
+                />
+                </FormControl>
+                  {/* <Lorem count={2} /> */}
               </ModalBody>
 
               <ModalFooter>
@@ -182,7 +238,7 @@ export default function Forum () {
             <AccordionItem>
               <h2>
                 <AccordionButton >
-                  <Box as="span" flex='1' textAlign='left' id={data._id} onClick={handleAccordianClickChange}>
+                  <Box as="span" flex='1' textAlign='left' id={data._id} key={data.title} onClick={handleAccordianClickChange}>
                     {`${data.title}`} 
                   </Box>
                   <AccordionIcon />
@@ -190,9 +246,9 @@ export default function Forum () {
               </h2>
               <AccordionPanel pb={4}>
                 <div>
-                  <img src={`${data.image}`} alt="image of plants" width="500" height="300"></img>
+                  <img src={`${data.image}`} alt="image of plants" width="500" height="300" key={data.image}></img>
                 </div>
-                <div >
+                <div key={data.content} >
                   {`${data.content}`}
                 </div>
                 <Button onClick={onReplyOpen}>Reply to Forum Post</Button>
@@ -210,7 +266,7 @@ export default function Forum () {
                       placeholder='Enter Reply Here'
                       size='lg'
                       name="replyText"
-                      
+                      key={reply.text}
                     />
                     </FormControl>
                       {/* <Lorem count={2} /> */}
