@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "@chakra-ui/react";
 import { useUserContext } from "../ctx/UserContext";
+// import { useNavigate, useLocation } from "react-router-dom";
 import {
   Accordion,
   AccordionItem,
@@ -33,6 +34,9 @@ export default function MyFavorites(props) {
 
   const { currUser } = useUserContext();
   const id = currUser?.data?._id;
+  // const plantId = currUser?.data?._plantId;
+
+  // const [removeMyFavPlant, setRemoveMyFavPlant] = useState("");
 
   const [results, setResults] = useState([]);
 
@@ -46,40 +50,26 @@ export default function MyFavorites(props) {
     searchFavorites();
   }, []);
 
-  //code into button Jackie/me
-  //remove (delete) plant from user's favorites list
-  //try to get plant id from page (not hard coded in)
-  // const onDelete = async (e) => {
-  //   e.preventDefault();
-  //   const response = await fetch(`./api/user/${id}/garden/:plantId`, {
-  //     method: "DELETE",
-  //     body: JSON.stringify({
-  //       _id: id,
-  //       plantID: "64fb776ddf07cf20146e2015", //currently hardcoded with a plantId
-  //     }),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
-  //   const result = await response.json();
-  //   console.log(result);
-  // };
-
-  // function removeFavPlant(e) {
-  //   e.preventDefault();
-  //   const response = fetch(`./api/user/${id}/garden/:plantId`, {
-  //     method: "DELETE",
-  //     body: JSON.stringify({
-  //       _id: id,
-  //       plantID: "",
-  //     }),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
-  //   const result = response.json();
-  //   console.log(result);
-  // }
+  //update (remove) plant from user's favorites list
+  const removeFavPlant = async (e, plantId) => {
+    e.preventDefault();
+    navigate("/favorites");
+    const response = await fetch(
+      `./api/user/${id}/favorites-remove/${plantId}`,
+      {
+        method: "PUT",
+        // body: JSON.stringify({
+        //   _id: id,
+        //   plantId: "65006b471b2ab4730c49f3b6",
+        // }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result);
+  };
 
   // const addGardenPlant = async (e) => {
   //   e.preventDefault();
@@ -181,7 +171,7 @@ export default function MyFavorites(props) {
                       <ButtonGroup spacing="6">
                         <Button
                           colorScheme="orange"
-                          // onClick={removeFavPlant}
+                          onClick={(e) => removeFavPlant(e, data._id)}
                         >
                           Remove from Favorites
                         </Button>
