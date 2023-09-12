@@ -7,7 +7,6 @@ import { ChakraProvider } from '@chakra-ui/react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/global.css'
-import Upload from "./components/Uploader";
 import { useState } from "react";
 
 
