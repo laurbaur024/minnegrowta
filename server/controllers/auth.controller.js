@@ -48,8 +48,13 @@ async function verify(req) {
   const cookie = req.cookies["auth-cookie"];
   if (!cookie) throw new Error("Could not authenticate");
 
-  const decryptCookie = jwt.verify(cookie, process.env.JWT_SECRET);
-  if (!decryptCookie) throw new Error("Could not authenticate");
+  let decryptCookie
+  try {
+    decryptCookie = jwt.verify(cookie, process.env.JWT_SECRET)
+  } catch(err){
+    throw new Error("Could not authenticate")
+  }
+  if( !decryptCookie ) throw new Error("Could not authenticate")
 
   const foundUser = await findById(decryptCookie.id);
   if (!foundUser) throw new Error("Could not authenticate");
