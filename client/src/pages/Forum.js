@@ -1,6 +1,5 @@
 // react imports
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Upload from '../components/Uploader';
 import {useUserContext} from "../ctx/UserContext";
 // Chackra imports
@@ -34,12 +33,11 @@ import {
 export default function Forum () {
   const { currUser } = useUserContext();
   const id = currUser?.data?._id;
-  const isUserVerified = !!id;
   // code for getting all forum posts, useState used and fetch request from api used to bring all forum posts from api and turned into array of objects we can map over and display on page
   const [results, setResults] = useState([]);
-  const [ image, setImage] = useState('')
-  const [expandedItem, setExpandedItem] = useState(null);
-  const [currentUser, setCurrentUser] = useState(null);
+  const [ image, setImage] = useState('');
+  const [forumPosts, setForumPosts] = useState([]);
+  const [okToRender, setOkToRender] = useState(false);
   
   const searchForum = async () => {
     const response = await fetch("/api/forum");
@@ -51,8 +49,7 @@ export default function Forum () {
     searchForum();
   }, []);
   // code for displaying my forum posts, gets myforums associated with user if user has been verified, then iterates over array of forum ids to get individual posts
-  const [ forumPosts, setForumPosts ] = useState([]);
-  const  [ okToRender, setOkToRender ] = useState(false)
+
   const myForumPosts = async (userId) => {
     console.log("fetching", userId)
     try {
@@ -138,21 +135,6 @@ console.log(forumPosts)
     }
   }
 
-  const fetchCurrentUser = async () => {
-    try {
-      const response = await fetch("/api/user");
-      const data = await response.json();
-      setCurrentUser(data.user);
-    } catch (error) {
-      console.error("Error fetching user:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchCurrentUser();
-    searchForum();
-  }, []);
-
   if( !okToRender ) return <p>Loading...</p>
 
   return (
@@ -214,7 +196,7 @@ console.log(forumPosts)
           <h6>See other gardener's tips and tricks, or ask a question!</h6>
           <Accordion allowToggle>
           {results.map((data, index) => (
-            <AccordionItem key={index} isexpanded={index === expandedItem}>
+            <AccordionItem key={index}>
               <h2>
                 <AccordionButton >
                   <Box as="span" flex='1' textAlign='left' id={data._id} key={data.title} onClick={handleAccordianClickChange}>
