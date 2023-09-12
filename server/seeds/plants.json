@@ -198,9 +198,9 @@
       "maturity": 80
   },
   {
-      "name": "roma tomato",
+      "name": "Roma",
       "image": "https://hgshydro.com:5001/blog/hgs.19105c12-3b2c-4035-9b68-934641c3f27b_default.jpg",
-      "type": "vegetable",
+      "type": "tomato",
       "sowSpace": "36 inches",
       "climbing": false,
       "sun": "full",
@@ -209,9 +209,31 @@
       "maturity": 75
   },
   {
-      "name": "zucchini",
+    "name": "Beefsteak",
+    "image": "https://hgshydro.com:5001/blog/hgs.19105c12-3b2c-4035-9b68-934641c3f27b_default.jpg",
+    "type": "tomato",
+    "sowSpace": "36 inches",
+    "climbing": false,
+    "sun": "full",
+    "zone": "3-11",
+    "annual": true,
+    "maturity": 75
+  },
+  {
+    "name": "Heirloom",
+    "image": "https://hgshydro.com:5001/blog/hgs.19105c12-3b2c-4035-9b68-934641c3f27b_default.jpg",
+    "type": "tomato",
+    "sowSpace": "36 inches",
+    "climbing": false,
+    "sun": "full",
+    "zone": "3-11",
+    "annual": true,
+    "maturity": 75
+  },
+  {
+      "name": "Black Beauty",
       "image": "https://p1.pxfuel.com/preview/97/72/838/zucchini-garden-food-plant-healthy-nutrition-royalty-free-thumbnail.jpg",
-      "type": "vegetable",
+      "type": "zucchini",
       "sowSpace": "18-24 inches",
       "climbing": false,
       "sun": "full",

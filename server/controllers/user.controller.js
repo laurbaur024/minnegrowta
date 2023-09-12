@@ -103,12 +103,12 @@ async function remove(id) {
   }
 }
 
-async function addFavorite(req) {
+async function addFavorite(userId, plantId) {
   try {
     const payload = await Model.findOneAndUpdate(
-      {_id: req.params.id},
-      {$push: {favPlant: req.params.plantId}},
-      {new:true, runValidators: true},
+      {_id: userId},
+      {$push: {favPlant: plantId}},
+      {new:true},
     );return payload
   }   catch (err) {
       if (process.env.NODE_ENV === "development") console.log(err);

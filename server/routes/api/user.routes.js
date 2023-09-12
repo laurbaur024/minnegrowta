@@ -69,10 +69,12 @@ router.delete("/:id", async (req, res) => {
 //add favorite plant
 router.put("/:id/addfavorite/:plantId", async (req, res) => {
   const id = req.params.id;
+  const plantID = req.params.plantId
   try {
-    const payload = await addFavorite(id);
+    const payload = await addFavorite(id,plantID);
     return res.status(200).json({ status: "success", payload });
   } catch (err) {
+    console.error(error)
     return res.status(400).json({ status: "error", message: 'no good' });
   }
 });

@@ -29,12 +29,12 @@ const Header = ({setSearch}) => {
     headers: {
       'Content-Type': 'application/json'
     }
-  });
-  const result = await response.json();
-  console.log(result.payload)
-  setSearch(result.payload)
-  navigate("/search");
-  };
+    });
+    const result = await response.json();
+    console.log(result.payload)
+    setSearch(result.payload)
+    navigate("/search");
+    };
 
   const handleFavoritesClick = () => {
     // Navigate to the favorites page
