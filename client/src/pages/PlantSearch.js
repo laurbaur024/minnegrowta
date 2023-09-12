@@ -12,7 +12,7 @@ export default function PlantSearch ({search}) {
 
   const { currUser } = useUserContext();
   const id = currUser?.data?._id;
- 
+  const plantId = search._id
 
   const [favPlant, setFavPlant] = useState([])
   const [gardenPlant, setGardenPlant] = useState([])
@@ -39,6 +39,7 @@ export default function PlantSearch ({search}) {
 
   const addFavPlant = async (e) => {
     e.preventDefault();
+    console.log(plantId)
     const response = await fetch(`./api/user/${id}/favorites/:plantId`, {
       method: 'POST',
       body: JSON.stringify({
@@ -100,8 +101,8 @@ export default function PlantSearch ({search}) {
               </Box>
             </Stack>
             <div>
-              <Button style={button} colorScheme='orange'>Add to Favorites</Button>
-              <Button style={button} colorScheme='orange'>Add to Garden</Button>
+              <Button style={button} onClick= {addFavPlant} colorScheme='orange'>Add to Favorites</Button>
+              <Button style={button} onClick= {addGardenPlant}colorScheme='orange'>Add to Garden</Button>
             </div>
           </CardBody>
         </Card>
@@ -109,39 +110,6 @@ export default function PlantSearch ({search}) {
       })}
 
     </Flex>    
-    // <Flex width={"100vw"} height={"90vh"} alignContent={"center"} justifyContent={"center"}>
-    //       <Card style={card}>
-    //       <CardHeader>
-    //         <Heading size='md'>Showing Results for <span>{search.name}</span>...</Heading>
-    //       </CardHeader>
-    //       <CardBody>
-    //         <Stack divider={<StackDivider />} spacing='4'>
-    //           <Box>
-    //             <Heading size='s' textTransform='uppercase'> {search.name} </Heading>
-    //           </Box>
-    //           <Box>
-    //             <img style={img} src={search.image} alt='Searched Plant'/>
-    //           </Box>
-    //           <Box>
-    //             <UnorderedList>
-    //               <ListItem><span key= 'type' style={bold}>Type: </span>{search.type}</ListItem>
-    //               <ListItem><span key= 'sow' style={bold}>Sow Space: </span>{search.sowSpace}</ListItem>
-    //               <ListItem><span key= 'climbing' style={bold}>Climbing: </span>{search.climbing}</ListItem>
-    //               <ListItem><span key= 'sun' style={bold}>Sun: </span>{search.sun}</ListItem>
-    //               <ListItem><span key= 'zone' style={bold}>Grow Zone: </span>{search.zone}</ListItem>
-    //               <ListItem><span key= 'maturity' style={bold}>Maturity: </span>{search.maturity}</ListItem>
-    //             </UnorderedList>
-    //           </Box>
-    //         </Stack>
-    //         <div>
-    //           <Button style={button} colorScheme='orange'>Add to Favorites</Button>
-    //           <Button style={button} colorScheme='orange'>Add to Garden</Button>
-    //         </div>
-    //       </CardBody>
-    //     </Card>
-  
-
-    // </Flex>   
     
     )
 }

@@ -103,6 +103,19 @@ async function remove(id) {
   }
 }
 
+async function addFavorite(req) {
+  try {
+    const payload = await Model.findOneAndUpdate(
+      {_id: req.params.id},
+      {$push: {favPlant: req.params.plantId}},
+      {new:true, runValidators: true},
+    );return payload
+  }   catch (err) {
+      if (process.env.NODE_ENV === "development") console.log(err);
+      throw new Error(err);
+  }
+}
+
 module.exports = {
   find,
   findOne,
@@ -111,4 +124,5 @@ module.exports = {
   update,
   updateById,
   remove,
+  addFavorite,
 };

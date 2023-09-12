@@ -6,6 +6,7 @@ const {
   update,
   updateById,
   remove,
+  addFavorite,
 } = require("../../controllers/user.controller");
 
 router.get("/", async (req, res) => {
@@ -65,21 +66,19 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-//add plant to favorites
-//route needs to be changed so that this doesn't interfere with update/
-//remove plant from user's favorites; suggestions: "removefavorites" or "remove"
-// router.put("/:id/favorites/:plantId", async (req, res) => {
-//   const id = req.params.id;
-//   try {
-//     const payload = await update(id);
-//     return res.status(200).json({ status: "success", payload });
-//   } catch (err) {
-//     return res.status(400).json({ status: "error", msg });
-//   }
-// });
+//add favorite plant
+router.put("/:id/addfavorite/:plantId", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const payload = await addFavorite(id);
+    return res.status(200).json({ status: "success", payload });
+  } catch (err) {
+    return res.status(400).json({ status: "error", message: 'no good' });
+  }
+});
 
 //add plant to garden
-router.put("/:id/garden/:plantId", async (req, res) => {
+router.put("/:id/addgarden/:plantId", async (req, res) => {
   const id = req.params.id;
   try {
     const payload = await update(id);
@@ -102,7 +101,7 @@ router.put("/:id/favorites/:plantId", async (req, res) => {
 });
 
 //remove plant from garden
-router.delete("/:id/garden/:plantId", async (req, res) => {
+router.delete("/:id/removegarden/:plantId", async (req, res) => {
   const id = req.params.id;
   try {
     const payload = await remove(id);
