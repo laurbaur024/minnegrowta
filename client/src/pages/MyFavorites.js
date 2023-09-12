@@ -11,27 +11,13 @@ import {
   ButtonGroup,
   Card,
   CardHeader,
-  CardBody,
   Heading,
-  Text,
   Button,
-  Stack,
-  StackDivider,
   Box,
   UnorderedList,
   ListItem,
   Grid,
   GridItem,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure,
-  FormControl,
-  Textarea,
 } from "@chakra-ui/react";
 
 export default function MyFavorites(props) {
@@ -59,19 +45,6 @@ export default function MyFavorites(props) {
   useEffect(() => {
     searchFavorites();
   }, []);
-
-  // from Forum.js
-  // const {
-  //   isOpen: isFavoriteOpen,
-  //   onOpen: onFavoriteOpen,
-  //   onClose: onFavoriteClose,
-  // } = useDisclosure();
-
-  // const {
-  //   isOpen: isDeleteOpen,
-  //   onOpen: onDeleteOpen,
-  //   onClose: onDeleteClose,
-  // } = useDisclosure();
 
   //code into button Jackie/me
   //remove (delete) plant from user's favorites list

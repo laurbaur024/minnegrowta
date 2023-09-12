@@ -8,25 +8,35 @@ const {
 } = require("../../controllers/auth.controller");
 
 router.post("/register", async (req, res) => {
-  console.log("Received registration request:", req.body);
-
   try {
-    const { user, token } = await register(req);
-    res.cookie("auth-cookie", token).json({ status: "success", payload: user });
-  } catch (error) {
-    console.error("Registration error:", error);
-    res.status(500).json({ status: "error", message: "Registration failed." });
+    console.log(req.body);
+    const { token, user } = await register(req);
+    return res
+      .cookie("auth-cookie", token)
+      .json({ status: "success", payload: user });
+  } catch (err) {
+    return res.status(400).json({ error: err });
   }
 });
 
 router.post("/login", async (req, res) => {
-  const { token, user } = await login(req);
-  res.cookie("auth-cookie", token).json({ status: "success", payload: user });
+  try {
+    const { token, user } = await login(req);
+    return res
+      .cookie("auth-cookie", token)
+      .json({ status: "success", payload: user });
+  } catch (err) {
+    return res.status(400).json({ error: err });
+  }
 });
 
 router.post("/verify", async (req, res) => {
-  const { user } = await verify(req);
-  res.json({ status: "success", payload: user });
+  try {
+    const { user } = await verify(req);
+    return res.json({ status: "success", payload: user });
+  } catch (err) {
+    return res.status(400).json({ error: err });
+  }
 });
 
 module.exports = router;
