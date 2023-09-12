@@ -24,7 +24,7 @@ const userSchema = new Schema(
     favPlant: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Flower",
+        ref: "Plant",
       },
     ],
 
