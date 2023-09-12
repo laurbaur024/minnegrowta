@@ -1,3 +1,4 @@
+
 /* === typography ====== */
 
 h1,
@@ -71,11 +72,26 @@ p {
   margin-left: 3%;
   color: #09302f;
   transition: color 0.3s ease;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .bi.bi-search:hover::before {
   color: #F8D589;
+}
+
+.bi.bi-star::before {
+  margin-top: 8px;
+  margin-left: 3%;
+  color: #09302f;
+  transition: color 0.3s ease;
+}
+
+.bi.bi-star:hover::before {
+  color: #F99E23;
+}
+
+.button {
+  margin-right: 30px;
 }
 
 .button:hover {
@@ -172,7 +188,7 @@ p {
 }
 
 .navbar-nav {
-  margin-left: 0;
+  margin-left: 25px;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
@@ -192,21 +208,19 @@ p {
   margin-left: 10px;
 }
 
-@media (max-width: 800px) {
-  .navbar-expand-md .navbar-collapse {
+@media (max-width: 792px) {
+  .logo-text {
     display: none;
   }
+}
 
-  .navbar-expand-md .navbar-toggler {
-    display: block;
-  }
-
-  .navbar-expand-md .show {
+@media (max-width: 574px) {
+  .logo-text {
     display: block;
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 422px) {
   .logo-text {
     display: none;
   }
@@ -216,10 +230,10 @@ p {
 
 .content {
   display: flex;
-  margin-top: 96px;
+  margin-top: 89px;
   flex-grow: 1;
   flex-direction: column;
-  height: 147%;
+  height: 100%;
   background-color: "#F2EFE0" !important;
 }
 
@@ -480,16 +494,62 @@ p {
 
 /* planner styles */
 
+.timeline {
+  margin-bottom: 0px;
+}
+
 .garden-content {
   margin-top: 11px;
-  margin-bottom: 450px;
+  flex-grow: 1;
+}
+
+.garden-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 40vh;
+  margin-bottom: 20px;
+}
+
+.journal-grid {
+  margin-bottom: 0px;
+  margin-left: 80px;
+  margin-right: 20px;
+}
+
+.addpost {
+  margin-left: 20px;
 }
 
 /* forum styles */
 
 .forumcontainer {
   margin-top: 20px;
-  margin-bottom: 340px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  min-height: 265px;
+}
+
+.forum-content {
+  margin-top: 10px;
+}
+
+.forumgrid {
+  margin-bottom: 0px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.postgrid {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  padding: 10px;
+  border-color: #8f9a9d3f;
 }
 
 /* modal styles */
@@ -609,3 +669,20 @@ p {
   flex-grow: 1;
 }
 
+@media (max-width: 574px) {
+  .footer-content .nav {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 422px) {
+  .footer-content .nav {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 336px) {
+  .footer-content .nav {
+    gap: 0px;
+  }
+}

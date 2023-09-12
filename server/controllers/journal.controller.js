@@ -1,4 +1,4 @@
-const { Journal } = require('../models');
+const { Journal, User } = require('../models');
 const Model = Journal
 
 
@@ -30,7 +30,13 @@ async function findById(id){
 // create new journal entry
 async function create(body){
   try {
-    const payload = await Model.create(body)
+    const payload = await Model.create(body);
+    const updateUser = await User.findOneAndUpdate(
+      { _id: body.userId },
+      { $push: { myJournals: payload._id } },
+      { new: true }
+    );
+
     return payload
   } catch(err){
     if(process.env.NODE_ENV === "development") console.log(err)

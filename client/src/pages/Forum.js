@@ -3,7 +3,6 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import Upload from '../components/Uploader';
 import {useUserContext} from "../ctx/UserContext";
-
 // Chackra imports
 import {
   Grid,
@@ -32,19 +31,15 @@ import {
   Textarea,
   Text,
 } from '@chakra-ui/react'
-
-
-
-
 export default function Forum () {
   const { currUser } = useUserContext();
   const id = currUser?.data?._id;
   const isUserVerified = !!id;
-  
-
   // code for getting all forum posts, useState used and fetch request from api used to bring all forum posts from api and turned into array of objects we can map over and display on page
   const [results, setResults] = useState([]);
   const [ image, setImage] = useState('')
+  const [expandedItem, setExpandedItem] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
   
   const searchForum = async () => {
     const response = await fetch("/api/forum");
@@ -55,7 +50,6 @@ export default function Forum () {
   useEffect(() => {
     searchForum();
   }, []);
-  
   // code for displaying my forum posts, gets myforums associated with user if user has been verified, then iterates over array of forum ids to get individual posts
   const [ forumPosts, setForumPosts ] = useState([]);
   const  [ okToRender, setOkToRender ] = useState(false)
@@ -111,9 +105,7 @@ export default function Forum () {
 
   //code for modals, one for forum post one for reply, this makes the two buttons open different models
   const { isOpen: isForumOpen , onOpen: onForumOpen, onClose: onForumClose } = useDisclosure()
-  const { isOpen: isReplyOpen , onOpen: onReplyOpen, onClose: onReplyClose } = useDisclosure() 
-
-
+  const { isOpen: isReplyOpen , onOpen: onReplyOpen, onClose: onReplyClose } = useDisclosure()
   // monitors what is being typed in new forum post form
   const [form, setForm] = useState({title: "", content: ""});
   let handleInputChange = (e) => {
@@ -123,10 +115,8 @@ export default function Forum () {
       setForm({...form, content: e.target.value})
     }
   }
-  
   // code for submitting new forum post, text from modal input fields is turned into object and posted to api/forum with the rest of the forum posts. Has to be stringified
   const [value, setValue] = React.useState('')
-  
   const onSubmit = async () => {
     try {
       let response = await fetch('/api/forum', {
@@ -137,30 +127,26 @@ export default function Forum () {
       console.log("success")
     } catch (error) {
       console.log(error)
-      
     }
   }
-
   // monitors what is being typed in reply modal form
   const [reply, setReply] = useState({text: "", forumId: ""});
   let handleReplyInputChange = (e) => {
     if(e.target.name === "replyText"){
       setReply({...reply, text: e.target.value})
-    } 
+    }
   }
-
   let handleAccordianClickChange = (e) => {
     // console.log(e.target.id)
     setReply({...reply, forumId: e.target.id})
   }
-
   // code for post reply to forum post
   const onReply = async () => {
     try {
       let response = await fetch(`/api/comment/${reply.forumId}`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({text: reply.text, userId: id })      
+        body: JSON.stringify({text: reply.text, userId: id })
       })
       console.log(reply)
       console.log("success")
@@ -169,8 +155,23 @@ export default function Forum () {
     }
   }
 
+  const fetchCurrentUser = async () => {
+    try {
+      const response = await fetch("/api/user");
+      const data = await response.json();
+      setCurrentUser(data.user);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCurrentUser();
+    searchForum();
+  }, []);
 
   if( !okToRender ) return <p>Loading...</p>
+
   return (
     <div className="forumcontainer">
     <>
@@ -181,32 +182,26 @@ export default function Forum () {
         gap={4}
       >
         
-        <GridItem colSpan={1}>
-            <h2>My Forum:</h2>
-            <p></p>
-            <Button onClick={onForumOpen}>Add a New Forum Post</Button>
-            <p></p>
-            <h2>My Posts:</h2>
+        <GridItem colSpan={1} className="postgrid">
+          <h2 style={{ whiteSpace: 'nowrap' }}>My Forum Posts</h2>
             <div>
-              {forumPosts?.map((data1) => (
-                <div key={data1?._id}>
-                  <ul>
-                    <li>
-                      {data1 ? (
-                        <>
-                          {data1.title}
-                          <Button onClick={() => deleteForumPost(data1?._id)}>Delete Forum Post</Button>
-                        </>
-                      ) : (
-                        <p>Post data is not available.</p>
-                      )}
-                    </li>
-                  </ul>
-                </div>
-              ))}
+            {forumPosts.map((index) => (
+              <div key={index.title}>
+                <p>{index.title}</p>
+              </div>
+            ))}
+              {/* {forumPosts ? (
+                forumPosts.map((id) => (
+                  <div key={id.title}>
+                    {`${id.title}`}
+                  </div>
+                ))
+              ) : (
+                <p>Loading forum posts...</p>
+              )} */}
             </div>
          
-          
+          <Button onClick={onForumOpen}>Add a New Forum Post</Button>
 
           <Modal isOpen={isForumOpen} onClose={onForumClose}>
             <ModalOverlay />
@@ -231,7 +226,6 @@ export default function Forum () {
                 </FormControl>
                   {/* <Lorem count={2} /> */}
               </ModalBody>
-
               <ModalFooter>
                 <Button colorScheme='blue' mr={3} onClick={onSubmit}>
                   Submit
@@ -247,30 +241,31 @@ export default function Forum () {
             </li>
             ))}
           </ul> */}
-          
         </GridItem>
         <GridItem colSpan={4}>
           <h2>Garden Planner Forum Posts</h2>
           <h6>See other gardener's tips and tricks, or ask a question!</h6>
-          <Accordion>
-          {results.map((data) => (
-            <AccordionItem>
+          <Accordion allowToggle>
+          {results.map((data, index) => (
+            <AccordionItem key={index} isexpanded={index === expandedItem}>
               <h2>
                 <AccordionButton >
                   <Box as="span" flex='1' textAlign='left' id={data._id} key={data.title} onClick={handleAccordianClickChange}>
-                    {`${data.title}`} 
+                    {`${data.title}`}
                   </Box>
                   <AccordionIcon />
                 </AccordionButton>
               </h2>
               <AccordionPanel pb={4}>
-                <div>
-                  <img src={`${data.image}`} alt="image of plants" width="500" height="300" key={data.image}></img>
-                </div>
-                <div key={data.content} >
-                  {`${data.content}`}
-                </div>
-                <Button onClick={onReplyOpen}>Reply to Forum Post</Button>
+                <Box maxH="400px" overflowY="auto">
+                  <div>
+                    <img src={`${data.image}`} alt="image of plants" width="500" height="300"></img>
+                  </div>
+                  <div>
+                    {`${data.content}`}
+                  </div>
+                </Box>
+                <Button onClick={onReplyOpen}>Add Reply</Button>
                 <Modal isOpen={isReplyOpen} onClose={onReplyClose}>
                   <ModalOverlay />
                   <ModalContent>
@@ -290,7 +285,6 @@ export default function Forum () {
                     </FormControl>
                       {/* <Lorem count={2} /> */}
                     </ModalBody>
-
                     <ModalFooter>
                       <Button colorScheme='blue' mr={3} onClick={() => onReply(data._id)}>
                         Submit
@@ -308,3 +302,5 @@ export default function Forum () {
     </div>
   )
 }
+
+

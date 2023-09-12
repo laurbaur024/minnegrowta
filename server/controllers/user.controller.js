@@ -21,15 +21,33 @@ async function findOne(criteria = {}) {
   }
 }
 
+//find a user's forum posts by their id
 async function findById(id) {
   try {
     const payload = await Model.findById(id).populate("myForums");
+    console.log(payload);
     return payload;
   } catch (err) {
     if (process.env.NODE_ENV === "development") console.log(err);
     throw new Error(err);
   }
 }
+
+
+
+//find a user's favorite plants
+async function findFavPlantById(id) {
+  try {
+    const payload = await Model.findById(id).populate("favPlant");
+    console.log(payload);
+    return payload;
+  } catch (err) {
+    if (process.env.NODE_ENV === "development") console.log(err);
+    throw new Error(err);
+  }
+}
+
+
 
 async function create(body) {
   try {
@@ -62,6 +80,23 @@ async function updateById(id, body) {
   }
 }
 
+//remove plant from a user's favorites list
+async function updateById(userId, plantId) {
+  console.log(plantId);
+  try {
+    const payload = await Model.findOneAndUpdate(
+      { _id: userId },
+      { $pull: { favPlant: plantId } },
+      { runValidators: true, new: true }
+    );
+    return payload;
+  } catch (err) {
+    if (process.env.NODE_ENV === "development") console.log(err);
+    throw new Error(err);
+  }
+}
+
+//original version of remove:
 async function remove(id) {
   try {
     const payload = await Model.findByIdAndDelete(id);
@@ -69,6 +104,33 @@ async function remove(id) {
   } catch (err) {
     if (process.env.NODE_ENV === "development") console.log(err);
     throw new Error(err);
+  }
+}
+
+async function addFavorite(userId, plantId) {
+  try {
+    const payload = await Model.findOneAndUpdate(
+      { _id: userId },
+      { $push: { favPlant: plantId } },
+      { new: true }
+    );
+    return payload;
+  } catch (err) {
+    if (process.env.NODE_ENV === "development") console.log(err);
+    throw new Error(err);
+  }
+}
+
+async function addGarden(userId, plantId) {
+  try {
+    const payload = await Model.findOneAndUpdate(
+      {_id: userId},
+      {$push: {gardenPlant: plantId}},
+      {new:true},
+    );return payload
+  }   catch (err) {
+      if (process.env.NODE_ENV === "development") console.log(err);
+      throw new Error(err);
   }
 }
 
@@ -80,4 +142,7 @@ module.exports = {
   update,
   updateById,
   remove,
+  addFavorite,
+  addGarden,
+  findFavPlantById,
 };
