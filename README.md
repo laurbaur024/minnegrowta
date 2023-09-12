@@ -42,3 +42,23 @@ We would like to thank Gary Almes, Austin Slater, and Kathryn Vincent for their 
 - https://www.icangarden.com/zone-3-perennials/
 - https://www.lifeinminnesota.com/best-perennials-for-minnesota/
 - https://www.gardenloversclub.com/plant-finder/annuals/minnesota-annuals/
+- https://commons.wikimedia.org
+- https://images.pexels.com
+- https://www.publicdomainpictures.net
+- https://pixnio.com/free-images
+- https://get.pxhere.com
+- https://p1.pxfuel.com
+- https://s3media.angieslist.com
+- https://morningchores.com
+- https://d27p2a3djqwgnt.cloudfront.net
+- https://cdn.britannica.com
+- https://bonnieplants.com
+- https://c1.wallpaperflare.com
+- https://pixnio.com/free-images
+- https://www.bhg.com
+- https://seedsheets.com
+- https://thebrilliantkitchen.com
+- https://www.publicdomainpictures.net
+- https://www.hippopx.com
+- https://hgshydro.com
+

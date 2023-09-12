@@ -1,6 +1,5 @@
 // react imports
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Upload from '../components/Uploader';
 import {useUserContext} from "../ctx/UserContext";
 
@@ -36,6 +35,7 @@ import {
 export default function Forum () {
   const { currUser } = useUserContext();
   const id = currUser?.data?._id;
+
   const isUserVerified = !!id;
   const [results, setResults] = useState([]);
   const [ image, setImage] = useState('')
@@ -58,7 +58,9 @@ export default function Forum () {
   }, []);
 
 
+
   // code for displaying my forum posts,
+
   const myForumPosts = async (userId) => {
     try {
       const response1 = await fetch(`/api/user/${userId}`);
@@ -181,6 +183,7 @@ export default function Forum () {
     }
   }
 
+
   if( !okToRender ) return <p>Loading...</p>
 
   return (
@@ -246,7 +249,7 @@ export default function Forum () {
           <h6>See other gardener's tips and tricks, or ask a question!</h6>
           <Accordion allowToggle>
           {results.map((data, index) => (
-            <AccordionItem key={index} isexpanded={index === expandedItem}>
+            <AccordionItem key={index}>
               <h2>
                 <AccordionButton >
                   <Box as="span" flex='1' textAlign='left' id={data._id} key={data.title} onClick={handleAccordianClickChange}>
