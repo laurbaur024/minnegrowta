@@ -22,13 +22,14 @@ async function findById(id) {
   }
 }
 
-//get all plants by name
-async function findByName(req) {
+//get a plant by name
+async function findByName(type){
   try {
-    const payload = await Model.find({ name: req.params.name });
-    return payload;
-  } catch (err) {
-    if (process.env.NODE_ENV === "development") console.log(err);
+    const payload = await Model.find({type})
+    console.log(payload)
+    return payload
+  } catch(err){
+    if(process.env.NODE_ENV === "development") console.log(err)
   }
 }
 

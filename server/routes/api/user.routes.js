@@ -6,6 +6,7 @@ const {
   update,
   updateById,
   remove,
+  addFavorite,
 } = require("../../controllers/user.controller");
 
 router.get("/", async (req, res) => {
@@ -65,19 +66,21 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-//add plant to favorites
-router.put("/:id/favorites/:plantId", async (req, res) => {
+//add favorite plant
+router.put("/:id/addfavorite/:plantId", async (req, res) => {
   const id = req.params.id;
+  const plantID = req.params.plantId;
   try {
-    const payload = await update(id);
+    const payload = await addFavorite(id, plantID);
     return res.status(200).json({ status: "success", payload });
   } catch (err) {
-    return res.status(400).json({ status: "error", msg });
+    console.error(error);
+    return res.status(400).json({ status: "error", message: "no good" });
   }
 });
 
 //add plant to garden
-router.put("/:id/garden/:plantId", async (req, res) => {
+router.put("/:id/addgarden/:plantId", async (req, res) => {
   const id = req.params.id;
   try {
     const payload = await update(id);
@@ -97,6 +100,17 @@ router.put("/:id/favorites-remove/:plantId", async (req, res) => {
   } catch (error) {
     console.error(error);
     return res.status(400).json({ status: "error" });
+  }
+});
+
+//remove plant from garden
+router.delete("/:id/removegarden/:plantId", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const payload = await remove(id);
+    return res.status(200).json({ status: "success", payload });
+  } catch (err) {
+    return res.status(400).json({ status: "error", msg });
   }
 });
 

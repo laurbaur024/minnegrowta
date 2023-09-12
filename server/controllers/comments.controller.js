@@ -27,10 +27,11 @@ async function findById(id){
 // create a new comment 
 async function create(params, body){
   try {
-    const payload = await Model.create(body)
+    console.log(body)
+    const payload = await Model.create({...body, forumId: params.id })
     const forumUpdate = await Forum.findOneAndUpdate({_id: params.id },
       {
-        $push: {commentId: payload._id}
+        $push: {commentId: body._id}
       })
     return forumUpdate
   } catch(err){

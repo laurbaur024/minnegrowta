@@ -12,7 +12,7 @@ export default function PlantSearch ({search}) {
 
   const { currUser } = useUserContext();
   const id = currUser?.data?._id;
-  console.log(id)
+  const plantId = search._id
 
   const [favPlant, setFavPlant] = useState([])
   const [gardenPlant, setGardenPlant] = useState([])
@@ -39,6 +39,7 @@ export default function PlantSearch ({search}) {
 
   const addFavPlant = async (e) => {
     e.preventDefault();
+    console.log(plantId)
     const response = await fetch(`./api/user/${id}/favorites/:plantId`, {
       method: 'POST',
       body: JSON.stringify({
@@ -74,7 +75,7 @@ export default function PlantSearch ({search}) {
   
   return (
     <Flex width={"100vw"} height={"90vh"} alignContent={"center"} justifyContent={"center"}>
-      {search.map(function (plant){
+      {search?.map(function (plant){
         return (
           <Card style={card}>
           <CardHeader>
@@ -86,22 +87,21 @@ export default function PlantSearch ({search}) {
                 <Heading size='s' textTransform='uppercase'> {plant.name} </Heading>
               </Box>
               <Box>
-                <img style={img} src='https://hgshydro.com:5001/blog/hgs.19105c12-3b2c-4035-9b68-934641c3f27b_default.jpg' alt='Searched Plant'/>
+                <img style={img} src={plant.image} alt='Searched Plant'/>
               </Box>
               <Box>
                 <UnorderedList>
-                  <ListItem><span style={bold}>Type: </span>{plant.type}</ListItem>
-                  <ListItem><span style={bold}>Sow Space: </span>{plant.sowSpace}</ListItem>
-                  <ListItem><span style={bold}>Climbing: </span>{plant.climbing}</ListItem>
-                  <ListItem><span style={bold}>Sun: </span>{plant.sun}</ListItem>
-                  <ListItem><span style={bold}>Grow Zone: </span>{plant.zone}</ListItem>
-                  <ListItem><span style={bold}>Maturity: </span>{plant.maturity}</ListItem>
+                  <ListItem><span key= {plant.type} style={bold}>Type: </span>{plant.type}</ListItem>
+                  <ListItem><span key= {plant.sowSpace} style={bold}>Sow Space: </span>{plant.sowSpace}</ListItem>
+                  <ListItem><span key= {plant.sun} style={bold}>Sun: </span>{plant.sun}</ListItem>
+                  <ListItem><span key= {plant.zone} style={bold}>Grow Zone: </span>{plant.zone}</ListItem>
+                  <ListItem><span key= {plant.maturity} style={bold}>Maturity: </span>{plant.maturity} days</ListItem>
                 </UnorderedList>
               </Box>
             </Stack>
             <div>
-              <Button style={button} colorScheme='orange'>Add to Favorites</Button>
-              <Button style={button} colorScheme='orange'>Add to Garden</Button>
+              <Button style={button} onClick= {addFavPlant} colorScheme='orange'>Add to Favorites</Button>
+              <Button style={button} onClick= {addGardenPlant}colorScheme='orange'>Add to Garden</Button>
             </div>
           </CardBody>
         </Card>
@@ -109,6 +109,7 @@ export default function PlantSearch ({search}) {
       })}
 
     </Flex>    
+    
     )
 }
 
