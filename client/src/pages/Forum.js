@@ -41,6 +41,7 @@ export default function Forum () {
   const [results, setResults] = useState([]);
   const [ image, setImage] = useState('')
   const [expandedItem, setExpandedItem] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
   
   const searchForum = async () => {
     const response = await fetch("/api/forum");
@@ -115,7 +116,20 @@ export default function Forum () {
     }
   }
 
+  const fetchCurrentUser = async () => {
+    try {
+      const response = await fetch("/api/user");
+      const data = await response.json();
+      setCurrentUser(data.user);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+    }
+  };
 
+  useEffect(() => {
+    fetchCurrentUser();
+    searchForum();
+  }, []);
 
   return (
     <div className="forumcontainer">
@@ -126,10 +140,10 @@ export default function Forum () {
         gap={4}
       >
         
-        <GridItem colSpan={1}>
-          <h2>My Forum Posts:</h2>
+        <GridItem colSpan={1} className="postgrid">
+          <h2 style={{ whiteSpace: 'nowrap' }}>My Forum Posts</h2>
         
-          <Button onClick={onForumOpen}>Add a New Forum Post</Button>
+          <Button onClick={onForumOpen}>Add Post</Button>
 
           <Modal isOpen={isForumOpen} onClose={onForumClose}>
             <ModalOverlay />
@@ -176,7 +190,7 @@ export default function Forum () {
           <h6>See other gardener's tips and tricks, or ask a question!</h6>
           <Accordion allowToggle>
           {results.map((data, index) => (
-            <AccordionItem key={index} isExpanded={index === expandedItem}>
+            <AccordionItem key={index} isexpanded={index === expandedItem}>
               <h2>
                 <AccordionButton onClick={() => handleAccordionChange(index)}>
                   <Box as="span" flex='1' textAlign='left'>
@@ -194,7 +208,7 @@ export default function Forum () {
                     {`${data.content}`}
                   </div>
                 </Box>
-                <Button onClick={onReplyOpen}>Reply to Forum Post</Button>
+                <Button onClick={onReplyOpen}>Add Reply</Button>
                 <Modal isOpen={isReplyOpen} onClose={onReplyClose}>
                   <ModalOverlay />
                   <ModalContent>
@@ -231,3 +245,4 @@ export default function Forum () {
     </div>
   )
 }
+
