@@ -38,6 +38,9 @@ export default function Forum () {
   // code for getting all forum posts, useState used and fetch request from api used to bring all forum posts from api and turned into array of objects we can map over and display on page
   const [results, setResults] = useState([]);
   const [ image, setImage] = useState('')
+  const [expandedItem, setExpandedItem] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
+  
   const searchForum = async () => {
     const response = await fetch("/api/forum");
     const data = await response.json()
@@ -134,7 +137,24 @@ console.log(forumPosts)
       console.log(error)
     }
   }
+
+  const fetchCurrentUser = async () => {
+    try {
+      const response = await fetch("/api/user");
+      const data = await response.json();
+      setCurrentUser(data.user);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCurrentUser();
+    searchForum();
+  }, []);
+
   if( !okToRender ) return <p>Loading...</p>
+
   return (
     <div className="forumcontainer">
     <>
@@ -144,20 +164,12 @@ console.log(forumPosts)
         templateColumns='repeat(5, 1fr)'
         gap={4}
       >
-        <GridItem colSpan={1}>
-            <h2>My Forum Posts:</h2>
-            <div>
-              {/* {forumPosts ? (
-                forumPosts.map((id) => (
-                  <div key={id.title}>
-                    {`${id.title}`}
-                  </div>
-                ))
-              ) : (
-                <p>Loading forum posts...</p>
-              )} */}
-            </div>
-          <Button onClick={onForumOpen}>Add a New Forum Post</Button>
+        
+        <GridItem colSpan={1} className="postgrid">
+          <h2 style={{ whiteSpace: 'nowrap' }}>My Forum Posts</h2>
+        
+          <Button onClick={onForumOpen}>Add Post</Button>
+
           <Modal isOpen={isForumOpen} onClose={onForumClose}>
             <ModalOverlay />
             <ModalContent>
@@ -200,9 +212,9 @@ console.log(forumPosts)
         <GridItem colSpan={4}>
           <h2>Garden Planner Forum Posts</h2>
           <h6>See other gardener's tips and tricks, or ask a question!</h6>
-          <Accordion>
-          {results.map((data) => (
-            <AccordionItem>
+          <Accordion allowToggle>
+          {results.map((data, index) => (
+            <AccordionItem key={index} isexpanded={index === expandedItem}>
               <h2>
                 <AccordionButton >
                   <Box as="span" flex='1' textAlign='left' id={data._id} key={data.title} onClick={handleAccordianClickChange}>
@@ -212,13 +224,15 @@ console.log(forumPosts)
                 </AccordionButton>
               </h2>
               <AccordionPanel pb={4}>
-                <div>
-                  <img src={`${data.image}`} alt="image of plants" width="500" height="300" key={data.image}></img>
-                </div>
-                <div key={data.content} >
-                  {`${data.content}`}
-                </div>
-                <Button onClick={onReplyOpen}>Reply to Forum Post</Button>
+                <Box maxH="400px" overflowY="auto">
+                  <div>
+                    <img src={`${data.image}`} alt="image of plants" width="500" height="300"></img>
+                  </div>
+                  <div>
+                    {`${data.content}`}
+                  </div>
+                </Box>
+                <Button onClick={onReplyOpen}>Add Reply</Button>
                 <Modal isOpen={isReplyOpen} onClose={onReplyClose}>
                   <ModalOverlay />
                   <ModalContent>
@@ -255,3 +269,5 @@ console.log(forumPosts)
     </div>
   )
 }
+
+

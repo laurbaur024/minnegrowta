@@ -1,6 +1,17 @@
 import React from "react";
-
+  
 const TimelineContainer = () => {
+    const [results, setResults] = useState([]);
+    const searchForum = async () => {
+      const response = await fetch("/api/forum");
+      const data = await response.json()
+      setResults(data.payload);
+      // console.log(data.payload)
+    }
+    useEffect(() => {
+      searchForum();
+    }, []);
+
   return(
     <div>
       {"Timeline"}

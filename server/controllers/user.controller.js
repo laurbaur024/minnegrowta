@@ -66,6 +66,7 @@ async function updateById(id, body) {
 
 //remove plant from a user's favorites list
 async function updateById(userId, plantId) {
+  console.log(plantId);
   try {
     const payload = await Model.findOneAndUpdate(
       { _id: userId },
@@ -93,8 +94,22 @@ async function remove(id) {
 async function addFavorite(userId, plantId) {
   try {
     const payload = await Model.findOneAndUpdate(
+      { _id: userId },
+      { $push: { favPlant: plantId } },
+      { new: true }
+    );
+    return payload;
+  } catch (err) {
+    if (process.env.NODE_ENV === "development") console.log(err);
+    throw new Error(err);
+  }
+}
+
+async function addGarden(userId, plantId) {
+  try {
+    const payload = await Model.findOneAndUpdate(
       {_id: userId},
-      {$push: {favPlant: plantId}},
+      {$push: {gardenPlant: plantId}},
       {new:true},
     );return payload
   }   catch (err) {
@@ -112,4 +127,5 @@ module.exports = {
   updateById,
   remove,
   addFavorite,
+  addGarden,
 };

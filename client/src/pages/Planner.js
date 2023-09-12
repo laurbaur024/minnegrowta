@@ -32,6 +32,7 @@ import {
   Textarea,
 } from '@chakra-ui/react'
 import { Card, CardHeader, CardBody, CardFooter, Heading, Text } from '@chakra-ui/react';
+import TimelineContainer from '../components/TimelineContainer';
 
 
 
@@ -115,11 +116,13 @@ let handleInputChange = (e) => {
         templateColumns='repeat(5, 1fr)'
         gap={4}
       >
-        <GridItem rowSpan={1} colSpan={5} bg='tomato'>
-          <h1>Insert timeline here</h1>
+        <GridItem className="timeline" rowSpan={1} colSpan={5} bg='tomato'>
+          <div>
+            {TimelineContainer}
+          </div>
         </GridItem>
-        <GridItem colSpan={1}>
-        <h2>My Journal:</h2>
+        <GridItem className="addpost" colSpan={1}>
+          <h2 style={{ whiteSpace: 'nowrap' }}>Add Journal Post</h2>
             <p></p>
             <Button onClick={onJournalOpen}>Add a New Journal Post</Button>
             <p></p>
@@ -173,9 +176,10 @@ let handleInputChange = (e) => {
               </ModalFooter>
             </ModalContent>
           </Modal>
+
         </GridItem>
         <GridItem colSpan={4} className="journal-grid">
-          <h2>My Journal Entries:</h2>
+          <h2>My Journal Entries</h2>
           <Accordion allowToggle>
           {results.map((data) => (
             <AccordionItem key={data._id}>
