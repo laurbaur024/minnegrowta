@@ -13,7 +13,7 @@ async function find(criteria = {}) {
 
 async function findOne(criteria = {}) {
   try {
-    const payload = await Model.find(criteria).limit(1);
+    const payload = await Model.find(criteria).populate("myForums").limit(1);
     return Array.isArray(payload) ? payload[0] : payload;
   } catch (err) {
     if (process.env.NODE_ENV === "development") console.log(err);
@@ -23,7 +23,7 @@ async function findOne(criteria = {}) {
 
 async function findById(id) {
   try {
-    const payload = await Model.findById(id);
+    const payload = await Model.findById(id).populate("myForums");
     return payload;
   } catch (err) {
     if (process.env.NODE_ENV === "development") console.log(err);

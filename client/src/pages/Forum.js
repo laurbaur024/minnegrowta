@@ -60,46 +60,53 @@ export default function Forum () {
   const [ forumPosts, setForumPosts ] = useState([]);
   const  [ okToRender, setOkToRender ] = useState(false)
 
+  // const getMyPosts = async(id) => {
+  //   try{
+  //     const response = await fetch(`/api/forum/${id}`);
+  //     const data1 = await response.json();
+  //     setForumPosts((prevPosts) => [...prevPosts, data1.payload]);
+  //   } catch (error) {
+  //     console.error('error fetching data for id', error)
+  //   }
+  // };
+
   const myForumPosts = async (userId) => {
-    console.log("fetching", userId)
     try {
-      // if (isUserVerified){
       const response1 = await fetch(`/api/user/${userId}`);
       const forumPostsData = await response1.json()
-      setForumPosts(forumPostsData)
-      // console.log(forumPostsData.payload.myForums)
-
-      const myPostsId = forumPostsData.payload.myForums 
-      const getMyPosts = async(id) => {
-        try{
-          const response = await fetch(`/api/forum/${id}`);
-          const data1 = await response.json();
-          // console.log(data1.payload);
-          setForumPosts(data1.payload);
-          
-        } catch (error) {
-          console.error('error fetching data for id', error)
-        }
-      };
-      myPostsId.forEach((id) => {
-        getMyPosts(id);
-      })
-
-      setOkToRender(true)
-      // } 
+      // console.log(forumPostsData)
+      // const myPostsId = forumPostsData.payload.myForums 
+      setForumPosts(forumPostsData.payload.myForums)
+      // const fetchPromises = myPostsId.map((id) => getMyPosts(id));
+      // await Promise.all(fetchPromises); 
+      setOkToRender(true);
     } catch (error) {
-      console.error("Error fetching forum posts:", error);
+      console.error('error fetching forum posts', error);
     }
   };
-
   useEffect(() => {
     if( currUser?.data?._id )
-      myForumPosts(currUser?.data?._id);
+      myForumPosts(currUser?.data?._id) 
   }, [currUser]);
-  
+
+  // code to delete a users forum post
+  const [deletePost, setdeletePost] = useState([]);
+
+  const deleteForumPost = async (postId) => {
+    try {
+      let response = await fetch(`/api/forum/${postId}`, {
+        method: "DELETE",
+        headers: { "content-type": "application/json" },
+
+      });
+      console.log('success')
+      setForumPosts((prevPosts) => prevPosts.filter((post) => post._id !== postId));
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
 
-console.log(forumPosts)
 
 
   //code for modals, one for forum post one for reply, this makes the two buttons open different models
@@ -175,20 +182,31 @@ console.log(forumPosts)
       >
         
         <GridItem colSpan={1}>
-            <h2>My Forum Posts:</h2>
+            <h2>My Forum:</h2>
+            <p></p>
+            <Button onClick={onForumOpen}>Add a New Forum Post</Button>
+            <p></p>
+            <h2>My Posts:</h2>
             <div>
-              {/* {forumPosts ? (
-                forumPosts.map((id) => (
-                  <div key={id.title}>
-                    {`${id.title}`}
-                  </div>
-                ))
-              ) : (
-                <p>Loading forum posts...</p>
-              )} */}
+              {forumPosts?.map((data1) => (
+                <div key={data1?._id}>
+                  <ul>
+                    <li>
+                      {data1 ? (
+                        <>
+                          {data1.title}
+                          <Button onClick={() => deleteForumPost(data1?._id)}>Delete Forum Post</Button>
+                        </>
+                      ) : (
+                        <p>Post data is not available.</p>
+                      )}
+                    </li>
+                  </ul>
+                </div>
+              ))}
             </div>
          
-          <Button onClick={onForumOpen}>Add a New Forum Post</Button>
+          
 
           <Modal isOpen={isForumOpen} onClose={onForumClose}>
             <ModalOverlay />
