@@ -5,7 +5,7 @@ const Model = Forum
 //get all Forum posts
 async function find(criteria = {}){
   try {
-    const payload = await Model.find(criteria)
+    const payload = await Model.find(criteria).populate("commentId")
     return payload
   } catch(err){
     if(process.env.NODE_ENV === "development") console.log(err)
@@ -56,7 +56,13 @@ async function updateById(id, body){
 async function remove(id){
   try {
     const payload = await Model.findByIdAndDelete(id)
-    return payload
+    const userUpdate = await User.findOneAndUpdate({_id: payload.userId},
+      {
+        $pull: {myForums: payload._id}
+      }, {
+        new: true
+      })
+    return userUpdate
   } catch(err){
     if(process.env.NODE_ENV === "development") console.log(err)
     throw new Error(err)

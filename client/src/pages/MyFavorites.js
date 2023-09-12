@@ -41,7 +41,7 @@ export default function MyFavorites(props) {
   const [results, setResults] = useState([]);
 
   const searchFavorites = async () => {
-    const response = await fetch(`/api/user/${id}`);
+    const response = await fetch(`/api/user/myfavorites/${id}`);
     const data = await response.json();
     setResults(data.payload.favPlant);
     console.log(data);

@@ -1,8 +1,8 @@
-const router = require("express").Router();
-
+const router = require('express').Router();
 
 // Import any controllers needed here
 const { register, login, verify } = require('../../controllers/auth.controller');
+
 
 router.post("/register", async (req, res) => {
   try {
@@ -11,7 +11,6 @@ router.post("/register", async (req, res) => {
     return res.cookie("auth-cookie", token).json({ status: "success", payload: user })
   } catch (err) {
     return res.status(400).json({error: err})
-
   }
   
 })
@@ -34,6 +33,5 @@ router.post("/verify", async (req, res) => {
   }
   
 })
-
 
 module.exports = router;
