@@ -45,16 +45,16 @@ export default function Planner() {
         templateColumns='repeat(5, 1fr)'
         gap={4}
       >
-        <GridItem rowSpan={1} colSpan={5} bg='tomato'>
+        <GridItem className="timeline" rowSpan={1} colSpan={5} bg='tomato'>
           <div>
             {TimelineContainer}
           </div>
         </GridItem>
-        <GridItem colSpan={1}>
-          <h2>Add Journal Post:</h2>
+        <GridItem className="addpost" colSpan={1}>
+          <h2 style={{ whiteSpace: 'nowrap' }}>Add Journal Post</h2>
         </GridItem>
         <GridItem colSpan={4} className="journal-grid">
-          <h2>My Journal Entries:</h2>
+          <h2>My Journal Entries</h2>
           <Accordion allowToggle>
           {results.map((data) => (
             <AccordionItem key={data._id}>
