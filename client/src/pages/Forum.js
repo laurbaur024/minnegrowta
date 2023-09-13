@@ -72,6 +72,7 @@ export default function Forum () {
         body: JSON.stringify( {title: form.title, content: form.content, image: image, userId: id} )
       })
       console.log("success")
+      window.location.reload();
     } catch (error) {
       console.log(error)
     }
@@ -102,6 +103,7 @@ export default function Forum () {
       })
       console.log(reply)
       console.log("success")
+      window.location.reload();
     } catch (error) {
       console.log(error)
     }
@@ -189,14 +191,14 @@ export default function Forum () {
             <div>
               {forumPosts.map((index) => (
                 <div className="myposts" key={index.title}>
-                  <Text isTruncated maxW="16ch" flex="1" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">
-                    {index.title}
-                  </Text>
-                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <Button colorScheme='orange' onClick={onDelete} id={index._id}>
-                      Delete
-                    </Button>
-                  </div>
+                    <Text isTruncated maxW="16ch" flex="1" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">
+                      "{index.title}"
+                    </Text>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                      <Button colorScheme='orange' onClick={onDelete} id={index._id}>
+                        Delete
+                      </Button>
+                    </div>
                 </div>
               ))}
             </div>
