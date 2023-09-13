@@ -231,7 +231,7 @@ export default function Forum () {
           <Accordion allowToggle>
           {results.map((data, index) => (
             <AccordionItem key={index}>
-              <h2>
+              <h2 style={{ marginBottom: '0px' }}>
                 <AccordionButton>
                   <Box as="span" flex='1' textAlign='left' id={data._id} key={data.title} onClick={handleAccordianClickChange}>
                     {`${data.title}`}
@@ -249,7 +249,7 @@ export default function Forum () {
                   </div>
                 </Box>
                 <div className="forum-reply">
-                  <p>Replies:</p>
+                  <p>Replies</p>
                   <Button colorScheme='blue' onClick={onReplyOpen}>Add Reply</Button>
                 </div>
                 {data.commentId.map((comment, index) => (
