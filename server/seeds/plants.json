@@ -1,6 +1,6 @@
     [
         {
-            "name": "beans, green",
+            "name": "green beans",
             "image": "https://morningchores.com/wp-content/uploads/2016/07/Bush-Bean.jpg",
             "type": "beans",
             "sowSpace": "6-8 inches",
@@ -22,7 +22,7 @@
             "maturity": 110
         },
         {
-            "name": "beans, yellow",
+            "name": "yellow beans",
             "image": "https://www.eatlikenoone.com/wp-content/uploads/2022/05/Green-and-Yellow-Wax-Beans-at-Farmes-Market-Table.jpg",
             "type": "beans",
             "sowSpace": "6-8 inches",
@@ -209,7 +209,7 @@
             "maturity": 45
         },
         {
-            "name": "onions (red)",
+            "name": "red onions",
             "image": "https://upload.wikimedia.org/wikipedia/commons/8/85/Red_onions.jpg",
             "type": "onions",
             "sowSpace": "3 inches",
@@ -220,7 +220,7 @@
             "maturity": 100
         },
         {
-            "name": "onions (yellow)",
+            "name": "yellow onions",
             "image": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Vidalia_Onions.jpg",
             "type": "onions",
             "sowSpace": "3 inches",
@@ -231,7 +231,7 @@
             "maturity": 100
         },
         {
-            "name": "onions (white)",
+            "name": "white onions",
             "image": "https://upload.wikimedia.org/wikipedia/commons/9/95/White_onions_for_sale_in_supermarket.JPG",
             "type": "onions",
             "sowSpace": "3 inches",
@@ -253,7 +253,7 @@
             "maturity": 65
         },
         {
-            "name": "pepper, green bell",
+            "name": "green bell pepper",
             "image": "https://bonnieplants.com/cdn/shop/products/060721_T110854_202047_202181_Bonnie_PepperGreenBell_ALT_01.jpg?v=1653423009&width=832",
             "type": "pepper",
             "sowSpace": "12-18 inches",
@@ -264,7 +264,7 @@
             "maturity": 85
         },
         {
-            "name": "pepper, red bell",
+            "name": "red bell pepper",
             "image": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Bell_pepper.jpg",
             "type": "pepper",
             "sowSpace": "12-18 inches",
@@ -275,7 +275,7 @@
             "maturity": 85
         },
         {
-            "name": "pepper, yellow bell",
+            "name": "yellow bell pepper",
             "image": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Yellow_Bell_Pepper_group_store.jpg",
             "type": "pepper",
             "sowSpace": "12-18 inches",
@@ -286,7 +286,7 @@
             "maturity": 85
         },
         {
-            "name": "pepper, orange bell",
+            "name": "orange bell pepper",
             "image": "https://upload.wikimedia.org/wikipedia/commons/0/08/Orange_bell-peppers_Rouffignac.jpg",
             "type": "pepper",
             "sowSpace": "12-18 inches",
@@ -297,7 +297,7 @@
             "maturity": 85
         },
         {
-            "name": "pepper, jalapeno",
+            "name": "jalapeno pepper",
             "image": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Starr-070730-7842-Capsicum_annuum-Jalapeno_variety-Foodland_Pukalani-Maui_%2824890449555%29.jpg",
             "type": "pepper",
             "sowSpace": "12-18 inches",
@@ -308,7 +308,7 @@
             "maturity": 85
         },
         {
-            "name": "potato, Yukon Gold",
+            "name": "Yukon Gold potato",
             "image": "https://thebrilliantkitchen.com/wp-content/uploads/2022/08/Potatoes.jpg.webp",
             "type": "potato",
             "sowSpace": "12-15 inches",
@@ -319,7 +319,7 @@
             "maturity": 90
         },
         {
-            "name": "potato, red",
+            "name": "red potato",
             "image": "https://p1.pxfuel.com/preview/41/964/1024/potatoes-spuds-potato-vegetable.jpg",
             "type": "potato",
             "sowSpace": "12-15 inches",
@@ -363,7 +363,7 @@
             "maturity": 100
         },
         {
-            "name": "squash, summer",
+            "name": "summer squash",
             "image": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Cucurbita_zephyr_summer_squash.jpg",
             "type": "squash",
             "sowSpace": "3 inches",
@@ -405,6 +405,28 @@
             "zone": "3-11",
             "annual": true,
             "maturity": 75
+        },
+        {
+            "name": "Cherry",
+            "image": "https://www.google.com/imgres?imgurl=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fb%2Fb5%2FCherry_tomatoes.jpg&tbnid=QOjSA5_8ITstLM&vet=12ahUKEwjgn6WsnaiBAxVsEN4AHeSlDREQMygEegUIARCCAQ..i&imgrefurl=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ACherry_tomatoes.jpg&docid=QxA-SzrWxkSAyM&w=3558&h=2592&q=cherry%20tomatoes&hl=en&ved=2ahUKEwjgn6WsnaiBAxVsEN4AHeSlDREQMygEegUIARCCAQ",
+            "type": "tomato",
+            "sowSpace": "36 inches",
+            "climbing": false,
+            "sun": "full",
+            "zone": "3-11",
+            "annual": true,
+            "maturity": 50
+        },
+        {
+            "name": "Grape",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/b/be/Grape_tomatoes_on_the_vine_at_Ljubljana_Central_Market.JPG",
+            "type": "tomato",
+            "sowSpace": "36 inches",
+            "climbing": false,
+            "sun": "full",
+            "zone": "3-11",
+            "annual": true,
+            "maturity": 50
         },
         {
             "name": "Beefsteak",
