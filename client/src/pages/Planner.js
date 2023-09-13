@@ -69,10 +69,11 @@ const { isOpen: isJournalOpen , onOpen: onJournalOpen, onClose: onJournalClose }
 
 const onSubmit = async () => {
   try {
+    console.log(id)
     let response = await fetch('/api/journal', {
       method: "POST",
       headers: {"content-type": "application/json"},
-      body: JSON.stringify( {title: form.title, text: form.text } )
+      body: JSON.stringify( {title: form.title, text: form.text, userId: id } )
     })
     console.log("success")
   } catch (error) {
