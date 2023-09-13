@@ -27,6 +27,7 @@ export default function Forum () {
     setResults(data.payload);
     // console.log(data.payload)
   }
+
   useEffect(() => {
     searchForum();
   }, []);
@@ -57,11 +58,7 @@ export default function Forum () {
 
   // monitors what is being typed in new forum post form
   let handleInputChange = (e) => {
-    if(e.target.name === "forumTitle"){
-      setForm({...form, title: e.target.value})
-    } else {
-      setForm({...form, content: e.target.value})
-    }
+    setForm({...form, [e.target.name]: e.target.value})
   }
 
 
@@ -75,6 +72,7 @@ export default function Forum () {
         body: JSON.stringify( {title: form.title, content: form.content, image: image, userId: id} )
       })
       console.log("success")
+      window.location.reload();
     } catch (error) {
       console.log(error)
     }
@@ -84,10 +82,9 @@ export default function Forum () {
   // monitors what is being typed in reply modal form
   const [reply, setReply] = useState({text: "", forumId: ""});
   let handleReplyInputChange = (e) => {
-    if(e.target.name === "replyText"){
-      setReply({...reply, text: e.target.value})
+      setReply({...reply, [e.target.name]: e.target.value})
     }
-  }
+
 
   // handles accordian functionality
   let handleAccordianClickChange = (e) => {
@@ -106,6 +103,7 @@ export default function Forum () {
       })
       console.log(reply)
       console.log("success")
+      window.location.reload();
     } catch (error) {
       console.log(error)
     }
@@ -155,13 +153,46 @@ export default function Forum () {
         gap={4}
       >
         
-        <GridItem colSpan={1} className="postgrid">
-          <h2 style={{ whiteSpace: 'nowrap' }}>My Posts</h2>
+          <GridItem colSpan={1} className="postgrid">
+            <h2 style={{ whiteSpace: 'nowrap' }}>My Posts</h2>
+            <Button colorScheme='green' onClick={onForumOpen}>New Post</Button>
+
+            <Modal isOpen={isForumOpen} onClose={onForumClose}>
+              <ModalOverlay />
+              <ModalContent>
+                <ModalHeader>New Florum Post</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody>
+                  <FormControl controlId='forumTitle'>
+                    <FormLabel>Florum Post Title:</FormLabel>
+                    <Input type='text' value={form.title} onChange={handleInputChange} name="title" />
+                  </FormControl>
+                  <FormControl>
+                    <Text mb='8px'>Florum Post Content:</Text>
+                    <Textarea
+                      value={form.content}
+                      onChange={handleInputChange}
+                      placeholder='Enter Post Content Here'
+                      size='lg'
+                      name="content"
+                    />
+                  </FormControl>
+
+                </ModalBody>
+                <ModalFooter>
+                  <Button colorScheme='green' mr={3} onClick={onSubmit}>
+                    Submit
+                  </Button>
+                  <Upload setImage={setImage} />
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
+            <p></p>
             <div>
               {forumPosts.map((index) => (
                 <div className="myposts" key={index.title}>
                     <Text isTruncated maxW="16ch" flex="1" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">
-                      {index.title}
+                      "{index.title}"
                     </Text>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                       <Button colorScheme='orange' onClick={onDelete} id={index._id}>
@@ -171,42 +202,10 @@ export default function Forum () {
                 </div>
               ))}
             </div>
-          
-          <Button colorScheme='green' onClick={onForumOpen}>New Post</Button>
 
-          <Modal isOpen={isForumOpen} onClose={onForumClose}>
-            <ModalOverlay />
-            <ModalContent>
-              <ModalHeader>New Florum Post</ModalHeader>
-              <ModalCloseButton />
-              <ModalBody>
-                <FormControl>
-                  <FormLabel>Florum Post Title:</FormLabel>
-                  <Input type='text' value={form.title} key={form.title} onChange={handleInputChange} name="forumTitle"/>
-                </FormControl>
-                <FormControl>
-                <Text mb='8px'>Florum Post Content:</Text>
-                <Textarea
-                  value={form.content}
-                  onChange={handleInputChange}
-                  placeholder='Enter Post Content Here'
-                  size='lg'
-                  name="forumContent"
-                  key={form.content}
-                />
-                </FormControl>
-                
-              </ModalBody>
-              <ModalFooter>
-                <Button colorScheme='green' mr={3} onClick={onSubmit}>
-                  Submit
-                </Button>
-                <Upload setImage={setImage}/>
-              </ModalFooter>
-            </ModalContent>
-          </Modal>
-          
-        </GridItem>
+
+
+          </GridItem>
         <GridItem className="allpostgrid" colSpan={4}>
           <h2>The Florum</h2>
           <h6>See other gardener's tips and tricks, or ask a question!</h6>
@@ -254,8 +253,8 @@ export default function Forum () {
                       onChange={handleReplyInputChange}
                       placeholder='Enter Reply Here'
                       size='lg'
-                      name="replyText"
-                      key={reply.text}
+                      name="text"
+                      // key={reply.text}
                     />
                     </FormControl>
                       
