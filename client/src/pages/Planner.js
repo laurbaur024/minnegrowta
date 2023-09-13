@@ -73,7 +73,7 @@ const onSubmit = async () => {
     let response = await fetch('/api/journal', {
       method: "POST",
       headers: {"content-type": "application/json"},
-      body: JSON.stringify( {title: form.title, text: form.text, userId: id } )
+      body: JSON.stringify( {title: form.title, text: form.text, userId: id, image: image } )
     })
     console.log("success")
   } catch (error) {
