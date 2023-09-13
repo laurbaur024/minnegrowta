@@ -63,6 +63,7 @@ export default function Planner() {
     } catch (error) {
       console.log(error)
     }
+  }
 
     const openEditModal = (entryData) => {
       setEditData(entryData);
@@ -256,4 +257,3 @@ export default function Planner() {
       </div>
     );
   }
-}
