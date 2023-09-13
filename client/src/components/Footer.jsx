@@ -111,7 +111,7 @@ const Footer = () => {
     // Automatically cycle through quotes every 5 seconds
     const interval = setInterval(() => {
       setCurrentQuoteIndex((prevIndex) => (prevIndex + 1) % quotes.length);
-    }, 5000);
+    }, 8000);
 
     return () => clearInterval(interval);
   }, []);

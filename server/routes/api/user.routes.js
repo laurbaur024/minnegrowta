@@ -8,6 +8,7 @@ const {
   remove,
   addFavorite,
   addGarden,
+  findFavPlantById,
 } = require("../../controllers/user.controller");
 
 router.get("/", async (req, res) => {
@@ -15,7 +16,7 @@ router.get("/", async (req, res) => {
     const payload = await find(req.query);
     return res.status(200).json({ status: "success", payload });
   } catch (err) {
-    return res.status(400).json({ status: "error", message: "no good" });
+    return res.status(400).json({ status: "error", msg });
   }
 });
 
@@ -26,6 +27,16 @@ router.get("/:id", async (req, res) => {
     return res.status(200).json({ status: "success", payload });
   } catch (err) {
     return res.status(400).json({ status: "error", message: "no good" });
+  }
+});
+
+router.get("/myfavorites/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const payload = await findFavPlantById(id);
+    return res.status(200).json({ status: "success", payload });
+  } catch (err) {
+    return res.status(400).json({ status: "error", msg });
   }
 });
 

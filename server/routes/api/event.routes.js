@@ -5,10 +5,10 @@ const {
   create,
   updateById,
   remove 
-} = require('../../controllers/forum.controller');
+} = require('../../controllers/event.controller');
 
 
-//get all forum posts
+//get alt event posts
 router.get("/", async (req, res) => {
   try {
     const payload = await find(req.query)
@@ -18,18 +18,18 @@ router.get("/", async (req, res) => {
   }
 })
 
-//get forum post by id
+//get event post by id
 router.get("/:id", async (req, res) => {
   const id = req.params.id
   try {
     const payload = await findById(id)
     return res.status(200).json({ status: "success", payload })
   } catch(err) {
-    return res.status(400).json({ status: "error", msg: "" })
+    return res.status(400).json({ status: "error", msg })
   }
 })
 
-//create new forum post
+//create new event post
 router.post("/", async (req, res) => {
   try {
     const payload = await create(req.body)
@@ -39,7 +39,7 @@ router.post("/", async (req, res) => {
   }
 })
 
-//update forum post by id
+//updatt event post by id
 router.put("/:id", async (req, res) => {
   const id = req.params.id
   try {
@@ -50,7 +50,7 @@ router.put("/:id", async (req, res) => {
   }
 })
 
-//delete forum post by id
+//delett event post by id
 router.delete("/:id", async (req, res) => {
   const id = req.params.id
   try {

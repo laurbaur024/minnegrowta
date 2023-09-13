@@ -101,10 +101,6 @@ const Header = ({setSearch}) => {
                 </div>
               )}
 
-              <Nav.Link onClick={handleFavoritesClick}>
-                <i className="bi bi-star"></i>
-              </Nav.Link>
-
               {/* Conditional Rendering based on Authentication */}
               {currUser.status === "notfound" ? (
                 <>
@@ -117,6 +113,9 @@ const Header = ({setSearch}) => {
                 </>
               ) : (
                 <>
+                  <Nav.Link onClick={handleFavoritesClick}>
+                  <i className="bi bi-star"></i>
+                  </Nav.Link>
                   {currentPath !== "/florum" && (
                     <Nav.Link href="/florum" className="navlink3">Florum</Nav.Link>
                   )}

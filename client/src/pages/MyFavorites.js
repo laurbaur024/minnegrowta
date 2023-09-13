@@ -37,7 +37,7 @@ export default function MyFavorites(props) {
 
   // user's favorite plants on MyFavorites page
   const searchFavorites = async () => {
-    const response = await fetch(`/api/user/${id}`);
+    const response = await fetch(`/api/user/myfavorites/${id}`);
     const data = await response.json();
     setResults(data.payload?.favPlant);
     console.log(data);

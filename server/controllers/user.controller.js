@@ -13,7 +13,7 @@ async function find(criteria = {}) {
 
 async function findOne(criteria = {}) {
   try {
-    const payload = await Model.find(criteria).limit(1);
+    const payload = await Model.find(criteria).populate("myForums").limit(1);
     return Array.isArray(payload) ? payload[0] : payload;
   } catch (err) {
     if (process.env.NODE_ENV === "development") console.log(err);
@@ -21,8 +21,22 @@ async function findOne(criteria = {}) {
   }
 }
 
-//find a user's favorite plants
+//find a user's forum posts by their id
 async function findById(id) {
+  try {
+    const payload = await Model.findById(id).populate("myForums");
+    console.log(payload);
+    return payload;
+  } catch (err) {
+    if (process.env.NODE_ENV === "development") console.log(err);
+    throw new Error(err);
+  }
+}
+
+
+
+//find a user's favorite plants
+async function findFavPlantById(id) {
   try {
     const payload = await Model.findById(id).populate("favPlant");
     console.log(payload);
@@ -32,6 +46,8 @@ async function findById(id) {
     throw new Error(err);
   }
 }
+
+
 
 async function create(body) {
   try {
@@ -128,4 +144,5 @@ module.exports = {
   remove,
   addFavorite,
   addGarden,
+  findFavPlantById,
 };

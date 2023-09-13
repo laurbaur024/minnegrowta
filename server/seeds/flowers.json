@@ -595,7 +595,7 @@
     },
     {
         "name": "scaevola",
-        "img": "https://www.pxfuel.com/en/free-photo-xzewr",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Scaevola_aemula_Botanical_Garden_Heidelberg.JPG",
         "sun": true,
         "zone": 3,
         "annual": true,
@@ -631,7 +631,7 @@
     },
     {
         "name": "sallyfun",
-        "img": "https://www.pxfuel.com/en/free-photo-oxsxj",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/8/85/Salvia_farinacea3.jpg",
         "sun": true,
         "zone": 3,
         "annual": true,
@@ -648,8 +648,8 @@
         "height": "12 to 18 inches"
     },
     {
-        "name": "sunflolwer suncredible saturn",
-        "img": "https://www.rawpixel.com/image/5909706/image-background-public-domain-plant#eyJrZXlzIjoic3VuZmxvd2VyIGZpZWxkIiwic29ydGVkS2V5cyI6ImZpZWxkIHN1bmZsb3dlciJ9",
+        "name": "sunflower suncredible saturn",
+        "img": "https://s3media.angieslist.com/s3fs-public/Helianthus_suncredible-saturn.jpeg?impolicy=leadImage",
         "sun": true,
         "zone": 3,
         "annual": true,
@@ -658,7 +658,7 @@
     },
     {
         "name": "coleus colorblaze",
-        "img": "https://www.pxfuel.com/en/free-photo-xgavc",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Plectranthus_scutellarioides-Coleus_04.jpg",
         "sun": true,
         "zone": 3,
         "annual": true,
@@ -667,7 +667,7 @@
     },
     {
         "name": "bracteantha granvia",
-        "img": "https://www.wallpaperflare.com/strawflowers-plant-blooming-colorful-blossom-fresh-macro-wallpaper-wcaqe",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Amaranth-colored_strawflower_02.jpg",
         "sun": true,
         "zone": 3,
         "annual": true,
