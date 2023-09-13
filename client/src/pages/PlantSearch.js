@@ -30,12 +30,13 @@ export default function PlantSearch({ search }) {
     margin: "30px",
     backgroundColor: "#85ae5a",
     color: "#09302f",
-    // width: "75%",
-    width: "500",
-    height: "300",
+    width: "75%",
+    minHeight: "650px",
+    minWidth: "265px",
   };
   const img = {
     borderRadius: "20px",
+    width: "75%",
   };
 
   //button fetch calls
