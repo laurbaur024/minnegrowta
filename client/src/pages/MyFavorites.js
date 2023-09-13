@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Link } from "@chakra-ui/react";
 import { useUserContext } from "../ctx/UserContext";
-// import { useNavigate, useLocation } from "react-router-dom";
 import {
   Accordion,
   AccordionItem,
@@ -34,16 +32,14 @@ export default function MyFavorites(props) {
 
   const { currUser } = useUserContext();
   const id = currUser?.data?._id;
-  // const plantId = currUser?.data?._plantId;
-
-  // const [removeMyFavPlant, setRemoveMyFavPlant] = useState("");
 
   const [results, setResults] = useState([]);
 
+  // user's favorite plants on MyFavorites page
   const searchFavorites = async () => {
     const response = await fetch(`/api/user/myfavorites/${id}`);
     const data = await response.json();
-    setResults(data.payload.favPlant);
+    setResults(data.payload?.favPlant);
     console.log(data);
   };
   useEffect(() => {
@@ -53,21 +49,24 @@ export default function MyFavorites(props) {
   //update (remove) plant from user's favorites list
   const removeFavPlant = async (e, plantId) => {
     e.preventDefault();
-    navigate("/favorites");
+
     const response = await fetch(
       `./api/user/${id}/favorites-remove/${plantId}`,
       {
         method: "PUT",
-        // body: JSON.stringify({
-        //   _id: id,
-        //   plantId: "65006b471b2ab4730c49f3b6",
-        // }),
         headers: {
           "Content-Type": "application/json",
         },
       }
     );
     const result = await response.json();
+    setResults([
+      ...results.filter((plant) => {
+        if (plant._id !== plantId) {
+          return true;
+        }
+      }),
+    ]);
     console.log(result);
   };
 
@@ -83,6 +82,7 @@ export default function MyFavorites(props) {
       },
     });
     const result = await response.json();
+
     console.log(result);
   };
 
