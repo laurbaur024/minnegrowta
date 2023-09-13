@@ -5,33 +5,8 @@ import {useUserContext} from "../ctx/UserContext";
 import Upload from '../components/Uploader';
 
 // Chackra imports
-import {
-  Grid,
-  GridItem,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-  Box,
-  Button,
-  ButtonGroup,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure,
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-  Input,
-  Textarea,
-} from '@chakra-ui/react'
-import { Card, CardHeader, CardBody, CardFooter, Heading, Text } from '@chakra-ui/react';
+import {Grid, GridItem, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure,FormControl, FormLabel, Input, Textarea, Text} from '@chakra-ui/react'
+
 import TimelineContainer from '../components/TimelineContainer';
 
 
@@ -69,10 +44,11 @@ const { isOpen: isJournalOpen , onOpen: onJournalOpen, onClose: onJournalClose }
 
 const onSubmit = async () => {
   try {
+    console.log(id)
     let response = await fetch('/api/journal', {
       method: "POST",
       headers: {"content-type": "application/json"},
-      body: JSON.stringify( {title: form.title, text: form.text } )
+      body: JSON.stringify( {title: form.title, text: form.text, userId: id, image: image } )
     })
     console.log("success")
   } catch (error) {
@@ -118,7 +94,7 @@ let handleInputChange = (e) => {
       >
         <GridItem className="timeline" rowSpan={1} colSpan={5}>
           <div>
-            <TimelineContainer></TimelineContainer>
+            {/* <TimelineContainer></TimelineContainer> */}
           </div>
         </GridItem>
         <GridItem className="addpost" colSpan={1}>

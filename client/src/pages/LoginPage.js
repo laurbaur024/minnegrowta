@@ -1,15 +1,5 @@
 import { useState } from "react";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Heading,
-  SimpleGrid,
-  Text,
-  Button,
-  AbsoluteCenter,
-} from "@chakra-ui/react";
+import {Card, CardHeader, CardBody, CardFooter, Heading, SimpleGrid, Text, Button, AbsoluteCenter} from "@chakra-ui/react";
 import '../styles/global.css'
 
 const LoginPage = () => {

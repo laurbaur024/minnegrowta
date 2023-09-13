@@ -1,23 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../ctx/UserContext";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-  ButtonGroup,
-  Card,
-  CardHeader,
-  Heading,
-  Button,
-  Box,
-  UnorderedList,
-  ListItem,
-  Grid,
-  GridItem,
-} from "@chakra-ui/react";
+import {Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, ButtonGroup, Card, CardHeader,Heading, Button, Box, UnorderedList, ListItem, Grid, GridItem,} from "@chakra-ui/react";
 
 export default function MyFavorites(props) {
   const bold = {
