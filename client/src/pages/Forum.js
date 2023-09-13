@@ -76,21 +76,6 @@ export default function Forum () {
       myForumPosts(currUser?.data?._id) 
   }, [currUser]);
 
-  
-  // code to delete a users forum post
-  const deleteForumPost = async (postId) => {
-    try {
-      let response = await fetch(`/api/forum/${postId}`, {
-        method: "DELETE",
-        headers: { "content-type": "application/json" },
-      });
-      console.log('success')
-      setForumPosts((prevPosts) => prevPosts.filter((post) => post._id !== postId));
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
   //code for modals, one for forum post one for reply, this makes the two buttons open different models
   const { isOpen: isForumOpen , onOpen: onForumOpen, onClose: onForumClose } = useDisclosure()
   const { isOpen: isReplyOpen , onOpen: onReplyOpen, onClose: onReplyClose } = useDisclosure()

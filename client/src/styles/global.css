@@ -523,6 +523,32 @@ p {
   }
 }
 
+/* search styles */
+
+.search-content {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  height: 100%;
+}
+
+.buttonplanner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bi.bi-star.search::before {
+  color: white;
+  font-size: 30px;
+  transition: color 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.bi.bi-star.search:hover::before {
+  color: orange;
+}
+
 /* fav styles */
 
 .fav-content {
@@ -533,30 +559,105 @@ p {
 /* planner styles */
 
 .timeline {
-  margin-bottom: 0px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid lightgrey;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
 }
 
-.garden-content {
-  margin-top: 11px;
-  flex-grow: 1;
+.alljournal-grid h2 {
+  margin-bottom: 20px;
+}
+
+.journal-panel {
+  padding: 10px;
+  margin: 10px;
+}
+
+.journal-panel Button {
+  width: 100%;
+}
+
+.journal-img {
+  display: flex;
+  justify-content: center;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.journal-img img {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.img-cnt {
+  border-radius: 8px;
+  border: 1px solid lightgrey;
+  margin-bottom: 20px;
+}
+
+.journal-cnt {
+  font-size: 20px;
+  margin: 10px;
 }
 
 .garden-container {
   margin-top: 20px;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  min-height: 40vh;
+}
+
+.garden-content {
+  flex-grow: 1;
+  margin-top: 10px;
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+}
+
+.garden-content .second-layer-rows {
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.alljournal-grid {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 .journal-grid {
-  margin-bottom: 0px;
-  margin-left: 80px;
-  margin-right: 20px;
+  margin-left: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid lightgrey;
 }
 
-.addpost {
-  margin-left: 20px;
+.myjournals {
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid lightgrey;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
 }
 
 /* forum styles */
@@ -629,14 +730,6 @@ p {
   flex-grow: 1;
   margin-top: 10px;
   margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.forumgrid {
-  flex-grow: 1;
-  margin-bottom: 0px;
-  margin-left: 10px;
   display: flex;
   flex-direction: column;
 }
