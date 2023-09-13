@@ -286,8 +286,11 @@ p {
 
 /* dash styles */
 
+.timeline {
+  margin-top: 10px;
+}
+
 .dashtimeline {
-  padding: 10px;
   border-radius: 8px;
   border: 1px solid lightgrey;
 }
@@ -584,7 +587,9 @@ p {
 }
 
 .journal-panel Button {
-  width: 100%;
+  width: 100px;
+  margin-right: 30px;
+  margin-left: 30px;
 }
 
 .journal-img {
