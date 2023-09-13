@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
     const payload = await find(req.query)
     return res.status(200).json({ status: "success", payload })
   } catch(err) {
-    return res.status(400).json({ status: "error", msg })
+    return res.status(400).json({ status: "error", message: "no good" })
   }
 })
 
@@ -25,7 +25,7 @@ router.get("/:id", async (req, res) => {
     const payload = await findById(id)
     return res.status(200).json({ status: "success", payload })
   } catch(err) {
-    return res.status(400).json({ status: "error", msg })
+    return res.status(400).json({ status: "error", message: "no good" })
   }
 })
 
@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
     const payload = await create(req.body)
     return res.status(200).json({ status: "success", payload })
   } catch(err) {
-    return res.status(400).json({ status: "error", msg })
+    return res.status(400).json({ status: "error", message: "no good" })
   }
 })
 
@@ -46,7 +46,7 @@ router.put("/:id", async (req, res) => {
     const payload = await updateById(id, req.body)
     return res.status(200).json({ status: "success", payload })
   } catch(err) {
-    return res.status(400).json({ status: "error", msg })
+    return res.status(400).json({ status: "error", message: "no good" })
   }
 })
 
@@ -57,7 +57,7 @@ router.delete("/:id", async (req, res) => {
     const payload = await remove(id)
     return res.status(200).json({ status: "success", payload })
   } catch(err) {
-    return res.status(400).json({ status: "error", msg })
+    return res.status(400).json({ status: "error", message: "no good" })
   }
 })
 
