@@ -9,7 +9,7 @@ import {Grid, GridItem, Accordion, AccordionItem, AccordionButton, AccordionPane
 export default function Forum () {
   const { currUser } = useUserContext();
   const id = currUser?.data?._id;
-
+  const [comment, setComment] = useState('');
   const isUserVerified = !!id;
   const [results, setResults] = useState([]);
   const [ image, setImage] = useState('')
@@ -19,7 +19,6 @@ export default function Forum () {
   const [ forumPosts, setForumPosts ] = useState([]);
   const  [ okToRender, setOkToRender ] = useState(false)
   const [deletePost, setdeletePost] = useState([]);
-
    // code for getting all forum posts, useState used and fetch request from api used to bring all forum posts from api and turned into array of objects we can map over and display on page
   const searchForum = async () => {
     const response = await fetch("/api/forum");
@@ -27,6 +26,7 @@ export default function Forum () {
     setResults(data.payload);
     // console.log(data.payload)
   }
+
   useEffect(() => {
     searchForum();
   }, []);
@@ -57,11 +57,7 @@ export default function Forum () {
 
   // monitors what is being typed in new forum post form
   let handleInputChange = (e) => {
-    if(e.target.name === "forumTitle"){
-      setForm({...form, title: e.target.value})
-    } else {
-      setForm({...form, content: e.target.value})
-    }
+    setForm({...form, [e.target.name]: e.target.value})
   }
 
 
@@ -85,10 +81,9 @@ export default function Forum () {
   // monitors what is being typed in reply modal form
   const [reply, setReply] = useState({text: "", forumId: ""});
   let handleReplyInputChange = (e) => {
-    if(e.target.name === "replyText"){
-      setReply({...reply, text: e.target.value})
+      setReply({...reply, [e.target.name]: e.target.value})
     }
-  }
+
 
   // handles accordian functionality
   let handleAccordianClickChange = (e) => {
@@ -139,11 +134,31 @@ export default function Forum () {
       console.log(response)
       const data = await response.json();
       setCurrentUser(data.user);
+      window.location.reload();
     } catch (error) {
       console.error("Error fetching user:", error);
     }
   }
 
+  const onDeleteComment = async (commentId) => {
+    if (commentId) {
+      try {
+        const response = await fetch(`/api/comment/${commentId}`, {
+          method: "DELETE",
+        });
+  
+        if (response.status === 200) {
+          const data = await response.json();
+          setCurrentUser(data.user);
+          window.location.reload();
+        } else {
+          console.error("Error deleting comment:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error deleting comment:", error);
+      }
+    }
+  };
 
   if( !okToRender ) return <p>Loading...</p>
 
@@ -157,8 +172,41 @@ export default function Forum () {
         gap={4}
       >
         
-        <GridItem colSpan={1} className="postgrid">
-          <h2 style={{ whiteSpace: 'nowrap' }}>My Posts</h2>
+          <GridItem colSpan={1} className="postgrid">
+            <h2 style={{ whiteSpace: 'nowrap' }}>My Posts</h2>
+            <Button colorScheme='green' onClick={onForumOpen}>New Post</Button>
+
+            <Modal isOpen={isForumOpen} onClose={onForumClose}>
+              <ModalOverlay />
+              <ModalContent>
+                <ModalHeader>New Florum Post</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody>
+                  <FormControl controlId='forumTitle'>
+                    <FormLabel>Florum Post Title:</FormLabel>
+                    <Input type='text' value={form.title} onChange={handleInputChange} name="title" />
+                  </FormControl>
+                  <FormControl>
+                    <Text mb='8px'>Florum Post Content:</Text>
+                    <Textarea
+                      value={form.content}
+                      onChange={handleInputChange}
+                      placeholder='Enter Post Content Here'
+                      size='lg'
+                      name="content"
+                    />
+                  </FormControl>
+
+                </ModalBody>
+                <ModalFooter>
+                  <Button colorScheme='green' mr={3} onClick={onSubmit}>
+                    Submit
+                  </Button>
+                  <Upload setImage={setImage} />
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
+            <p></p>
             <div>
               {forumPosts.map((index) => (
                 <div className="myposts" key={index.title}>
@@ -173,42 +221,10 @@ export default function Forum () {
                 </div>
               ))}
             </div>
-          
-          <Button colorScheme='green' onClick={onForumOpen}>New Post</Button>
 
-          <Modal isOpen={isForumOpen} onClose={onForumClose}>
-            <ModalOverlay />
-            <ModalContent>
-              <ModalHeader>New Florum Post</ModalHeader>
-              <ModalCloseButton />
-              <ModalBody>
-                <FormControl>
-                  <FormLabel>Florum Post Title:</FormLabel>
-                  <Input type='text' value={form.title} key={form.title} onChange={handleInputChange} name="forumTitle"/>
-                </FormControl>
-                <FormControl>
-                <Text mb='8px'>Florum Post Content:</Text>
-                <Textarea
-                  value={form.content}
-                  onChange={handleInputChange}
-                  placeholder='Enter Post Content Here'
-                  size='lg'
-                  name="forumContent"
-                  key={form.content}
-                />
-                </FormControl>
-                
-              </ModalBody>
-              <ModalFooter>
-                <Button colorScheme='green' mr={3} onClick={onSubmit}>
-                  Submit
-                </Button>
-                <Upload setImage={setImage}/>
-              </ModalFooter>
-            </ModalContent>
-          </Modal>
-          
-        </GridItem>
+
+
+          </GridItem>
         <GridItem className="allpostgrid" colSpan={4}>
           <h2>The Florum</h2>
           <h6>See other gardener's tips and tricks, or ask a question!</h6>
@@ -216,7 +232,7 @@ export default function Forum () {
           {results.map((data, index) => (
             <AccordionItem key={index}>
               <h2>
-                <AccordionButton >
+                <AccordionButton>
                   <Box as="span" flex='1' textAlign='left' id={data._id} key={data.title} onClick={handleAccordianClickChange}>
                     {`${data.title}`}
                   </Box>
@@ -233,16 +249,19 @@ export default function Forum () {
                   </div>
                 </Box>
                 <div className="forum-reply">
-                <p>Replies:</p>
-                <Button colorScheme='blue' onClick={onReplyOpen}>Add Reply</Button>
+                  <p>Replies:</p>
+                  <Button colorScheme='blue' onClick={onReplyOpen}>Add Reply</Button>
                 </div>
-                {data.commentId.map((comment, index) => {
-                  return (
-                    <div>
-                      {comment.text}
-                    </div>
-                  )
-                })}
+                {data.commentId.map((comment, index) => (
+                  <div className="replies" key={comment.id}>
+                    <span>"{comment.text}"</span>
+                    {comment.userId === currUser?.data?._id && (
+                      <Button colorScheme='orange' onClick={() => onDeleteComment(comment._id)}>
+                        Delete
+                      </Button>
+                    )}
+                  </div>
+                ))}
                 <Modal isOpen={isReplyOpen} onClose={onReplyClose}>
                   <ModalOverlay />
                   <ModalContent>
@@ -256,8 +275,8 @@ export default function Forum () {
                       onChange={handleReplyInputChange}
                       placeholder='Enter Reply Here'
                       size='lg'
-                      name="replyText"
-                      key={reply.text}
+                      name="text"
+                      // key={reply.text}
                     />
                     </FormControl>
                       

@@ -67,10 +67,26 @@ async function remove(id){
   }
 }
 
+const deleteCommentById = async (commentId) => {
+  try {
+    // Find the comment by its ID and remove it from the database
+    const deletedComment = await CommentModel.findByIdAndRemove(commentId);
+
+    if (!deletedComment) {
+      throw new Error("Comment not found");
+    }
+
+    return deletedComment;
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   find,
   findById,
   create,
   updateById,
-  remove
-}
+  remove,
+  deleteCommentById,
+};

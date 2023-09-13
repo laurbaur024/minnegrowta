@@ -32,10 +32,18 @@ We would like to thank Gary Almes, Austin Slater, and Kathryn Vincent for their 
 
 ## Deployment
 
+https://minnegrowta-66ed74e127f3.herokuapp.com/
+
+## GitHub
+
+https://github.com/laurbaur024/minnegrowta
+
 ## Screenshots
 
 ## <img src="./client/src/images/MinneGrowtaHomePage.jpg" alt = "MinneGrowta Home page" />
-
+## <img src="./client/src/images/dashboard.png" alt = "Dashboard" />
+## <img src="./client/src/images/florum.png" alt = "Florum" />
+## <img src="./client/src/images/timeline.png" alt = "Timeline" />
 ## Resources Used
 
 - Minnesota Landscape Arboretum  https://arb.umn.edu/
@@ -61,4 +69,5 @@ We would like to thank Gary Almes, Austin Slater, and Kathryn Vincent for their 
 - https://www.publicdomainpictures.net
 - https://www.hippopx.com
 - https://hgshydro.com
+- https://www.eatlikenoone.com/
 
