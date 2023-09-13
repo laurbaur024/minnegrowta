@@ -38,7 +38,7 @@ export default function App() {
   useEffect(() => {
     searchFavorites();    
   }, [setResults]);
-  
+
   // Use the useState hook to manage state
   const [groups, setGroups] = useState([]);
   const [items, setItems] = useState([]);
@@ -51,6 +51,8 @@ export default function App() {
     setGroups(groups);
     setItems(items);
   }, []); // Empty dependency array means this useEffect runs once after initial render
+
+
 
   return (
     <Timeline

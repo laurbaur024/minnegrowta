@@ -1,8 +1,10 @@
 
 
 
-import { Card, CardBody, Button, CardHeader, Heading, Stack, StackDivider, Box, UnorderedList, ListItem, Flex} from '@chakra-ui/react'
+import { Grid, Card, CardBody, Button, CardHeader, Heading, Stack, StackDivider, Box, UnorderedList, ListItem, Flex} from '@chakra-ui/react'
 import { useUserContext } from "../ctx/UserContext"
+import "../styles/global.css";
+
 
 
 
@@ -12,8 +14,7 @@ export default function PlantSearch ({search}) {
 
   const { currUser } = useUserContext();
   const id = currUser?.data?._id;
-
-
+  
   //css classes
   const bold = {
     fontWeight: 'bold'
@@ -65,18 +66,20 @@ export default function PlantSearch ({search}) {
     console.log(result);
   }
 
-
-
-
   
   return (
-    <Flex width={"100vw"} height={"90vh"} alignContent={"center"} justifyContent={"center"}>
-
+    <div className="search-content">
+    <Flex width={"100vw"} alignContent={"center"} justifyContent={"center"}>
+      <Grid
+        templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
+        gap={4}
+      >
       {search?.map(function (plant){
         return (
+          <Box key={plant._id} width={['100%', '100%', '100%', '100%']}>
           <Card style={card}>
             <CardBody>
-              <Stack divider={<StackDivider />} spacing='4'>
+              <Stack divider={<StackDivider />} spacing='3'>
                 <Box>
                   <Heading size='s' textTransform='uppercase'> {plant.name} </Heading>
                 </Box>
@@ -93,17 +96,18 @@ export default function PlantSearch ({search}) {
                   </UnorderedList>
                 </Box>
               </Stack>
-              <div>
-                <Button style={button} onClick= {(e) => addFavPlant(e, plant._id)} colorScheme='orange'>Add to Favorites</Button>
-                <Button style={button} onClick={(e) => addGardenPlant(e, plant._id)}colorScheme='orange'>Add to Garden</Button>
+              <div className="buttonplanner">
+                <Button style={button} onClick={(e) => addGardenPlant(e, plant._id)} colorScheme='orange'>Add to Garden</Button>
+                <Button style={{ backgroundColor: '#85ae5a' }} onClick= {(e) => addFavPlant(e, plant._id)}><i className="bi bi-star search"></i></Button>
               </div>
             </CardBody>
         </Card>
+        </Box>
         )
       })}
-
+      </Grid>
     </Flex>    
-    
+    </div>
     )
 }
 
