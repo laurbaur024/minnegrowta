@@ -35,7 +35,6 @@ router.get("/search/:name", async (req, res) => {
     return res.status(200).json({ status: "success", payload });
   } catch (err) {
     return res.status(400).json({ status: "error", message: "no good" });
-  }
 });
 
 module.exports = router;
