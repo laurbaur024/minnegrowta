@@ -561,6 +561,63 @@ p {
 
 /* forum styles */
 
+.allpostgrid h2 {
+  margin-bottom: 10px;
+}
+
+.allpostgrid h6 {
+  margin-bottom: 20px;
+}
+
+.forum-panel {
+  padding: 10px;
+  margin: 10px;
+}
+
+.forum-img {
+  display: flex;
+  justify-content: center;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.forum-img img {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.forum-cnt {
+  margin: 20px;
+  font-size: 16px;
+}
+
+.forum-reply {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid lightgrey;
+}
+
+.forum-reply p {
+  margin-top: 12px;
+  margin-left: 12px;
+  font-weight: bold;
+}
+
+.forum-reply Button {
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-top: 0px;
+  margin-right: 12px;
+}
+
 .forumcontainer {
   margin-top: 20px;
   flex-grow: 1;
@@ -598,15 +655,15 @@ p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid transparent;
   padding: 10px;
-  border-color: #8f9a9d3f;
+  border-radius: 8px;
+  border: 1px solid lightgrey;
 }
 
 .myposts {
   background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px;
+  border: 1px solid lightgrey;
   padding: 10px;
   margin-bottom: 10px;
   font-size: 18px;

@@ -262,17 +262,19 @@ export default function Forum () {
                   <AccordionIcon />
                 </AccordionButton>
               </h2>
-              <AccordionPanel pb={4}>
-                <Box maxH="400px" overflowY="auto">
-                  <div>
+              <AccordionPanel className="forum-panel" pb={4}>
+                <Box maxH="400px" overflowY="auto" border="1px solid lightgrey" borderRadius="8px">
+                  <div className="forum-img">
                     <img src={`${data.image}`} alt="image of plants" width="500" height="300"></img>
                   </div>
-                  <div>
+                  <div className="forum-cnt">
                     {`${data.content}`}
                   </div>
                 </Box>
+                <div className="forum-reply">
+                <p>Replies:</p>
                 <Button colorScheme='blue' onClick={onReplyOpen}>Add Reply</Button>
-                <p>Replies</p>
+                </div>
                 {data.commentId.map((comment, index) => {
                   return (
                     <div>
