@@ -16,6 +16,9 @@ This app is for both the novice and the seasoned Minnesota gardener.  All plants
 
 There is a timeline feature in which the user can record when a particular seed or plant was sown in order to gauge the approximate maturity and harvest time.
 
+## Tech Stack
+
+MinneGrowta is a MERN application.  We also used Chakra, Knightlab Timneline, React-Uploader, and React Modal.  
 
 ## Acknowledgements
 
@@ -44,6 +47,7 @@ https://github.com/laurbaur024/minnegrowta
 ## <img src="./client/src/images/dashboard.png" alt = "Dashboard" />
 ## <img src="./client/src/images/florum.png" alt = "Florum" />
 ## <img src="./client/src/images/timeline.png" alt = "Timeline" />
+
 ## Resources Used
 
 - Minnesota Landscape Arboretum  https://arb.umn.edu/
