@@ -14,8 +14,8 @@ const contactContent = (
   <div>
     <h2>Contact Information</h2>
     <p>If you encounter any bugs or issues, please contact us at:</p>
-    <p>Email: contact@example.com</p>
-    <p>Phone: +1 (123) 456-7890</p>
+    <p>Email: WeLovePlants247@garden.com</p>
+    <p>Phone: +1 (651) 867-5309</p>
   </div>
 );
 

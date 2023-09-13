@@ -5,33 +5,8 @@ import {useUserContext} from "../ctx/UserContext";
 import Upload from '../components/Uploader';
 
 // Chackra imports
-import {
-  Grid,
-  GridItem,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-  Box,
-  Button,
-  ButtonGroup,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure,
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-  Input,
-  Textarea,
-} from '@chakra-ui/react'
-import { Card, CardHeader, CardBody, CardFooter, Heading, Text } from '@chakra-ui/react';
+import {Grid, GridItem, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure,FormControl, FormLabel, Input, Textarea, Text} from '@chakra-ui/react'
+
 import TimelineContainer from '../components/TimelineContainer';
 
 
