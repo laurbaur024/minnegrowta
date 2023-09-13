@@ -19,6 +19,8 @@ export default function Planner() {
   const [currentUser, setCurrentUser] = useState(null);
   const [okToRender, setOkToRender] = useState(false)
   const [journalPosts, setJournalPosts] = useState([]);
+
+
   const myJournalPosts = async (userId) => {
     try {
       const response = await fetch(`/api/user/${userId}`);
@@ -72,15 +74,12 @@ export default function Planner() {
 
     // monitors what is being typed in new journal post form
     const [form, setForm] = useState({ title: "", text: "" });
-    let handleInputChange = (e) => {
-      if (e.target.name === "journalTitle") {
-        setForm({ ...form, title: e.target.value })
-      } else {
-        setForm({ ...form, text: e.target.value })
-        console.log(form)
-      }
+    let handleInputChange = (e) => { 
+      setForm({...form, [e.target.name]: e.target.value})
     }
+      
 
+      
     //get all journal posts
     const [results, setResults] = useState([]);
 
@@ -152,17 +151,16 @@ export default function Planner() {
                   <ModalBody>
                     <FormControl>
                       <FormLabel>Journal Post Title:</FormLabel>
-                      <Input type='text' value={form.title} key={form.title} onChange={handleInputChange} name="journalTitle" />
+                      <Input type='text' value={form.title}  onChange={handleInputChange} name="title" />
                     </FormControl>
                     <FormControl>
                       <Text mb='8px'>Journal Post Content:</Text>
                       <Textarea
-                        // value={form.text}
-                        // onChange={handleInputChange}
+                        value={form.text}
+                        onChange={handleInputChange}
                         placeholder='Enter Post Content Here'
                         size='lg'
-                        name="journalText"
-                      // key={form.text}
+                        name="text"
                       />
                     </FormControl>
                     {/* <Lorem count={2} /> */}
@@ -216,7 +214,7 @@ export default function Planner() {
             <GridItem colSpan={4} className="alljournal-grid">
               <h2>My Journal Entries</h2>
               <Accordion allowToggle>
-                {results.map((data, index) => (
+                {journalPosts.map((data, index) => (
                   <AccordionItem key={data._id}>
                     <h2>
                       <AccordionButton>
