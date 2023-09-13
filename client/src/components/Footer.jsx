@@ -5,7 +5,7 @@ import Modal from "react-modal";
 const aboutContent = (
   <div>
     <h2>About Our Site</h2>
-    <p>The great state of Minnesota has a very short growing season.  We hope you find this site very useful in selecting outdoor plants that will thrive from early Spring to late Autumn.</p>
+    <p>Welcome to our Minnesota Planting Guide, your go-to resource for cultivating a thriving garden in the Land of 10,000 Lakes. Discover the native flora of Minnesota and learn the when and how of planting these beautiful plants to create a vibrant and sustainable garden that thrives in our unique climate.</p>
     <p>Enjoy!</p>
   </div>
 );
