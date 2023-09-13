@@ -26,9 +26,9 @@ export default function MyFavorites(props) {
 
   const navigate = useNavigate();
 
-  function handleClick(event) {
-    navigate("/search");
-  }
+  // function handleClick(event) {
+  //   navigate("/search");
+  // }
 
   const { currUser } = useUserContext();
   const id = currUser?.data?._id;
@@ -98,13 +98,15 @@ export default function MyFavorites(props) {
           <GridItem colSpan={1} bg="#85AE5A" m="4" textAlign="center">
             <Card bg="#85AE5A" size="lg">
               <CardHeader>
-                <Heading size="md">
-                  To add more plants to your favorites, click the magnifying
-                  glass at the top of the screen and type the plant name. Click
-                  the star next to the plants you want to add.
-                </Heading>
+                <Box>
+                  <Heading size="md">
+                    To add more plants to your favorites, click the magnifying
+                    glass at the top of the screen and type the plant name.
+                    Click the star next to the plants you want to add.
+                  </Heading>
+                </Box>
               </CardHeader>
-              <UnorderedList textAlign="left">
+              <UnorderedList textAlign="left" marginLeft="50">
                 <ListItem>Beans</ListItem>
                 <ListItem>Greens</ListItem>
                 <ListItem>Fruits</ListItem>
