@@ -1,15 +1,5 @@
 import { useState } from "react";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Heading,
-  SimpleGrid,
-  Text,
-  Button,
-  AbsoluteCenter,
-} from "@chakra-ui/react";
+import {Card, CardHeader, CardBody, CardFooter, Heading, SimpleGrid, Text, Button, AbsoluteCenter,} from "@chakra-ui/react";
 
 const SignupPage = (props) => {
   const defForm = { username: "", email: "", password: "" };

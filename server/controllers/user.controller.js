@@ -24,7 +24,7 @@ async function findOne(criteria = {}) {
 //find a user's forum posts by their id
 async function findById(id) {
   try {
-    const payload = await Model.findById(id).populate("myForums");
+    const payload = await Model.findById(id).populate("myForums").populate("myJournals");
     console.log(payload);
     return payload;
   } catch (err) {

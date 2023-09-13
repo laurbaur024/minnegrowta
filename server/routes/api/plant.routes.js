@@ -28,8 +28,8 @@ router.get("/:id", async (req, res) => {
 
 //get plant by name
 router.get("/search/:name", async (req, res) => {
-  const name = req.params.name
-  console.log (name)
+  const name = req.params.name;
+  console.log(name);
   try {
     const payload = await findByName(name)
     return res.status(200).json({ status: "success", payload })
