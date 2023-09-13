@@ -286,8 +286,14 @@ p {
 
 /* dash styles */
 
+.dashtimeline {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid lightgrey;
+}
+
 .dash-container h1 {
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 .dash-container {
@@ -312,6 +318,7 @@ p {
 }
 
 .timeline-container h2 {
+  margin-bottom: 20px;
   margin-right: 800px;
 }
 
