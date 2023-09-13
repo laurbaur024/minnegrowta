@@ -1,11 +1,11 @@
 // react imports
 import React from 'react';
 import { useState, useEffect } from 'react';
-import {useUserContext} from "../ctx/UserContext";
+import { useUserContext } from "../ctx/UserContext";
 import Upload from '../components/Uploader';
 import TimelineContainer from "../components/TimelineContainer";
 // Chackra imports
-import {Grid, GridItem, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure,FormControl, FormLabel, Input, Textarea, Text} from '@chakra-ui/react'
+import { Grid, GridItem, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure, FormControl, FormLabel, Input, Textarea, Text } from '@chakra-ui/react'
 
 // import TimelineContainer from '../components/TimelineContainer';
 
@@ -15,10 +15,10 @@ import {Grid, GridItem, Accordion, AccordionItem, AccordionButton, AccordionPane
 export default function Planner() {
   const { currUser } = useUserContext();
   const id = currUser?.data?._id;
-  const [ image, setImage] = useState('')
+  const [image, setImage] = useState('')
   const [currentUser, setCurrentUser] = useState(null);
-  const  [ okToRender, setOkToRender ] = useState(false)
-  const [ journalPosts, setJournalPosts ] = useState([]);
+  const [okToRender, setOkToRender] = useState(false)
+  const [journalPosts, setJournalPosts] = useState([]);
   const myJournalPosts = async (userId) => {
     try {
       const response = await fetch(`/api/user/${userId}`);
@@ -34,13 +34,14 @@ export default function Planner() {
     }
   };
   useEffect(() => {
-    if( currUser?.data?._id )
+    if (currUser?.data?._id)
       myJournalPosts(currUser?.data?._id)
   }, [currUser]);
 
-//code for modal
+
 const { isOpen: isJournalOpen , onOpen: onJournalOpen, onClose: onJournalClose } = useDisclosure()
 const [editData, setEditData] = useState({});
+
 
 const {
   isOpen: isEditModalOpen,
@@ -48,6 +49,7 @@ const {
   onClose: onEditModalClose,
 } = useDisclosure();
 
+  
 const onSubmit = async () => {
   try {
     console.log(id)
@@ -61,22 +63,22 @@ const onSubmit = async () => {
   } catch (error) {
     console.log(error)
   }
-}
 
 const openEditModal = (entryData) => {
   setEditData(entryData);
   onEditModalOpen();
 };
 
-// monitors what is being typed in new journal post form
-const [form, setForm] = useState({title: "", text: ""});
-let handleInputChange = (e) => {
-  if(e.target.name === "journalTitle"){
-    setForm({...form, title: e.target.value})
-  } else {
-    setForm({...form, text: e.target.value})
+  // monitors what is being typed in new journal post form
+  const [form, setForm] = useState({ title: "", text: "" });
+  let handleInputChange = (e) => {
+    if (e.target.name === "journalTitle") {
+      setForm({ ...form, title: e.target.value })
+    } else {
+      setForm({ ...form, text: e.target.value })
+      console.log(form)
+    }
   }
-}
 
   //get all journal posts
   const [results, setResults] = useState([]);
@@ -87,7 +89,7 @@ let handleInputChange = (e) => {
     setResults(data.payload);
     console.log(data)
   }
-    useEffect(() => {
+  useEffect(() => {
     searchJournal();
 
   }, []);
@@ -131,8 +133,7 @@ let handleInputChange = (e) => {
     <div className="garden-container">
     <>
       <Grid className="garden-content"
-      templateRows="auto 1fr"
-      >
+      templateRows="auto 1fr">
         <h2 style={{ whiteSpace: 'nowrap', margin: '20px' }}>Your Timeline</h2>
         <GridItem className="timeline" rowSpan={1} colSpan={5}>
           <div>
@@ -143,26 +144,26 @@ let handleInputChange = (e) => {
           <h2 style={{ whiteSpace: 'nowrap' }}>Add Journal Post</h2>
             <Button colorScheme='green' onClick={onJournalOpen}>New Post</Button>
             <Modal isOpen={isJournalOpen} onClose={onJournalClose}>
-            <ModalOverlay />
-            <ModalContent>
-              <ModalHeader>New Journal Post</ModalHeader>
-              <ModalCloseButton />
-              <ModalBody>
-                <FormControl>
-                  <FormLabel>Journal Post Title:</FormLabel>
-                  <Input type='text' value={form.title} key={form.title} onChange={handleInputChange} name="journalTitle"/>
-                </FormControl>
-                <FormControl>
-                <Text mb='8px'>Journal Post Content:</Text>
-                <Textarea
-                  value={form.content}
-                  onChange={handleInputChange}
-                  placeholder='Enter Post Content Here'
-                  size='lg'
-                  name="journalContent"
-                  key={form.content}
-                />
-                </FormControl>
+              <ModalOverlay />
+              <ModalContent>
+                <ModalHeader>New Journal Post</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody>
+                  <FormControl>
+                    <FormLabel>Journal Post Title:</FormLabel>
+                    <Input type='text' value={form.title} key={form.title} onChange={handleInputChange} name="journalTitle" />
+                  </FormControl>
+                  <FormControl>
+                    <Text mb='8px'>Journal Post Content:</Text>
+                    <Textarea
+                      // value={form.text}
+                      // onChange={handleInputChange}
+                      placeholder='Enter Post Content Here'
+                      size='lg'
+                      name="journalText"
+                      // key={form.text}
+                    />
+                  </FormControl>
                   {/* <Lorem count={2} /> */}
               </ModalBody>
               <ModalFooter>
