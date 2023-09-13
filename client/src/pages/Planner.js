@@ -118,7 +118,7 @@ let handleInputChange = (e) => {
       >
         <GridItem className="timeline" rowSpan={1} colSpan={5}>
           <div>
-            <TimelineContainer></TimelineContainer>
+            {/* <TimelineContainer></TimelineContainer> */}
           </div>
         </GridItem>
         <GridItem className="addpost" colSpan={1}>
