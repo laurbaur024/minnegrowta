@@ -3,7 +3,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import {useUserContext} from "../ctx/UserContext";
 import Upload from '../components/Uploader';
-
+import TimelineContainer from "../components/TimelineContainer";
 // Chackra imports
 import {Grid, GridItem, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure,FormControl, FormLabel, Input, Textarea, Text} from '@chakra-ui/react'
 
@@ -40,8 +40,13 @@ export default function Planner() {
 
 //code for modal
 const { isOpen: isJournalOpen , onOpen: onJournalOpen, onClose: onJournalClose } = useDisclosure()
+const [editData, setEditData] = useState({});
 
-
+const {
+  isOpen: isEditModalOpen,
+  onOpen: onEditModalOpen,
+  onClose: onEditModalClose,
+} = useDisclosure();
 
 const onSubmit = async () => {
   try {
@@ -52,12 +57,16 @@ const onSubmit = async () => {
       body: JSON.stringify( {title: form.title, text: form.text, userId: id, image: image } )
     })
     console.log("success")
+    window.location.reload();
   } catch (error) {
     console.log(error)
   }
 }
 
-
+const openEditModal = (entryData) => {
+  setEditData(entryData);
+  onEditModalOpen();
+};
 
 // monitors what is being typed in new journal post form
 const [form, setForm] = useState({title: "", text: ""});
@@ -85,16 +94,38 @@ let handleInputChange = (e) => {
 
   const onDelete = async (event) => {
     try {
-      const response = await fetch(`/api/forum/${event.target.id}`, {
+      const response = await fetch(`/api/journal/${event.target.id}`, {
         method: "DELETE",
       });
       console.log(response)
       const data = await response.json();
       setCurrentUser(data.user);
+      window.location.reload();
     } catch (error) {
       console.error("Error fetching user:", error);
     }
   }
+
+  const onUpdate = async () => {
+    try {
+      const response = await fetch(`/api/journal/${editData._id}`, {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          title: editData.title,
+          text: editData.text,
+        }),
+      });
+      if (response.ok) {
+        onEditModalClose();
+        window.location.reload();
+      } else {
+        console.error("Error updating journal entry");
+      }
+    } catch (error) {
+      console.error("Error updating journal entry:", error);
+    }
+  };
 
   return (
     <div className="garden-container">
@@ -102,32 +133,15 @@ let handleInputChange = (e) => {
       <Grid className="garden-content"
       templateRows="auto 1fr"
       >
+        <h2 style={{ whiteSpace: 'nowrap', margin: '20px' }}>Your Timeline</h2>
         <GridItem className="timeline" rowSpan={1} colSpan={5}>
           <div>
-            {/* <TimelineContainer></TimelineContainer> */}
+            <TimelineContainer/>
           </div>
         </GridItem>
         <GridItem className="journal-grid" colSpan={1}>
           <h2 style={{ whiteSpace: 'nowrap' }}>Add Journal Post</h2>
             <Button colorScheme='green' onClick={onJournalOpen}>New Post</Button>
-            <div>
-              {journalPosts?.map((data1) => (
-                <div className="myjournals" key={data1?._id}>
-                  <ul>
-                    <li>
-                      {data1 ? (
-                        <>
-                          {data1.title}
-                          {/* <Button onClick={() => deleteJournalPost(data1?._id)}>Delete Journal Post</Button> */}
-                        </>
-                      ) : (
-                        <p>Post data is not available.</p>
-                      )}
-                    </li>
-                  </ul>
-                </div>
-              ))}
-            </div>
             <Modal isOpen={isJournalOpen} onClose={onJournalClose}>
             <ModalOverlay />
             <ModalContent>
@@ -160,6 +174,42 @@ let handleInputChange = (e) => {
             </ModalContent>
           </Modal>
 
+          <Modal isOpen={isEditModalOpen} onClose={onEditModalClose}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>Edit Journal Entry</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <FormControl>
+                  <FormLabel>Journal Post Title:</FormLabel>
+                  <Input
+                    type="text"
+                    value={editData.title}
+                    onChange={(e) =>
+                      setEditData({ ...editData, title: e.target.value })
+                    }
+                  />
+                </FormControl>
+                <FormControl>
+                  <Text mb="8px">Journal Post Content:</Text>
+                  <Textarea
+                    value={editData.text}
+                    onChange={(e) =>
+                      setEditData({ ...editData, text: e.target.value })
+                    }
+                    placeholder="Enter Post Content Here"
+                    size="lg"
+                  />
+                </FormControl>
+              </ModalBody>
+              <ModalFooter>
+                <Button colorScheme="green" mr={3} onClick={onUpdate}>
+                  Update
+                </Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
+
         </GridItem>
         <GridItem colSpan={4} className="alljournal-grid">
           <h2>My Journal Entries</h2>
@@ -183,9 +233,16 @@ let handleInputChange = (e) => {
                   {`${data.text}`}
                 </div>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <Button colorScheme='orange' onClick={onDelete} id={index._id}>
+                <div className="button-cnt" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <Button colorScheme='orange' onClick={onDelete} id={data._id}>
                     Delete
+                  </Button>
+                  <Button
+                    colorScheme="blue"
+                    onClick={() => openEditModal(data)}
+                    id={data._id}
+                  >
+                    Edit
                   </Button>
                 </div>
               </AccordionPanel>
