@@ -101,7 +101,7 @@ export default function MyFavorites(props) {
                 <Box>
                   <Heading size="md">
                     To add more plants to your favorites, click the magnifying
-                    glass at the top of the screen and type the plant name.
+                    glass at the top of the screen and type a plant name from below.
                     Click the star next to the plants you want to add.
                   </Heading>
                 </Box>
@@ -109,7 +109,7 @@ export default function MyFavorites(props) {
               <UnorderedList textAlign="left" marginLeft="50">
                 <ListItem>Beans</ListItem>
                 <ListItem>Greens</ListItem>
-                <ListItem>Fruits</ListItem>
+                <ListItem>Fruit</ListItem>
                 <ListItem>Flowers</ListItem>
                 <ListItem>Onions</ListItem>
                 <ListItem>Pepper</ListItem>
