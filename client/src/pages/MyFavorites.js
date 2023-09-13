@@ -154,6 +154,7 @@ export default function MyFavorites(props) {
                         border="1px solid lightgrey"
                         borderRadius="8px"
                         paddingBottom="20px"
+                        marginBottom="20px"
                       >
                         <div className="forum-img">
                           <img
@@ -170,6 +171,7 @@ export default function MyFavorites(props) {
                         overflowY="auto"
                         border="1px solid lightgrey"
                         borderRadius="8px"
+                        marginBottom="20px"
                       >
                         <UnorderedList textAlign="left" marginLeft="70">
                           <ListItem>
@@ -201,11 +203,9 @@ export default function MyFavorites(props) {
                         </UnorderedList>
                       </Box>
                       <Box
-                        className="forum-panel"
-                        maxH="400px"
-                        overflowY="auto"
-                        borderRadius="8px"
-                        marginLeft="30"
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
                       >
                         <ButtonGroup spacing="6">
                           <Button
