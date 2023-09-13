@@ -190,39 +190,43 @@ export default function Forum () {
     <div className="forumcontainer">
     <>
         <Grid className="forum-content"
-        h='700px'
+        minHeight='300px'
         templateRows='repeat(1, 1fr)'
         templateColumns='repeat(5, 1fr)'
         gap={4}
       >
         
         <GridItem colSpan={1} className="postgrid">
-          <h2 style={{ whiteSpace: 'nowrap' }}>My Forum Posts</h2>
+          <h2 style={{ whiteSpace: 'nowrap' }}>My Posts</h2>
             <div>
               {forumPosts.map((index) => (
-                <div key={index.title}>
-                  <p>{index.title}</p>
-                  <Button colorScheme='blue' mr={3} onClick={onDelete} id={index._id}>
-                    Delete Entry
-                  </Button>
+                <div className="myposts" key={index.title}>
+                    <Text isTruncated maxW="16ch" flex="1" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">
+                      {index.title}
+                    </Text>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                      <Button colorScheme='orange' onClick={onDelete} id={index._id}>
+                        Delete
+                      </Button>
+                    </div>
                 </div>
               ))}
             </div>
-         
-          <Button onClick={onForumOpen}>Add a New Forum Post</Button>
+          
+          <Button colorScheme='green' onClick={onForumOpen}>New Post</Button>
 
           <Modal isOpen={isForumOpen} onClose={onForumClose}>
             <ModalOverlay />
             <ModalContent>
-              <ModalHeader>New Forum Post</ModalHeader>
+              <ModalHeader>New Florum Post</ModalHeader>
               <ModalCloseButton />
               <ModalBody>
                 <FormControl>
-                  <FormLabel>Forum Post Title:</FormLabel>
+                  <FormLabel>Florum Post Title:</FormLabel>
                   <Input type='text' value={form.title} key={form.title} onChange={handleInputChange} name="forumTitle"/>
                 </FormControl>
                 <FormControl>
-                <Text mb='8px'>Forum Post Content:</Text>
+                <Text mb='8px'>Florum Post Content:</Text>
                 <Textarea
                   value={form.content}
                   onChange={handleInputChange}
@@ -235,7 +239,7 @@ export default function Forum () {
                 
               </ModalBody>
               <ModalFooter>
-                <Button colorScheme='blue' mr={3} onClick={onSubmit}>
+                <Button colorScheme='green' mr={3} onClick={onSubmit}>
                   Submit
                 </Button>
                 <Upload setImage={setImage}/>
@@ -244,8 +248,8 @@ export default function Forum () {
           </Modal>
           
         </GridItem>
-        <GridItem colSpan={4}>
-          <h2>Garden Planner Forum Posts</h2>
+        <GridItem className="allpostgrid" colSpan={4}>
+          <h2>The Florum</h2>
           <h6>See other gardener's tips and tricks, or ask a question!</h6>
           <Accordion allowToggle>
           {results.map((data, index) => (
@@ -267,7 +271,7 @@ export default function Forum () {
                     {`${data.content}`}
                   </div>
                 </Box>
-                <Button onClick={onReplyOpen}>Add Reply</Button>
+                <Button colorScheme='blue' onClick={onReplyOpen}>Add Reply</Button>
                 <p>Replies</p>
                 {data.commentId.map((comment, index) => {
                   return (
@@ -293,7 +297,7 @@ export default function Forum () {
                       key={reply.text}
                     />
                     </FormControl>
-                     
+                      
                     </ModalBody>
                     <ModalFooter>
                       <Button colorScheme='blue' mr={3} onClick={() => onReply(data._id)}>

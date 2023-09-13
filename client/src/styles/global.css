@@ -1,5 +1,15 @@
 
+html, body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 /* === typography ====== */
+
+h1 {
+  margin-left: 20px;
+}
 
 h1,
 h2,
@@ -287,6 +297,22 @@ p {
 .timeline-content {
   position: relative;
   bottom: -190px;
+  justify-content: center;
+  align-items: center;
+}
+
+.timeline-container {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto; 
+}
+
+.timeline-container h2 {
+  margin-right: 800px;
 }
 
 .card-contents {
@@ -332,6 +358,10 @@ p {
 @media (max-width: 936px) {
   .timeline-content {
     margin-top: -100px;
+  }
+
+  .timeline-container h2 {
+    margin-right: 560px;
   }
 
   .container-card {
@@ -383,6 +413,10 @@ p {
     margin-top: -80px;
   }
 
+  .timeline-container h2 {
+    margin-right: 340px;
+  }
+
   .container-card {
     display: flex;
     justify-content: center;
@@ -432,6 +466,10 @@ p {
 @media (max-width: 472px) {
   .timeline-content {
     margin-top: -180px;
+  }
+
+  .timeline-container h2 {
+    margin-right: 250px;
   }
 
   .container-card {
@@ -525,24 +563,37 @@ p {
 
 .forumcontainer {
   margin-top: 20px;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
-  min-height: 265px;
 }
 
 .forum-content {
+  flex-grow: 1;
   margin-top: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .forumgrid {
+  flex-grow: 1;
   margin-bottom: 0px;
   margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.allpostgrid {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
   margin-right: 20px;
 }
 
 .postgrid {
   margin-left: 20px;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -550,6 +601,17 @@ p {
   border: 1px solid transparent;
   padding: 10px;
   border-color: #8f9a9d3f;
+}
+
+.myposts {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
 }
 
 /* modal styles */
@@ -595,6 +657,7 @@ p {
 /* footer styles */
 
 .footer {
+  margin-top: auto;
   background-color: #1d1d1d;
   color: #fff;
   text-align: center;
