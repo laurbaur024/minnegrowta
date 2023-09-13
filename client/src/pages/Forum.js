@@ -163,7 +163,7 @@ export default function Forum () {
               {forumPosts.map((index) => (
                 <div className="myposts" key={index.title}>
                     <Text isTruncated maxW="16ch" flex="1" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">
-                      {index.title}
+                      "{index.title}"
                     </Text>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                       <Button colorScheme='orange' onClick={onDelete} id={index._id}>
