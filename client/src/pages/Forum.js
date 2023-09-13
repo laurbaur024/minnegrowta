@@ -75,6 +75,7 @@ export default function Forum () {
         body: JSON.stringify( {title: form.title, content: form.content, image: image, userId: id} )
       })
       console.log("success")
+      window.location.reload();
     } catch (error) {
       console.log(error)
     }
@@ -106,6 +107,7 @@ export default function Forum () {
       })
       console.log(reply)
       console.log("success")
+      window.location.reload();
     } catch (error) {
       console.log(error)
     }
