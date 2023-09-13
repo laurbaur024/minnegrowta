@@ -9,7 +9,7 @@ import {Grid, GridItem, Accordion, AccordionItem, AccordionButton, AccordionPane
 export default function Forum () {
   const { currUser } = useUserContext();
   const id = currUser?.data?._id;
-
+  const [comment, setComment] = useState('');
   const isUserVerified = !!id;
   const [results, setResults] = useState([]);
   const [ image, setImage] = useState('')
@@ -19,7 +19,6 @@ export default function Forum () {
   const [ forumPosts, setForumPosts ] = useState([]);
   const  [ okToRender, setOkToRender ] = useState(false)
   const [deletePost, setdeletePost] = useState([]);
-
    // code for getting all forum posts, useState used and fetch request from api used to bring all forum posts from api and turned into array of objects we can map over and display on page
   const searchForum = async () => {
     const response = await fetch("/api/forum");
@@ -139,11 +138,31 @@ export default function Forum () {
       console.log(response)
       const data = await response.json();
       setCurrentUser(data.user);
+      window.location.reload();
     } catch (error) {
       console.error("Error fetching user:", error);
     }
   }
 
+  const onDeleteComment = async (commentId) => {
+    if (commentId) {
+      try {
+        const response = await fetch(`/api/comment/${commentId}`, {
+          method: "DELETE",
+        });
+  
+        if (response.status === 200) {
+          const data = await response.json();
+          setCurrentUser(data.user);
+          window.location.reload();
+        } else {
+          console.error("Error deleting comment:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error deleting comment:", error);
+      }
+    }
+  };
 
   if( !okToRender ) return <p>Loading...</p>
 
@@ -216,7 +235,7 @@ export default function Forum () {
           {results.map((data, index) => (
             <AccordionItem key={index}>
               <h2>
-                <AccordionButton >
+                <AccordionButton>
                   <Box as="span" flex='1' textAlign='left' id={data._id} key={data.title} onClick={handleAccordianClickChange}>
                     {`${data.title}`}
                   </Box>
@@ -233,16 +252,19 @@ export default function Forum () {
                   </div>
                 </Box>
                 <div className="forum-reply">
-                <p>Replies:</p>
-                <Button colorScheme='blue' onClick={onReplyOpen}>Add Reply</Button>
+                  <p>Replies:</p>
+                  <Button colorScheme='blue' onClick={onReplyOpen}>Add Reply</Button>
                 </div>
-                {data.commentId.map((comment, index) => {
-                  return (
-                    <div>
-                      {comment.text}
-                    </div>
-                  )
-                })}
+                {data.commentId.map((comment, index) => (
+                  <div className="replies" key={comment.id}>
+                    <span>"{comment.text}"</span>
+                    {comment.userId === currUser?.data?._id && (
+                      <Button colorScheme='orange' onClick={() => onDeleteComment(comment._id)}>
+                        Delete
+                      </Button>
+                    )}
+                  </div>
+                ))}
                 <Modal isOpen={isReplyOpen} onClose={onReplyClose}>
                   <ModalOverlay />
                   <ModalContent>
