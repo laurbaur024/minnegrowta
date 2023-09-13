@@ -1,7 +1,7 @@
 
 
 
-import { Card, CardBody, Button, Heading, Stack, StackDivider, Box, UnorderedList, ListItem, Flex} from '@chakra-ui/react'
+import { Grid, Card, CardBody, Button, CardHeader, Heading, Stack, StackDivider, Box, UnorderedList, ListItem, Flex} from '@chakra-ui/react'
 import { useUserContext } from "../ctx/UserContext"
 import "../styles/global.css";
 
@@ -14,7 +14,7 @@ export default function PlantSearch ({search}) {
 
   const { currUser } = useUserContext();
   const id = currUser?.data?._id;
- 
+  
   //css classes
   const bold = {
     fontWeight: 'bold'
@@ -68,43 +68,46 @@ export default function PlantSearch ({search}) {
 
   
   return (
-    <Flex width={"100vw"} height={"90vh"} alignContent={"center"} justifyContent={"center"}>
-
-      {search ? (
-        search.map(function (plant){
-          return (
-            <Card style={card} >
-              <CardBody>
-                <Stack divider={<StackDivider />} spacing='4'>
-                  <Box>
-                    <Heading size='s' textTransform='uppercase'> {plant.name} </Heading>
-                  </Box>
-                  <Box>
-                    <img style={img} src={plant.image} alt='Searched Plant'/>
-                  </Box>
-                  <Box>
-                    <UnorderedList>
-                      <ListItem><span key= {plant.type} style={bold}>Type: </span>{plant.type}</ListItem>
-                      <ListItem><span key= {plant.sowSpace} style={bold}>Sow Space: </span>{plant.sowSpace}</ListItem>
-                      <ListItem><span key= {plant.sun} style={bold}>Sun: </span>{plant.sun}</ListItem>
-                      <ListItem><span key= {plant.zone} style={bold}>Grow Zone: </span>{plant.zone}</ListItem>
-                      <ListItem><span key= {plant.maturity} style={bold}>Maturity: </span>{plant.maturity} days</ListItem>
-                    </UnorderedList>
-                  </Box>
-                </Stack>
-                <div>
-                  <Button style={button} onClick= {(e) => addFavPlant(e, plant._id)} colorScheme='orange'>Add to Favorites</Button>
-                  <Button style={button} onClick={(e) => addGardenPlant(e, plant._id)}colorScheme='orange'>Add to Garden</Button>
-                </div>
-              </CardBody>
-          </Card>
-          )
-        }) ) : (
-          <p style={{marginTop: '20px', textAlign: 'center', fontSize: '40px'}}>Click the<br/> magnifying glass <br/> to search <br/> for plants...</p>
-        )}
-
+    <div className="search-content">
+    <Flex width={"100vw"} alignContent={"center"} justifyContent={"center"}>
+      <Grid
+        templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
+        gap={4}
+      >
+      {search?.map(function (plant){
+        return (
+          <Box key={plant._id} width={['100%', '100%', '100%', '100%']}>
+          <Card style={card}>
+            <CardBody>
+              <Stack divider={<StackDivider />} spacing='3'>
+                <Box>
+                  <Heading size='s' textTransform='uppercase'> {plant.name} </Heading>
+                </Box>
+                <Box>
+                  <img style={img} src={plant.image} alt='Searched Plant'/>
+                </Box>
+                <Box>
+                  <UnorderedList>
+                    <ListItem><span key= {plant.type} style={bold}>Type: </span>{plant.type}</ListItem>
+                    <ListItem><span key= {plant.sowSpace} style={bold}>Sow Space: </span>{plant.sowSpace}</ListItem>
+                    <ListItem><span key= {plant.sun} style={bold}>Sun: </span>{plant.sun}</ListItem>
+                    <ListItem><span key= {plant.zone} style={bold}>Grow Zone: </span>{plant.zone}</ListItem>
+                    <ListItem><span key= {plant.maturity} style={bold}>Maturity: </span>{plant.maturity} days</ListItem>
+                  </UnorderedList>
+                </Box>
+              </Stack>
+              <div className="buttonplanner">
+                <Button style={button} onClick={(e) => addGardenPlant(e, plant._id)} colorScheme='orange'>Add to Garden</Button>
+                <Button style={{ backgroundColor: '#85ae5a' }} onClick= {(e) => addFavPlant(e, plant._id)}><i className="bi bi-star search"></i></Button>
+              </div>
+            </CardBody>
+        </Card>
+        </Box>
+        )
+      })}
+      </Grid>
     </Flex>    
-    
+    </div>
     )
 }
 

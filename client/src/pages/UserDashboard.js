@@ -21,9 +21,11 @@ const App = () => {
           <CardBody className="timeline-container" style={margin}>
               <div>
                 <h2>Your Timeline</h2>
+                <div className="dashtimeline">
                 <TimelineContainer></TimelineContainer>
+                </div>
               </div>
-            <Button>Timeline</Button>
+            <Button style={{ backgroundColor: "#F8D589", color: "#09302F", marginTop: "34px", width: "40%" }}>Click Here to go to Your Timeline!</Button>
           </CardBody>
         </Stack>
       </Card>
