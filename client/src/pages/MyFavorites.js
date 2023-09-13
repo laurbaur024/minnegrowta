@@ -1,7 +1,23 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../ctx/UserContext";
-import {Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, ButtonGroup, Card, CardHeader,Heading, Button, Box, UnorderedList, ListItem, Grid, GridItem,} from "@chakra-ui/react";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+  ButtonGroup,
+  Card,
+  CardHeader,
+  Heading,
+  Button,
+  Box,
+  UnorderedList,
+  ListItem,
+  Grid,
+  GridItem,
+} from "@chakra-ui/react";
 
 export default function MyFavorites(props) {
   const bold = {
@@ -83,17 +99,31 @@ export default function MyFavorites(props) {
             <Card bg="#85AE5A" size="lg">
               <CardHeader>
                 <Heading size="md">
-                  Click below to search for more plants
+                  To add more plants to your favorites, click the magnifying
+                  glass at the top of the screen and type the plant name. Click
+                  the star next to the plants you want to add.
                 </Heading>
               </CardHeader>
-              <GridItem colSpan={1} bg="#85AE5A" m="4" textAlign="center">
+              <UnorderedList textAlign="left">
+                <ListItem>Beans</ListItem>
+                <ListItem>Greens</ListItem>
+                <ListItem>Fruits</ListItem>
+                <ListItem>Flowers</ListItem>
+                <ListItem>Onions</ListItem>
+                <ListItem>Pepper</ListItem>
+                <ListItem>Potato</ListItem>
+                <ListItem>Root</ListItem>
+                <ListItem>Tomato</ListItem>
+                <ListItem>Vegetable</ListItem>
+              </UnorderedList>
+              {/* <GridItem colSpan={1} bg="#85AE5A" m="4" textAlign="center">
                 <br />
                 Return to Plant Search
                 <br />
                 <Button onClick={handleClick} colorScheme="orange">
                   Return
                 </Button>
-              </GridItem>
+              </GridItem> */}
             </Card>
           </GridItem>
 
@@ -145,7 +175,7 @@ export default function MyFavorites(props) {
                         </ListItem>
                         <ListItem>
                           <span style={bold}>Maturity: </span>{" "}
-                          {`${data.maturity}`}
+                          {`${data.maturity}`} days
                         </ListItem>
                       </UnorderedList>
 
