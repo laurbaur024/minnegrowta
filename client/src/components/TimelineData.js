@@ -36,8 +36,8 @@ export default function (groupCount, itemCount, daysInPast) {
       id: 1,
       group: 1,
       title: "Random title",
-      start_time: moment().add(-0.5, "hour"),
-      end_time: moment().add(0.5, "hour"),
+      start_time: 1,
+      end_time: 2,
       canMove: true,
       canResize: false,
       canChangeGroup: false
