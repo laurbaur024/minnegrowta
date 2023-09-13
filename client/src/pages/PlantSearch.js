@@ -3,6 +3,8 @@
 
 import { Grid, Card, CardBody, Button, CardHeader, Heading, Stack, StackDivider, Box, UnorderedList, ListItem, Flex} from '@chakra-ui/react'
 import { useUserContext } from "../ctx/UserContext"
+import "../styles/global.css";
+
 
 
 
@@ -12,8 +14,7 @@ export default function PlantSearch ({search}) {
 
   const { currUser } = useUserContext();
   const id = currUser?.data?._id;
-
-
+  
   //css classes
   const bold = {
     fontWeight: 'bold'
@@ -64,9 +65,6 @@ export default function PlantSearch ({search}) {
     const result = await response.json();
     console.log(result);
   }
-
-
-
 
   
   return (
