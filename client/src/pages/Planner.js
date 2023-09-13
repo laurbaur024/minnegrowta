@@ -140,9 +140,12 @@ export default function Planner() {
                 <TimelineContainer />
               </div>
             </GridItem>
-            <GridItem className="journal-grid" colSpan={1}>
-              <h2 style={{ whiteSpace: 'nowrap' }}>Add Journal Post</h2>
+            <GridItem colSpan={5} className="alljournal-grid">
+              <div className="journals">
+              <div className="entry-header">
+              <h2>My Journal Entries</h2>
               <Button colorScheme='green' onClick={onJournalOpen}>New Post</Button>
+              </div>
               <Modal isOpen={isJournalOpen} onClose={onJournalClose}>
                 <ModalOverlay />
                 <ModalContent>
@@ -209,17 +212,13 @@ export default function Planner() {
                   </ModalFooter>
                 </ModalContent>
               </Modal>
-
-            </GridItem>
-            <GridItem colSpan={4} className="alljournal-grid">
-              <h2>My Journal Entries</h2>
               <Accordion allowToggle>
                 {journalPosts.map((data, index) => (
-                  <AccordionItem key={data._id}>
+                  <AccordionItem key={data._id} >
                     <h2>
-                      <AccordionButton>
-                        <Box as="span" flex='1' textAlign='left'>
-                          {`${data.title}`}
+                      <AccordionButton style={{ marginBottom: '-20px' }}>
+                        <Box as="span" flex='1' marginLeft='5px' textAlign='left'>
+                          "{`${data.title}`}"
                         </Box>
                         <AccordionIcon />
                       </AccordionButton>
@@ -230,14 +229,15 @@ export default function Planner() {
                           <img src={`${data.image}`} alt="image of plants" width="500" height="300"></img>
                         </div>
                         <div className="journal-cnt">
-                          {`${data.text}`}
+                          "{`${data.text}`}"
                         </div>
                       </div>
                       <div className="button-cnt" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <Button colorScheme='orange' onClick={onDelete} id={data._id}>
+                        <Button style={{ marginTop: "15px" }} colorScheme='orange' onClick={onDelete} id={data._id}>
                           Delete
                         </Button>
                         <Button
+                          style={{ marginTop: "15px" }}
                           colorScheme="blue"
                           onClick={() => openEditModal(data)}
                           id={data._id}
@@ -249,6 +249,7 @@ export default function Planner() {
                   </AccordionItem>
                 ))}
               </Accordion>
+              </div>
             </GridItem>
           </Grid>
         </>
