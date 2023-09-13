@@ -1,13 +1,13 @@
 const connection = require("../config/connection");
 
 const comments = require("./comments.json");
-const flowers = require("./flowers.json");
+// const flowers = require("./flowers.json");
 const forum = require("./forum.json");
 const journal = require("./journal.json");
 const plants = require("./plants.json");
 const users = require("./users.json");
 
-const { Comment, Flower, Forum, Journal, Plant, User } = require("../models");
+const { Comment, Forum, Journal, Plant, User } = require("../models");
 
 connection.once("open", async () => {
   let plantsDB = await connection.db
@@ -21,16 +21,16 @@ connection.once("open", async () => {
     throw new Error(err);
   }
 
-  let flowersDB = await connection.db
-    .listCollections({ name: "flowers" })
-    .toArray();
-  if (flowersDB.length) await connection.dropCollection("flowers");
-  let flowersInserted;
-  try {
-    flowersInserted = await Flower.insertMany(flowers);
-  } catch (err) {
-    throw new Error(err);
-  }
+  // let flowersDB = await connection.db
+  //   .listCollections({ name: "flowers" })
+  //   .toArray();
+  // if (flowersDB.length) await connection.dropCollection("flowers");
+  // let flowersInserted;
+  // try {
+  //   flowersInserted = await Flower.insertMany(flowers);
+  // } catch (err) {
+  //   throw new Error(err);
+  // }
 
   let usersDB = await connection.db
     .listCollections({ name: "users" })
