@@ -7,6 +7,11 @@ import { ChakraProvider } from '@chakra-ui/react';
 import TimelineContainer from './components/TimelineContainer';
 
 
+import { render } from "react-dom";
+import "react-calendar-timeline/lib/Timeline.css";
+// import "./style.css";
+
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/global.css'
 import { useState } from "react";
@@ -31,7 +36,7 @@ function App() {
                   <Route path="/planner" element={<Planner />} />
                   <Route path="/search" element={<PlantSearch search={search}/>} />
                   <Route path="/dashboard" element={<UserDashboard/>} />
-                  <Route path="/timeline" element={<TimelineContainer />} />
+                  <Route path="/timeline" element={<TimelineContainer/>} />
                 </Routes>
                 </div>
               <Footer />
