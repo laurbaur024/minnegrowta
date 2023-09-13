@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../ctx/UserContext";
-// import { useNavigate, useLocation } from "react-router-dom";
 import {
   Accordion,
   AccordionItem,
@@ -55,10 +54,6 @@ export default function MyFavorites(props) {
       `./api/user/${id}/favorites-remove/${plantId}`,
       {
         method: "PUT",
-        // body: JSON.stringify({
-        //   _id: id,
-        //   plantId: "65006b471b2ab4730c49f3b6",
-        // }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -72,7 +67,6 @@ export default function MyFavorites(props) {
         }
       }),
     ]);
-    // window.location.reload();
     console.log(result);
   };
 
