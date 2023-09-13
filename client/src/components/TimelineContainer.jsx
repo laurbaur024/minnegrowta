@@ -25,19 +25,20 @@ const keys = {
 
 export default function App() {
 
-  const { currUser } = useUserContext();
-  const id = currUser?.data?._id;
+  // const { currUser } = useUserContext();
+  // const id = currUser?.data?._id;
 
-  const [ setResults] = useState([]);
-  const searchFavorites = async () => {
-    const response = await fetch(`/api/user/myfavorites/${id}`);
-    const data = await response.json();
-    setResults(data.payload.favPlant);
-    console.log(data);
-  };
-  useEffect(() => {
-    searchFavorites();    
-  }, [setResults]);
+  // const [ results, setResults] = useState([]);
+  // const searchFavorites = async () => {
+  //   const response = await fetch(`/api/user/myfavorites/${id}`);
+  //   const data = await response.json();
+  //   console.log(data)
+  //   setResults(data);
+  //   console.log(data);
+  // };
+  // useEffect(() => {
+  //   searchFavorites();    
+  // }, [setResults]);
 
   // Use the useState hook to manage state
   const [groups, setGroups] = useState([]);

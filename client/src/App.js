@@ -8,7 +8,7 @@ import TimelineContainer from './components/TimelineContainer';
 
 
 import { render } from "react-dom";
-import "react-calendar-timeline/lib/Timeline.css";
+// import "react-calendar-timeline/lib/Timeline.css";
 // import "./style.css";
 
 
