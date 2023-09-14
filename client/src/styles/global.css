@@ -293,6 +293,7 @@ p {
 }
 
 .dashtimeline {
+  padding: 10px;
   border-radius: 8px;
   border: 1px solid lightgrey;
 }
@@ -565,8 +566,13 @@ p {
 /* fav styles */
 
 .fav-content {
-  margin-top: 1%;
-  margin-bottom: 35%;
+  display: flex;
+  margin-top: 30px;
+  margin-bottom: 30%;
+  flex-grow: 1;
+  flex-direction: column;
+  height: 100%;
+  background-color: "#F2EFE0" !important;
 }
 
 /* planner styles */
@@ -575,9 +581,9 @@ p {
   padding: 10px;
   border-radius: 8px;
   border: 1px solid lightgrey;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 10%;
   margin-bottom: 20px;
+  width: 80%;
 }
 
 .planner-title {
@@ -588,15 +594,24 @@ p {
   margin-bottom: 20px;
 }
 
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.alljournal-grid Button {
+  margin-bottom: 15px;
+}
+
 .journal-panel {
-  padding: 10px;
-  margin: 10px;
+  margin-bottom: 5px;
 }
 
 .journal-panel Button {
   width: 100px;
-  margin-right: 30px;
-  margin-left: 30px;
+  margin-right: 55px;
+  margin-left: 55px;
 }
 
 .journal-img {
@@ -622,7 +637,14 @@ p {
 
 .journal-cnt {
   font-size: 20px;
-  margin: 10px;
+  margin: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.button-cnt {
+  border-radius: 8px;
+  border: 1px solid lightgrey;
 }
 
 .garden-container {
@@ -656,14 +678,12 @@ p {
   margin-left: 20px;
 }
 
-.journal-grid {
-  margin-left: 20px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
+.journals {
+  width: 83.5%;
+  margin: 0 auto;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
   border-radius: 8px;
   border: 1px solid lightgrey;
 }
@@ -700,8 +720,7 @@ p {
 }
 
 .forum-panel {
-  padding: 10px;
-  margin: 10px;
+  margin-bottom: 5px;
 }
 
 .forum-img {
@@ -758,7 +777,7 @@ p {
 .forum-content {
   flex-grow: 1;
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: -5px;
   display: flex;
   flex-direction: column;
 }
@@ -768,10 +787,17 @@ p {
   display: flex;
   flex-direction: column;
   margin-right: 20px;
+  margin-bottom: 56px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 8px;
+  border: 1px solid lightgrey;
 }
 
 .postgrid {
   margin-left: 20px;
+  margin-bottom: 56px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -791,6 +817,27 @@ p {
   font-size: 18px;
   font-weight: bold;
   color: #333;
+}
+
+@media (max-width: 800px) {
+  .forum-content {
+    grid-template-columns: 1fr !important;
+  }
+
+  .postgrid,
+  .allpostgrid {
+    grid-column: span 1 !important;
+  }
+
+  .postgrid {
+    margin-left: 0%;
+    margin: 10px;
+  }
+
+  .allpostgrid {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 }
 
 /* modal styles */
@@ -881,7 +928,7 @@ p {
 }
 
 .footer-content a:hover {
-  color: #fff;
+  color: #F8D589;
 }
 
 .footer-info {

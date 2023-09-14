@@ -17,6 +17,7 @@ import {
   ListItem,
   Grid,
   GridItem,
+  AbsoluteCenter,
 } from "@chakra-ui/react";
 
 export default function MyFavorites(props) {
@@ -90,16 +91,18 @@ export default function MyFavorites(props) {
     <div className="fav-content">
       <>
         <Grid
-          h="500"
+          h="500px"
           templateRows="repeat(2, 1fr)"
-          templateColumns="repeat(5, 1fr)"
+          templateColumns="repeat(3, 1fr)"
           gap={4}
         >
-          <GridItem colSpan={1} bg="#85AE5A" m="4" textAlign="center">
-            <Card bg="#85AE5A" size="lg">
+          {/* <GridItem colSpan={1} bg="#85AE5A" m="4" textAlign="center"> */}
+          <GridItem colSpan={1}>
+            {/* <Card bg="#85AE5A" size="lg"> */}
+            <Card size="lg">
               <CardHeader>
                 <Box>
-                  <Heading size="md">
+                  <Heading size="md" padding="5px">
                     To add more plants to your favorites, click the magnifying
                     glass at the top of the screen and type a plant name from below.
                     Click the star next to the plants you want to add.
@@ -128,7 +131,6 @@ export default function MyFavorites(props) {
               </GridItem> */}
             </Card>
           </GridItem>
-
           <GridItem colSpan={4}>
             <h2 className='planner-title'>My Favorite Plants</h2>
             <h6>Click on a plant name to see more details</h6>
@@ -144,57 +146,81 @@ export default function MyFavorites(props) {
                         <AccordionIcon />
                       </AccordionButton>
                     </h2>
-                    <AccordionPanel pb={4}>
-                      <div>
-                        <img
-                          src={`${data.image}`}
-                          alt="image of plants"
-                          width="500"
-                          height="300"
-                        ></img>
-                      </div>
-                      <UnorderedList>
-                        <ListItem>
-                          <span style={bold}>Type: </span> {`${data.type}`}
-                        </ListItem>
-                        <ListItem>
-                          <span style={bold}>Sow Space: </span>{" "}
-                          {`${data.sowSpace}`}
-                        </ListItem>
-                        <ListItem>
-                          <span style={bold}>Climbing: </span>{" "}
-                          {`${data.climbing}`}
-                        </ListItem>
-                        <ListItem>
-                          <span style={bold}>Sun: </span> {`${data.sun}`}
-                        </ListItem>
-                        <ListItem>
-                          <span style={bold}>Grow Zones: </span>{" "}
-                          {`${data.zone}`}
-                        </ListItem>
-                        <ListItem>
-                          <span style={bold}>Annual: </span> {`${data.annual}`}
-                        </ListItem>
-                        <ListItem>
-                          <span style={bold}>Maturity: </span>{" "}
-                          {`${data.maturity}`} days
-                        </ListItem>
-                      </UnorderedList>
-
-                      <ButtonGroup spacing="6">
-                        <Button
-                          colorScheme="orange"
-                          onClick={(e) => removeFavPlant(e, data._id)}
-                        >
-                          Remove from Favorites
-                        </Button>
-                        <Button
-                          colorScheme="orange"
-                          onClick={(e) => addGardenPlant(e, data._id)}
-                        >
-                          Add to Garden
-                        </Button>
-                      </ButtonGroup>
+                    <AccordionPanel className="forum-panel" pb={4}>
+                      <Box
+                        maxH="400px"
+                        overflowY="auto"
+                        border="1px solid lightgrey"
+                        borderRadius="8px"
+                        paddingBottom="20px"
+                        marginBottom="20px"
+                      >
+                        <div className="forum-img">
+                          <img
+                            src={`${data.image}`}
+                            alt="image of plants"
+                            width="500"
+                            height="300"
+                          ></img>
+                        </div>
+                      </Box>
+                      <Box
+                        className="forum-panel"
+                        maxH="400px"
+                        overflowY="auto"
+                        border="1px solid lightgrey"
+                        borderRadius="8px"
+                        marginBottom="20px"
+                      >
+                        <UnorderedList textAlign="left" marginLeft="70">
+                          <ListItem>
+                            <span style={bold}>Type: </span> {`${data.type}`}
+                          </ListItem>
+                          <ListItem>
+                            <span style={bold}>Sow Space: </span>{" "}
+                            {`${data.sowSpace}`}
+                          </ListItem>
+                          <ListItem>
+                            <span style={bold}>Climbing: </span>{" "}
+                            {`${data.climbing}`}
+                          </ListItem>
+                          <ListItem>
+                            <span style={bold}>Sun: </span> {`${data.sun}`}
+                          </ListItem>
+                          <ListItem>
+                            <span style={bold}>Grow Zones: </span>{" "}
+                            {`${data.zone}`}
+                          </ListItem>
+                          <ListItem>
+                            <span style={bold}>Annual: </span>{" "}
+                            {`${data.annual}`}
+                          </ListItem>
+                          <ListItem>
+                            <span style={bold}>Maturity: </span>{" "}
+                            {`${data.maturity}`} days
+                          </ListItem>
+                        </UnorderedList>
+                      </Box>
+                      <Box
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <ButtonGroup spacing="6">
+                          <Button
+                            colorScheme="orange"
+                            onClick={(e) => removeFavPlant(e, data._id)}
+                          >
+                            Remove from Favorites
+                          </Button>
+                          <Button
+                            colorScheme="orange"
+                            onClick={(e) => addGardenPlant(e, data._id)}
+                          >
+                            Add to Garden
+                          </Button>
+                        </ButtonGroup>
+                      </Box>
                     </AccordionPanel>
                   </AccordionItem>
                 ))}
