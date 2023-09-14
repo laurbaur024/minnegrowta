@@ -35,8 +35,7 @@ const SignupPage = (props) => {
         marginLeft: "auto",
         marginRight: "auto",
         background: "#F2EFE0",
-        minHeight: "140vh",
-        
+        height: "700px"
       }}
     >
       <SimpleGrid
