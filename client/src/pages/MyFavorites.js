@@ -17,6 +17,7 @@ import {
   ListItem,
   Grid,
   GridItem,
+  Center,
   AbsoluteCenter,
 } from "@chakra-ui/react";
 
@@ -163,7 +164,7 @@ export default function MyFavorites(props) {
                         borderRadius="8px"
                         mb="1em"
                       >
-                        <UnorderedList textAlign="left" ml="2em">
+                        <UnorderedList styleType="none" textAlign="center">
                           <ListItem>
                             <span style={bold}>Type: </span> {`${data.type}`}
                           </ListItem>
