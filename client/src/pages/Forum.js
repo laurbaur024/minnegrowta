@@ -248,8 +248,9 @@ export default function Forum () {
                     {`${data.content}`}
                   </div>
                 </Box>
+                <div className="replybox">
                 <div className="forum-reply">
-                  <p>Replies</p>
+                  <p>Replies:</p>
                   <Button colorScheme='blue' onClick={onReplyOpen}>Add Reply</Button>
                 </div>
                 {data.commentId.map((comment, index) => (
@@ -262,6 +263,7 @@ export default function Forum () {
                     )}
                   </div>
                 ))}
+                </div>
                 <Modal isOpen={isReplyOpen} onClose={onReplyClose}>
                   <ModalOverlay />
                   <ModalContent>

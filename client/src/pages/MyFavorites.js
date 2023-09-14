@@ -91,17 +91,17 @@ export default function MyFavorites(props) {
     <div className="fav-content">
       <>
         <Grid
-          h="500px"
-          templateRows="repeat(2, 1fr)"
+          className="favgrid"
+          templateRows="repeat(1, 1fr)"
           templateColumns="repeat(3, 1fr)"
           gap={4}
         >
           {/* <GridItem colSpan={1} bg="#85AE5A" m="4" textAlign="center"> */}
           <GridItem colSpan={1}>
             {/* <Card bg="#85AE5A" size="lg"> */}
-            <Card size="lg">
-              <CardHeader>
-                <Box>
+            <Card className="favleftcard" size="lg">
+              <CardHeader className="pvanish">
+                <Box className="contentz">
                   <Heading size="md" padding="5px">
                     To add more plants to your favorites, click the magnifying
                     glass at the top of the screen and type a plant name from below.
@@ -109,7 +109,8 @@ export default function MyFavorites(props) {
                   </Heading>
                 </Box>
               </CardHeader>
-              <UnorderedList textAlign="left" marginLeft="50">
+              <h5>Popular Search Terms:</h5>
+              <UnorderedList className="termlist">
                 <ListItem>Beans</ListItem>
                 <ListItem>Greens</ListItem>
                 <ListItem>Fruit</ListItem>
@@ -132,13 +133,15 @@ export default function MyFavorites(props) {
             </Card>
           </GridItem>
 
-          <GridItem colSpan={1}>
+          <GridItem className="favrightcard"
+            rowSpan={1}
+            colSpan={2}>
             <h2>My Favorite Plants</h2>
             <h6>Click on a plant name to see more details</h6>
             <Accordion allowToggle>
               {results &&
                 results.map((data) => (
-                  <AccordionItem>
+                  <AccordionItem className="fav-acc">
                     <h2>
                       <AccordionButton>
                         <Box as="span" flex="1" textAlign="left">
@@ -147,33 +150,33 @@ export default function MyFavorites(props) {
                         <AccordionIcon />
                       </AccordionButton>
                     </h2>
-                    <AccordionPanel className="forum-panel" pb={4}>
+                    <AccordionPanel className="forum-panel" pb="1em">
                       <Box
                         maxH="400px"
                         overflowY="auto"
                         border="1px solid lightgrey"
                         borderRadius="8px"
-                        paddingBottom="20px"
-                        marginBottom="20px"
+                        pb="1em"
+                        mb="1em"
                       >
                         <div className="forum-img">
                           <img
                             src={`${data.image}`}
                             alt="image of plants"
-                            width="500"
-                            height="300"
+                            width="100%"
+                            height="auto"
                           ></img>
                         </div>
                       </Box>
                       <Box
                         className="forum-panel"
-                        maxH="400px"
+                        maxH="20em"
                         overflowY="auto"
                         border="1px solid lightgrey"
                         borderRadius="8px"
-                        marginBottom="20px"
+                        mb="1em"
                       >
-                        <UnorderedList textAlign="left" marginLeft="70">
+                        <UnorderedList textAlign="left" ml="2em">
                           <ListItem>
                             <span style={bold}>Type: </span> {`${data.type}`}
                           </ListItem>

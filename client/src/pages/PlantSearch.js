@@ -33,6 +33,8 @@ export default function PlantSearch({ search }) {
     width: "75%",
     minHeight: "650px",
     minWidth: "265px",
+    borderRadius: "8px",
+    border: "2px solid rgb(0, 0, 0)",
   };
   const img = {
     borderRadius: "20px",
