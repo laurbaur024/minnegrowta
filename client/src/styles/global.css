@@ -709,10 +709,8 @@ p {
   margin-bottom: 5px;
 }
 
-.journal-panel Button {
-  width: 100px;
-  margin-right: 55px;
-  margin-left: 55px;
+.journals Button {
+  margin-top: -10px;
 }
 
 .journal-img {
@@ -746,6 +744,14 @@ p {
 .button-cnt {
   border-radius: 8px;
   border: 1px solid lightgrey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-cnt Button {
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .garden-container {
@@ -771,17 +777,13 @@ p {
   grid-template-rows: repeat(3, 1fr);
 }
 
-.alljournal-grid {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  margin-right: 20px;
-  margin-left: 20px;
-}
-
 .journals {
-  width: 83.5%;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  flex-direction: column;
+  width: 80%;
+  margin-left: 10%;
   padding-top: 10px;
   padding-right: 10px;
   padding-left: 10px;
@@ -798,6 +800,12 @@ p {
   font-size: 18px;
   font-weight: bold;
   color: #333;
+}
+
+.planneracc h2 {
+  font-size: 20px;
+  flex-grow: 1;
+  width: 100%;
 }
 
 /* forum styles */
@@ -878,7 +886,7 @@ p {
 .forum-content {
   flex-grow: 1;
   margin-top: 10px;
-  margin-bottom: -5px;
+  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
 }
@@ -888,7 +896,6 @@ p {
   display: flex;
   flex-direction: column;
   margin-right: 20px;
-  margin-bottom: 56px;
   padding-top: 10px;
   padding-right: 10px;
   padding-left: 10px;
@@ -898,7 +905,6 @@ p {
 
 .postgrid {
   margin-left: 20px;
-  margin-bottom: 56px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
