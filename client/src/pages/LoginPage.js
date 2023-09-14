@@ -33,7 +33,7 @@ const LoginPage = () => {
           marginLeft: "auto",
           marginRight: "auto",
           background: "#F2EFE0",
-          minHeight: "120vh"
+          height: "700px"
         }}
       >
         <SimpleGrid

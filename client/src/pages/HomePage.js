@@ -4,10 +4,6 @@ import { Button } from "@chakra-ui/react";
 
 const HomePage = () => {
 
-  const img = {
-    width: '100%'
-  }
-
   const buttonStyles = {
     position: "fixed",
     top: 150,
@@ -25,7 +21,15 @@ const HomePage = () => {
           </h1>
       </div>
       <div className="img-container">
-        <img className="img" style={img} src={Background} alt='garden'/>
+        <div
+          className="img"
+          style={{
+            backgroundImage: `url(${Background})`,
+            backgroundSize: 'cover',
+            width: '100%',
+            height: '50vh',
+          }}
+        ></div>
       </div>
       <div className="home-container">
         <div style={{ position: "fixed" }}>

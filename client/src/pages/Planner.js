@@ -140,12 +140,50 @@ export default function Planner() {
                 <TimelineContainer />
               </div>
             </GridItem>
-            <GridItem colSpan={5} className="alljournal-grid">
-              <div className="journals">
+            <GridItem colSpan={5} className="journals">
               <div className="entry-header">
-              <h2>My Journal Entries</h2>
+              <h2 className='planner-title' >My Journal Entries</h2>
               <Button colorScheme='green' onClick={onJournalOpen}>New Post</Button>
               </div>
+              <GridItem className="alljournal-grid">
+              <Accordion allowToggle class="planneracc">
+                {journalPosts.map((data, index) => (
+                  <AccordionItem key={data._id} >
+                    <h2>
+                      <AccordionButton style={{ marginBottom: '-20px', marginTop: "0px" }}>
+                        <Box as="span" flex='1' marginLeft='5px' textAlign='left'>
+                          "{`${data.title}`}"
+                        </Box>
+                        <AccordionIcon />
+                      </AccordionButton>
+                    </h2>
+                    <AccordionPanel className="journal-panel" pb={4}>
+                      <div className="img-cnt">
+                        <div className="journal-img">
+                          <img src={`${data.image}`} alt="plants" width="500" height="300"></img>
+                        </div>
+                        <div className="journal-cnt">
+                          "{`${data.text}`}"
+                        </div>
+                      </div>
+                      <div className="button-cnt">
+                        <Button style={{ marginTop: "15px", width: "100px" }} colorScheme='orange' onClick={onDelete} id={data._id}>
+                          Delete
+                        </Button>
+                        <Button
+                          style={{ marginTop: "15px", width: "100px" }}
+                          colorScheme="blue"
+                          onClick={() => openEditModal(data)}
+                          id={data._id}
+                        >
+                          Edit
+                        </Button>
+                      </div>
+                    </AccordionPanel>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+              </GridItem>
               <Modal isOpen={isJournalOpen} onClose={onJournalClose}>
                 <ModalOverlay />
                 <ModalContent>
@@ -212,48 +250,7 @@ export default function Planner() {
                   </ModalFooter>
                 </ModalContent>
               </Modal>
-            </GridItem>
-            <GridItem colSpan={4} className="alljournal-grid">
-              <h2 className='planner-title'>My Journal Entries</h2>
-              <Accordion allowToggle>
-                {journalPosts.map((data, index) => (
-                  <AccordionItem key={data._id} >
-                    <h2>
-                      <AccordionButton style={{ marginBottom: '-20px' }}>
-                        <Box as="span" flex='1' marginLeft='5px' textAlign='left'>
-                          "{`${data.title}`}"
-                        </Box>
-                        <AccordionIcon />
-                      </AccordionButton>
-                    </h2>
-                    <AccordionPanel className="journal-panel" pb={4}>
-                      <div className="img-cnt">
-                        <div className="journal-img">
-                          <img src={`${data.image}`} alt="plants" width="500" height="300"></img>
-                        </div>
-                        <div className="journal-cnt">
-                          "{`${data.text}`}"
-                        </div>
-                      </div>
-                      <div className="button-cnt" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <Button style={{ marginTop: "15px" }} colorScheme='orange' onClick={onDelete} id={data._id}>
-                          Delete
-                        </Button>
-                        <Button
-                          style={{ marginTop: "15px" }}
-                          colorScheme="blue"
-                          onClick={() => openEditModal(data)}
-                          id={data._id}
-                        >
-                          Edit
-                        </Button>
-                      </div>
-                    </AccordionPanel>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-              </div>
-            </GridItem>
+              </GridItem>
           </Grid>
         </>
       </div>
