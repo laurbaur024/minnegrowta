@@ -134,7 +134,7 @@ export default function Planner() {
         <>
           <Grid className="garden-content"
             templateRows="auto 1fr">
-            <h2 style={{ whiteSpace: 'nowrap', margin: '20px' }}>Your Timeline</h2>
+            <h2 style={{ whiteSpace: 'nowrap', margin: '20px' }} className='planner-title'>Your Timeline</h2>
             <GridItem className="timeline" rowSpan={1} colSpan={5}>
               <div>
                 <TimelineContainer />
@@ -212,6 +212,9 @@ export default function Planner() {
                   </ModalFooter>
                 </ModalContent>
               </Modal>
+            </GridItem>
+            <GridItem colSpan={4} className="alljournal-grid">
+              <h2 className='planner-title'>My Journal Entries</h2>
               <Accordion allowToggle>
                 {journalPosts.map((data, index) => (
                   <AccordionItem key={data._id} >
@@ -226,7 +229,7 @@ export default function Planner() {
                     <AccordionPanel className="journal-panel" pb={4}>
                       <div className="img-cnt">
                         <div className="journal-img">
-                          <img src={`${data.image}`} alt="image of plants" width="500" height="300"></img>
+                          <img src={`${data.image}`} alt="plants" width="500" height="300"></img>
                         </div>
                         <div className="journal-cnt">
                           "{`${data.text}`}"

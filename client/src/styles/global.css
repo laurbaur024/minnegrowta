@@ -216,6 +216,7 @@ p {
 .logo-text {
   font-size: 40px;
   margin-left: 10px;
+  font-family: 'Cantora One', sans-serif;
 }
 
 @media (max-width: 792px) {
@@ -253,6 +254,7 @@ p {
   color: #F8D589;
   text-shadow: 2px 2px 2px rgba(0, 0, 0);
   font-size: 30px !important;
+  font-family: 'Cantora One', sans-serif;
 }
 
 .home-header .header-text {
@@ -298,6 +300,7 @@ p {
 
 .dash-container h1 {
   margin-top: 40px;
+  font-family: 'Cantora One', sans-serif;
 }
 
 .dash-container {
@@ -684,6 +687,10 @@ p {
   width: 80%;
 }
 
+.planner-title {
+  font-family: 'Cantora One', sans-serif;
+}
+
 .alljournal-grid h2 {
   margin-bottom: 20px;
 }
@@ -812,6 +819,7 @@ p {
 
 .allpostgrid h2 {
   margin-bottom: 10px;
+  font-family: 'Cantora One', sans-serif;
 }
 
 .allpostgrid h6 {

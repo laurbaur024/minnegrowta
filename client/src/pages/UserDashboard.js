@@ -1,7 +1,7 @@
 import React from "react";
 import CardContainer from "../components/CardContainer";
 import TimelineContainer from "../components/TimelineContainer";
-import {Card, Stack, CardBody, Heading, Text, Button} from '@chakra-ui/react'
+import {Card, Stack, CardBody} from '@chakra-ui/react'
 import { useUserContext } from "../ctx/UserContext"; 
 
 const App = () => {
@@ -20,7 +20,7 @@ const App = () => {
         <Stack>
           <CardBody className="timeline-container" style={margin}>
               <div>
-                <h2 style={{ whiteSpace: 'nowrap' }}>Your Timeline</h2>
+                <h2 style={{ whiteSpace: 'nowrap' }} className='planner-title'>Your Timeline</h2>
                 <div className="dashtimeline">
                 <TimelineContainer></TimelineContainer>
                 </div>
