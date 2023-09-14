@@ -1,10 +1,4 @@
 
-html, body {
-  min-height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
 /* === typography ====== */
 
 h1 {
@@ -249,6 +243,10 @@ p {
 }
 
 /* home styles */
+
+.home-container {
+  margin-bottom: 0px;
+}
 
 .home-header h1 {
   color: #F8D589;
