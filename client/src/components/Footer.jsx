@@ -143,7 +143,7 @@ const Footer = () => {
 
   return (
     <footer className="footer" style={{ borderTop: "1px solid #333" }}>
-      <Container fluid>
+      <Container fluid >
         <div className="quote-container text-center">
           <p style={{ fontStyle: "italic", margin: 0 }}>"{currentQuote.text}" -{currentQuote.author}</p>
         </div>
