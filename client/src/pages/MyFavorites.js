@@ -131,9 +131,8 @@ export default function MyFavorites(props) {
               </GridItem> */}
             </Card>
           </GridItem>
-
-          <GridItem colSpan={1}>
-            <h2>My Favorite Plants</h2>
+          <GridItem colSpan={4}>
+            <h2 className='planner-title'>My Favorite Plants</h2>
             <h6>Click on a plant name to see more details</h6>
             <Accordion allowToggle>
               {results &&
