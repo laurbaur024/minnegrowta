@@ -568,11 +568,112 @@ p {
 .fav-content {
   display: flex;
   margin-top: 30px;
-  margin-bottom: 30%;
   flex-grow: 1;
   flex-direction: column;
   height: 100%;
   background-color: "#F2EFE0" !important;
+}
+
+.favleftcard {
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.favrightcard {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 8px;
+  border: 1px solid lightgrey;
+  margin-bottom: 650px;
+}
+
+.favrightcard h2,
+.favrightcard h6 {
+  margin: 5px;
+}
+
+.favrightcard h6 {
+  margin-bottom: 20px;
+}
+
+.favgrid {
+  height: 560px;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.pvanish .contentz {
+  display: block;
+}
+
+.termlist {
+  margin-top: -20px;
+  margin-bottom: 10px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  flex-wrap: wrap;
+  padding: 0;
+  gap: 20px;
+  }
+
+.favleftcard h5 {
+  margin-top: -20px;
+  margin-left: 10px;
+  margin-bottom: 40px;
+}
+
+.termlist li {
+  margin-bottom: 8px;
+  list-style-type: none;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+@media (max-width: 936px) {
+  .pvanish .contentz {
+    display: none;
+  }
+
+  .favgrid {
+    height: 400px;
+  }
+}
+
+@media (max-width: 722px) {
+
+  .favgrid {
+    width: auto;
+    height: auto;
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+
+  .fav-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .favleftcard {
+    max-width: 100%;
+    margin: 10px;
+    margin-left: 5%;
+  }
+
+  .favrightcard {
+    margin-left: 5%;
+    margin-bottom: 20px;
+    max-width: 100%;
+    display: flex !important;
+    justify-content: center;
+    align-items: center !important;
+  }
 }
 
 /* planner styles */
@@ -701,12 +802,18 @@ p {
 
 /* forum styles */
 
+.replybox {
+  margin-top: 10px;
+  border-radius: 8px;
+  border: 1px solid lightgrey;
+}
+
 .replies {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
   margin-left: 20px;
   margin-right: 20px;
+  margin-bottom: 10px;
   font-weight: bold;
 }
 
@@ -717,10 +824,6 @@ p {
 
 .allpostgrid h6 {
   margin-bottom: 20px;
-}
-
-.forum-panel {
-  margin-bottom: 5px;
 }
 
 .forum-img {
@@ -744,12 +847,10 @@ p {
 }
 
 .forum-reply {
-  margin-top: 20px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 8px;
-  border: 1px solid lightgrey;
 }
 
 .forum-reply p {
