@@ -214,7 +214,7 @@ export default function MyFavorites(props) {
                             colorScheme="orange"
                             onClick={(e) => removeFavPlant(e, data._id)}
                           >
-                            Remove from Favorites
+                            Remove
                           </Button>
                           <Button
                             colorScheme="orange"

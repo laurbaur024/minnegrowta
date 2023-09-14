@@ -563,6 +563,10 @@ p {
 
 /* fav styles */
 
+.fav-acc {
+  width: 100%;
+}
+
 .fav-content {
   display: flex;
   margin-top: 30px;
@@ -600,7 +604,8 @@ p {
 }
 
 .favgrid {
-  height: 560px;
+  margin-bottom: -400px;;
+  display: flex;
   flex-grow: 1;
   flex-direction: column;
 }
@@ -634,21 +639,20 @@ p {
   white-space: nowrap;
 }
 
-@media (max-width: 936px) {
+@media (max-width: 950px) {
   .pvanish .contentz {
     display: none;
   }
 
   .favgrid {
-    height: 400px;
+    margin-bottom: -600px;
   }
 }
 
 @media (max-width: 722px) {
 
   .favgrid {
-    width: auto;
-    height: auto;
+    margin-bottom: 0px;
     grid-template-columns: repeat(1, 1fr) !important;
   }
 
@@ -671,6 +675,13 @@ p {
     display: flex !important;
     justify-content: center;
     align-items: center !important;
+  }
+}
+
+
+@media (max-width: 458px) {
+  .fav-acc {
+    width: 290px;
   }
 }
 
