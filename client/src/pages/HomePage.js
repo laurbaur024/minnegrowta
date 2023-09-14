@@ -27,7 +27,7 @@ const HomePage = () => {
             backgroundImage: `url(${Background})`,
             backgroundSize: 'cover',
             width: '100%',
-            height: '50vh',
+            height: '100vh',
           }}
         ></div>
       </div>
